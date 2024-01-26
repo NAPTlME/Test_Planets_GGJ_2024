@@ -123,14 +123,15 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NormalStr: 1
+    - _MinAlpha: 0.2
+    - _NormalStr: 0.04
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RefractionStr: 1
-    - _Smoothness: 0.5
+    - _Smoothness: 0.9
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Speed: 0.2
@@ -140,8 +141,8 @@ Material:
     - _TesselationFactor: 64
     - _Tiling: 4
     - _TintAmount: 0.1
-    - _TriPlanarBlend: 8
-    - _TriPlanar_Round: 1
+    - _TriPlanarBlend: 8.17
+    - _TriPlanar_Round: 0
     - _WaveHeight: 0.1
     - _WorkflowMode: 1
     - _ZWrite: 1
