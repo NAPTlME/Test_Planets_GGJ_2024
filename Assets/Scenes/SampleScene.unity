@@ -896,7 +896,7 @@ MonoBehaviour:
   MinDistToFeelGravity: 7
   distToOtherPlanet: 0
   distAccelCoef: 1
-  centerOfMassGizmoRad: 0.1
+  centerOfMassGizmoRad: 0.04
 --- !u!54 &1515219075
 Rigidbody:
   m_ObjectHideFlags: 0
