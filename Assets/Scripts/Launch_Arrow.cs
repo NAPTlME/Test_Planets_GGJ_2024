@@ -64,8 +64,7 @@ public class Launch_Arrow : MonoBehaviour
         var second_step = (end - start) / t_seconds;
         while (Time.time < endTime)
         {
-            currAlpha +=  second_step * Time.deltaTime;
-            Debug.Log("CurrAlpha: " + currAlpha);
+            currAlpha += second_step * Time.deltaTime;
             SetFade(currAlpha);
             yield return null;
         }
