@@ -186,6 +186,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GregScene_Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 6346179577898012004, guid: 281f9e8355c6e6a439615a6c3a6a25e6,
+        type: 3}
+      propertyPath: near clip plane
+      value: 13.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
