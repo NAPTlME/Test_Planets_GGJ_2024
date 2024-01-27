@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class LaunchManager : MonoBehaviour
 {
-    public const float SLINGSHOT_COEF = 5000f;
+    public float SLINGSHOT_COEF = 1000f;// 5000f;
+    public float InitialPlanetMass = 100.0f;
     public const float LINE_WIDTH = .2f;
+
+    public int TopDownHeight = 100;
 
     public Camera defaultCamera;
     public Camera topDownCamera;
@@ -15,7 +18,7 @@ public class LaunchManager : MonoBehaviour
     public Vector3 launchLoc;
     public Launch_Arrow LaunchArrow;
     public enum Mode
-    {   
+    {
         NONE,
         PICK_LOCATION,
         SLINGSHOT
@@ -82,15 +85,20 @@ public class LaunchManager : MonoBehaviour
         mode = Mode.PICK_LOCATION;
         defaultCamera.gameObject.SetActive(false);
         topDownCamera.gameObject.SetActive(true);
-        topDownCamera.transform.position = new Vector3(0, 20, 0);
+        topDownCamera.transform.position = new Vector3(0, TopDownHeight, 0);
         potentialPlanet = Instantiate(planetPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        potentialPlanet.name = "PreviewPlanet";
         potentialPlanet.tag = "Untagged";
-        Destroy(potentialPlanet.GetComponent<Rigidbody>());
-        var colliders = potentialPlanet.GetComponents<Collider>();
-        foreach(var collider in colliders)
-        {
-            Destroy(collider);
-        }
+        // Note: if what we want is the colliders to be disabled in the initial state,
+        // what we should do is have them disabled in the prefab and then enabling them on
+        // Launch() like for the planetGravity component, so commenting out this code for
+        // now until we can clarify its goal
+        // Destroy(potentialPlanet.GetComponent<Rigidbody>());
+        // var colliders = potentialPlanet.GetComponents<Collider>();
+        // foreach (var collider in colliders)
+        // {
+        //     Destroy(collider);
+        // }
     }
 
     private void Exit()
@@ -99,9 +107,9 @@ public class LaunchManager : MonoBehaviour
         mode = Mode.NONE;
         defaultCamera.gameObject.SetActive(true);
         topDownCamera.gameObject.SetActive(false);
-        if (potentialPlanet != null) 
-        { 
-            Destroy(potentialPlanet);  
+        if (potentialPlanet != null)
+        {
+            Destroy(potentialPlanet);
         }
         LaunchArrow.enabled = false;
     }
@@ -118,16 +126,28 @@ public class LaunchManager : MonoBehaviour
 
     private void Launch()
     {
+        // TODO: We could avoid detroying the temp planet and creating a new one
+        // if we wanted... later
         Debug.Assert(mode == Mode.SLINGSHOT);
         var curLoc = potentialPlanet.transform.position;
         Destroy(potentialPlanet);
         potentialPlanet = null;
         var newPlanet = Instantiate(planetPrefab, curLoc, Quaternion.identity);
+        newPlanet.name = "LaunchedPlanet";
         Rigidbody rbody = newPlanet.GetComponent<Rigidbody>();
+        rbody.mass = InitialPlanetMass;
         var direction = (launchLoc - curLoc).normalized;
         var dist = (launchLoc - curLoc).magnitude;
         rbody.AddForce(direction * (float)Math.Pow(dist, 1.5f) * SLINGSHOT_COEF);
         LaunchArrow.FadeOut(0.4f);
+        // Enable the gravity on the planet only once it's been launched / released:
+        newPlanet.GetComponent<PlanetGravity>().enabled = true;
+        var colliders = newPlanet.GetComponents<SphereCollider>();
+        foreach (var collider in colliders)
+        {
+            collider.enabled = true;
+        }
+        // Go back to launch mode for another launch:
         StartPickLocation();
     }
 }

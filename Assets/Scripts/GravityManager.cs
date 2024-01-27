@@ -24,6 +24,15 @@ public class GravityManager : MonoBehaviour
         gravityPlanets.Add(planetGravity);
     }
 
+    public void ForgetPlanet(PlanetGravity planetGravity)
+    {
+        // TODO: This is inefficient, we should look into using sets, but IDK C#'s default hashing requirements
+        // and there won't be many planets so this is good enough for now
+        Debug.Log("forgetting planet");
+        gravityPlanets.Remove(planetGravity);
+    }
+
+
     private void Awake()
     {
         if (null == instance)
