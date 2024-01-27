@@ -59,7 +59,7 @@ public class Objects_On_Planet : MonoBehaviour
             var newDist = ToOtherPlanet.magnitude;
             var accelCoef = Mathf.Max(distToOtherPlanet - newDist, 0) * distAccelCoef;
             var gravityForceMag = (accelCoef + 1) / Mathf.Pow(newDist, 2f) * Time.fixedDeltaTime;
-            
+
             if (accelCoef > 0.01f) //extra impulse to get interesting behavior 
             {
                 rbody.AddForce(directionToOtherPlanet * accelCoef, ForceMode.Impulse);
