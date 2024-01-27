@@ -16,7 +16,7 @@ public class LaunchManager : MonoBehaviour
     public GameObject planetPrefab;
     public GameObject potentialPlanet;
     public Vector3 launchLoc;
-    public LineRenderer lineRenderer;
+    public Launch_Arrow LaunchArrow;
     public enum Mode
     {
         NONE,
@@ -31,11 +31,6 @@ public class LaunchManager : MonoBehaviour
         Cursor.visible = true;
         mode = Mode.NONE;
         var emptyObj = new GameObject("empty");
-        lineRenderer = emptyObj.AddComponent<LineRenderer>();
-        lineRenderer.startWidth = LINE_WIDTH;
-        lineRenderer.endWidth = 0f;
-        lineRenderer.useWorldSpace = true;
-        lineRenderer.positionCount = 0;
     }
 
     void Update()
@@ -78,7 +73,9 @@ public class LaunchManager : MonoBehaviour
                 potentialPlanet.transform.position,
                 launchLoc
             };
-            lineRenderer.SetPositions(trajectory.ToArray());
+            Vector2 launchLoc_2d = new Vector2(launchLoc.x, launchLoc.z);
+            Vector2 potentialPlanetPos_2d = new Vector2(potentialPlanet.transform.position.x, potentialPlanet.transform.position.z);
+            LaunchArrow.UpdatePosition(launchLoc_2d, potentialPlanetPos_2d);
         }
     }
 
@@ -114,7 +111,7 @@ public class LaunchManager : MonoBehaviour
         {
             Destroy(potentialPlanet);
         }
-        lineRenderer.positionCount = 0;
+        LaunchArrow.enabled = false;
     }
 
     private void StartSlingshot()
@@ -122,7 +119,9 @@ public class LaunchManager : MonoBehaviour
         Debug.Assert(mode == Mode.PICK_LOCATION);
         mode = Mode.SLINGSHOT;
         launchLoc = potentialPlanet.transform.position;
-        lineRenderer.positionCount = 2;
+        LaunchArrow.enabled = true;
+        LaunchArrow.SetFade(0f);
+        LaunchArrow.FadeIn(0.2f);
     }
 
     private void Launch()
@@ -140,7 +139,7 @@ public class LaunchManager : MonoBehaviour
         var direction = (launchLoc - curLoc).normalized;
         var dist = (launchLoc - curLoc).magnitude;
         rbody.AddForce(direction * (float)Math.Pow(dist, 1.5f) * SLINGSHOT_COEF);
-        lineRenderer.positionCount = 0;
+        LaunchArrow.FadeOut(0.4f);
         // Enable the gravity on the planet only once it's been launched / released:
         newPlanet.GetComponent<PlanetGravity>().enabled = true;
         var colliders = newPlanet.GetComponents<SphereCollider>();
