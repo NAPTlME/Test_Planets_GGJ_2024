@@ -133,9 +133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 576427}
   - component: {fileID: 576428}
-  - component: {fileID: 576429}
   m_Layer: 0
-  m_Name: arrow
+  m_Name: arrow_sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,10 +150,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.42547, y: 0.42547, z: 0.42547}
+  m_LocalScale: {x: 0.42547, y: 0.16, z: 0.42547002}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 863559405}
+  m_Father: {fileID: 1054853794}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &576428
 SpriteRenderer:
@@ -208,24 +207,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &576429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 576426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1382700dd853c1a4d9a9f2bf779650c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ArrowMat: {fileID: 2100000, guid: 25a8faf65f303df4b9d21cbb0ddbd1b9, type: 2}
-  MinRatio: 0.6
-  MaxRatio: 4
-  MinStretch: 0.6
-  MaxStretch: 4
-  debug_stretch_speed: 2
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,9 +540,64 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 576427}
+  - {fileID: 1054853794}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1054853793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1054853794}
+  - component: {fileID: 1054853795}
+  m_Layer: 0
+  m_Name: Arrow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1054853794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054853793}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 576427}
+  m_Father: {fileID: 863559405}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1054853795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054853793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1382700dd853c1a4d9a9f2bf779650c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ArrowMat: {fileID: 2100000, guid: 25a8faf65f303df4b9d21cbb0ddbd1b9, type: 2}
+  MinRatio: 0.6
+  MaxRatio: 4
+  MinStretch: 0.6
+  MaxStretch: 4
+  StartPoint_world: {x: 26.5, y: 1}
+  EndPoint_world: {x: 26.5, y: -1}
+  debug_stretch_speed: 2
+  meters_per_scale: 2
+  y_plane: 0
 --- !u!1001 &1503935279
 PrefabInstance:
   m_ObjectHideFlags: 0
