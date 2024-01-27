@@ -18,4 +18,13 @@ public class PlanetGravity : MonoBehaviour
     {
         GravityManager.getInstance().ForgetPlanet(this);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject == GravityManager.getInstance().gameObject)
+        {
+            Debug.Log("Crashing into the sun, BURN!");
+            Destroy(this.gameObject);
+        }
+    }
 }
