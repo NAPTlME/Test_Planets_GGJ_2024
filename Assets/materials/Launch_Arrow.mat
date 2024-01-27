@@ -113,10 +113,11 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
+    - _alpha_pow: 1
     - _bot_perc_to_keep: 0.2
     - _global_alpha: 0
     - _squish_scale: 0.6
-    - _top_perc_to_keep: 0.48
+    - _top_perc_to_keep: 0.52
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
