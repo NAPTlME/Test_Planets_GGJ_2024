@@ -148,15 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8abe4104927c04d9199cadc18e55c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HomePlanet: {fileID: 620448916081641313}
-  OtherPlanet: {fileID: 0}
-  OtherPlanets: []
-  OtherPlanet_rad: 2
-  planet_rad: 1.75
-  MinDistToFeelGravity: 7
-  distToOtherPlanet: 0
-  distAccelCoef: 1
-  centerOfMassGizmoRad: 0.04
+  homePlanet: {fileID: 0}
+  planets: []
 --- !u!1 &449056226604380377
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +162,7 @@ GameObject:
   - component: {fileID: 3658726835356417685}
   m_Layer: 0
   m_Name: Planet_01
-  m_TagString: Untagged
+  m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -361,15 +354,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8abe4104927c04d9199cadc18e55c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HomePlanet: {fileID: 620448916081641313}
-  OtherPlanet: {fileID: 0}
-  OtherPlanets: []
-  OtherPlanet_rad: 2
-  planet_rad: 1.75
-  MinDistToFeelGravity: 7
-  distToOtherPlanet: 0
-  distAccelCoef: 1
-  centerOfMassGizmoRad: 0.04
+  homePlanet: {fileID: 0}
+  planets: []
 --- !u!1 &889690249662250364
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,15 +502,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8abe4104927c04d9199cadc18e55c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HomePlanet: {fileID: 620448916081641313}
-  OtherPlanet: {fileID: 0}
-  OtherPlanets: []
-  OtherPlanet_rad: 2
-  planet_rad: 1.75
-  MinDistToFeelGravity: 7
-  distToOtherPlanet: 0
-  distAccelCoef: 1
-  centerOfMassGizmoRad: 0.04
+  homePlanet: {fileID: 0}
+  planets: []
 --- !u!1 &1298759346765097720
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,15 +652,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8abe4104927c04d9199cadc18e55c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HomePlanet: {fileID: 620448916081641313}
-  OtherPlanet: {fileID: 0}
-  OtherPlanets: []
-  OtherPlanet_rad: 2
-  planet_rad: 1.75
-  MinDistToFeelGravity: 7
-  distToOtherPlanet: 0
-  distAccelCoef: 1
-  centerOfMassGizmoRad: 0.04
+  homePlanet: {fileID: 0}
+  planets: []
 --- !u!1 &3987072314985300185
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,15 +800,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8abe4104927c04d9199cadc18e55c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HomePlanet: {fileID: 620448916081641313}
-  OtherPlanet: {fileID: 0}
-  OtherPlanets: []
-  OtherPlanet_rad: 2
-  planet_rad: 1.75
-  MinDistToFeelGravity: 7
-  distToOtherPlanet: 0
-  distAccelCoef: 1
-  centerOfMassGizmoRad: 0.04
+  homePlanet: {fileID: 0}
+  planets: []
 --- !u!1 &5326778238628563384
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,15 +950,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8abe4104927c04d9199cadc18e55c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HomePlanet: {fileID: 620448916081641313}
-  OtherPlanet: {fileID: 0}
-  OtherPlanets: []
-  OtherPlanet_rad: 2
-  planet_rad: 1.75
-  MinDistToFeelGravity: 7
-  distToOtherPlanet: 0
-  distAccelCoef: 1
-  centerOfMassGizmoRad: 0.04
+  homePlanet: {fileID: 0}
+  planets: []
 --- !u!1 &7433523717212596315
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,15 +1100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8abe4104927c04d9199cadc18e55c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HomePlanet: {fileID: 620448916081641313}
-  OtherPlanet: {fileID: 0}
-  OtherPlanets: []
-  OtherPlanet_rad: 2
-  planet_rad: 1.75
-  MinDistToFeelGravity: 7
-  distToOtherPlanet: 0
-  distAccelCoef: 1
-  centerOfMassGizmoRad: 0.04
+  homePlanet: {fileID: 0}
+  planets: []
 --- !u!1 &8758539912454729447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,15 +1248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8abe4104927c04d9199cadc18e55c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HomePlanet: {fileID: 620448916081641313}
-  OtherPlanet: {fileID: 0}
-  OtherPlanets: []
-  OtherPlanet_rad: 2
-  planet_rad: 1.75
-  MinDistToFeelGravity: 7
-  distToOtherPlanet: 0
-  distAccelCoef: 1
-  centerOfMassGizmoRad: 0.04
+  homePlanet: {fileID: 0}
+  planets: []
 --- !u!1001 &1087336172930195594
 PrefabInstance:
   m_ObjectHideFlags: 0
