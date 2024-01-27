@@ -37,11 +37,6 @@ public class LaunchManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log(potentialPlanet.transform.position);
-            Debug.Log(lineRenderer.positionCount);
-        }
         if (mode != Mode.NONE && Input.GetKeyDown(KeyCode.Escape))
         {
             Exit();
@@ -99,7 +94,6 @@ public class LaunchManager : MonoBehaviour
         {
             Destroy(collider);
         }
-        Debug.Log(lineRenderer.positionCount);
     }
 
     private void Exit()
