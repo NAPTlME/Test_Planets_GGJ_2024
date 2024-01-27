@@ -951,7 +951,7 @@ MonoBehaviour:
   planet_rad: 1.75
   MinDistToFeelGravity: 7
   distToOtherPlanet: 0
-  distAccelCoef: 1
+  distAccelCoef: 100
   centerOfMassGizmoRad: 0.04
 --- !u!54 &1433587870
 Rigidbody:
@@ -6055,7 +6055,7 @@ MonoBehaviour:
   planet_rad: 1.75
   MinDistToFeelGravity: 7
   distToOtherPlanet: 0
-  distAccelCoef: 1
+  distAccelCoef: 100
   centerOfMassGizmoRad: 0.04
 --- !u!54 &1515219075
 Rigidbody:
