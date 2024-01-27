@@ -27,7 +27,6 @@ public class PlanetGravity : MonoBehaviour
             var exp = GetComponent<ParticleSystem>();
             exp.Play();
             GetComponent<MeshRenderer>().enabled = false;
-            Destroy(this.gameObject, exp.duration);
         }
     }
 }

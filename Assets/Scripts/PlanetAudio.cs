@@ -24,7 +24,7 @@ public class PlanetAudio : MonoBehaviour
         {
             Debug.Log("Crashing into the sun, playing SFX");
             audioSource.Play();
-
+            Destroy(this.gameObject, audioSource.clip.length);
         }
     }
 }
