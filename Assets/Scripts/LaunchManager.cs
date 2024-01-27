@@ -6,6 +6,7 @@ using UnityEngine;
 public class LaunchManager : MonoBehaviour
 {
     public float SLINGSHOT_COEF = 1000f;// 5000f;
+    public float InitialPlanetMass = 100.0f;
     public const float LINE_WIDTH = .2f;
 
     public int TopDownHeight = 100;
@@ -135,6 +136,7 @@ public class LaunchManager : MonoBehaviour
         var newPlanet = Instantiate(planetPrefab, curLoc, Quaternion.identity);
         newPlanet.name = "LaunchedPlanet";
         Rigidbody rbody = newPlanet.GetComponent<Rigidbody>();
+        rbody.mass = InitialPlanetMass;
         var direction = (launchLoc - curLoc).normalized;
         var dist = (launchLoc - curLoc).magnitude;
         rbody.AddForce(direction * (float)Math.Pow(dist, 1.5f) * SLINGSHOT_COEF);
