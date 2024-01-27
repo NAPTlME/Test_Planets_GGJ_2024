@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class Launch_Arrow : MonoBehaviour
 {
-    public Material ArrowMat; // just overwriting the main instance
+    public GameObject Arrow_Child;
+    private Material ArrowMat; // just overwriting the main instance for now
     public float MinStretch = 0.6f;
-    public Vector2 StartPoint_world;
-    public Vector2 EndPoint_world;
     public float meters_per_scale = 2f;
     public float y_plane = 0f;
     // Start is called before the first frame update
     void Start()
     {
-        
+        ArrowMat = Arrow_Child.GetComponent<SpriteRenderer>().material;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        UpdatePosition(StartPoint_world, EndPoint_world);
 
     }
 
@@ -52,11 +49,11 @@ public class Launch_Arrow : MonoBehaviour
 
     public void FadeIn(float t_seconds)
     {
-        StartCoroutine(Fade(t_seconds, 1f, 0f));
+        StartCoroutine(Fade(t_seconds, 0f, 1f));
     }
     public void FadeOut(float t_seconds)
     {
-        StartCoroutine(Fade(t_seconds, 0f, 1f));
+        StartCoroutine(Fade(t_seconds, 1f, 0f));
     }
     // assume we are either zero or one when starting this
     IEnumerator Fade(float t_seconds, float start = 0f, float end = 1f)
@@ -67,15 +64,15 @@ public class Launch_Arrow : MonoBehaviour
         var second_step = (end - start) / t_seconds;
         while (Time.time < endTime)
         {
-            currAlpha = second_step * Time.deltaTime;
-            ArrowMat.SetFloat("_global_alpha", currAlpha);
+            currAlpha +=  second_step * Time.deltaTime;
+            Debug.Log("CurrAlpha: " + currAlpha);
+            SetFade(currAlpha);
             yield return null;
         }
-        ArrowMat.SetFloat("_global_alpha", end);
+        SetFade(end);
     }
-    private void OnDrawGizmos()
+    public void SetFade(float x)
     {
-        Gizmos.DrawSphere(new Vector3(StartPoint_world.x, 0, StartPoint_world.y), 0.2f);
-        Gizmos.DrawSphere(new Vector3(EndPoint_world.x, 0, EndPoint_world.y), 0.2f);
+        ArrowMat.SetFloat("_global_alpha", Mathf.Clamp01(x));
     }
 }
