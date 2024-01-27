@@ -24,7 +24,10 @@ public class PlanetGravity : MonoBehaviour
         if (collision.gameObject == GravityManager.getInstance().gameObject)
         {
             Debug.Log("Crashing into the sun, BURN!");
-            Destroy(this.gameObject);
+            var exp = GetComponent<ParticleSystem>();
+            exp.Play();
+            GetComponent<MeshRenderer>().enabled = false;
+            Destroy(this.gameObject, exp.duration);
         }
     }
 }
