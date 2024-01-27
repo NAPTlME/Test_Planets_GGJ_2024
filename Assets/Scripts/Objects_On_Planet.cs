@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System.Net;
+using System;
+using System.Diagnostics.Tracing;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Objects_On_Planet : MonoBehaviour
 {
-    public Planet homePlanet; // change to Planet
-    public List<Planet> planets; // potentially convert to a dictionary instead in which the key is the Planet and the value is the distance to that planet (surface) in the last update (for calculating the impulse)
+    public Planet homePlanet;
+    public List<Planet> planets;
+    // distances are used to calculate prev distance vs new distance in update
+    public Dictionary<Planet, float> planetDistances;
 
     public const float DIST_ACCEL_COEF = 1f;
     public const float CENTER_OF_MASS_GIZMO_RAD = 0.04f;
@@ -19,27 +23,53 @@ public class Objects_On_Planet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        planets = new List<Planet>();
+        // Debug.Log("init planet count: " + planets.Count);
         rbody = GetComponent<Rigidbody>();
-        transform.SetParent(homePlanet.transform);
+        planetDistances = new Dictionary<Planet, float>();
+        var minDist = -1f;
+        foreach(var planet in planets)
+        {
+            var dist = Vector3.Distance(planet.transform.position, transform.position) - planet.radius;
+            planetDistances.Add(planet, dist);
+            if (homePlanet == null || dist < minDist)
+            {
+                minDist = dist;
+                homePlanet = planet;
+            }
+        }
+        if (homePlanet != null)
+        {
+            transform.SetParent(homePlanet.transform);
+        }
     }
 
     // FixedUpdate runs on a predetermined tick rate (50hz by default)
     void FixedUpdate()
     {
-        var newPlanetDistances = planets.Select(planet => (planet, Vector3.Distance(planet.transform.position, transform.position) - planet.radius)).ToList();
-        
+        // Debug.Log("planet count: " + planets.Count);
+        var newPlanetDistances = planets.Select(planet => (planet, Vector3.Distance(planet.transform.position, transform.position) - planet.radius))
+            .ToList()
+            .ToDictionary(x => x.Item1, x => x.Item2);
+
         // set minimum distance planet as home planet
-        var minPlanetDistance = newPlanetDistances[0];
-        newPlanetDistances.ForEach(planetDistance =>
+        Planet minPlanet = null;
+        float minDistance = -1f;
+        foreach(var planetDistance in newPlanetDistances)
         {
-            if (planetDistance.Item2 < minPlanetDistance.Item2)
-            {
-                minPlanetDistance = planetDistance;
+            if (minPlanet == null || planetDistance.Value < minDistance) {
+                minPlanet = planetDistance.Key;
+                minDistance = planetDistance.Value;
             }
-        });
-        homePlanet = minPlanetDistance.Item1;
-        transform.SetParent(homePlanet.transform);
+        };
+        if (newPlanetDistances.Count > 0) {
+            homePlanet = minPlanet;
+            transform.SetParent(homePlanet.transform);
+        } else {
+            // case for no planets nearby
+            homePlanet = null;
+            this.planetDistances = newPlanetDistances;
+            return;
+        }
 
         // force from home planet
         var directionToPlanet = (homePlanet.transform.position - transform.position).normalized;
@@ -52,30 +82,12 @@ public class Objects_On_Planet : MonoBehaviour
             if (GameObject.ReferenceEquals(planet, homePlanet)) {
                 return;
             }
-            var directionToPlanet = (homePlanet.transform.position - transform.position).normalized;
-            var gravityForceFromPlanet = directionToPlanet * BASE_GRAVITY_COEF;
-            var totalGravityForce = gravityForceFromPlanet;
             var ToOtherPlanet = (planet.transform.position - transform.position);
-        });
-        
-
-        var ToOtherPlanet = (OtherPlanet.position - transform.position);
-
-        var planetDistances = OtherPlanets.Select(planet => (planet, Vector3.Distance(planet.transform.position, transform.position) - planet.radius)).ToList();
-        // define home planet based on closest?
-        //Planet = planetDistances.OrderBy(sel => sel.Item2).Select(sel => sel.planet);
-        newPlanetDistances.ForEach(s =>
-        {
-            // gravity calc here,
-            // add to totalGravityForce
-        });
-        if (ToOtherPlanet.magnitude < MinDistToFeelGravity)
-        {
             var directionToOtherPlanet = ToOtherPlanet.normalized;
-            var newDist = ToOtherPlanet.magnitude;
-            var accelCoef = Mathf.Max(distToOtherPlanet - newDist, 0) * DIST_ACCEL_COEF;
+            var newDist = ToOtherPlanet.magnitude - planet.radius;
+            var accelCoef = Mathf.Max(this.planetDistances.GetValueOrDefault(planet, 0) - newDist, 0) * DIST_ACCEL_COEF;
             var gravityForceMag = (accelCoef + 1) / Mathf.Pow(newDist, 2f) * Time.fixedDeltaTime;
-            
+
             if (accelCoef > 0.01f) //extra impulse to get interesting behavior 
             {
                 rbody.AddForce(directionToOtherPlanet * accelCoef, ForceMode.Impulse);
@@ -84,8 +96,8 @@ public class Objects_On_Planet : MonoBehaviour
             var gravityForceFromOtherPlanet = directionToOtherPlanet * BASE_GRAVITY_COEF * gravityForceMag;
 
             totalGravityForce += gravityForceFromOtherPlanet;
-            distToOtherPlanet = newDist;
-        }
+            this.planetDistances = newPlanetDistances;
+        });
         rbody.AddForce(totalGravityForce, ForceMode.Acceleration);
     }
 
