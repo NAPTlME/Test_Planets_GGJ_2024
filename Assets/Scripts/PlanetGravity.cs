@@ -11,6 +11,7 @@ public class PlanetGravity : MonoBehaviour
 
     private void OnEnable()
     {
+        Debug.Log("GravityPlanet: OnEnable");
         GravityManager.getInstance().RegisterPlanet(this);
     }
     private void OnDisable()
