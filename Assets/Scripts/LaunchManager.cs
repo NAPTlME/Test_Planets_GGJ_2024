@@ -147,6 +147,7 @@ public class LaunchManager : MonoBehaviour
         {
             collider.enabled = true;
         }
+        newPlanet.transform.GetChild(0).gameObject.SetActive(true);
         // Go back to launch mode for another launch:
         StartPickLocation();
     }
