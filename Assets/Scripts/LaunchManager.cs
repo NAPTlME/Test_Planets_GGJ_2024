@@ -12,15 +12,17 @@ public class LaunchManager : MonoBehaviour
     public const float LINE_WIDTH = .2f;
 
     public int TopDownHeight = 100;
-    
+
     public GameObject planetPrefab;
-    
+
     public Planet currentPlanet;
     private GameObject potentialPlanet;
     private Vector3 launchLoc;
     public Launch_Arrow LaunchArrow;
     private StatsPlanetType statsPlanetType = StatsPlanetType.SMALL;
     private CameraManager cameraManager;
+
+    int planetTypeInteractionIndex = 0;
 
     [Header("Planet Builder")]
     public DodecPlanetBuild planetBuilder;
@@ -70,6 +72,7 @@ public class LaunchManager : MonoBehaviour
         }
         if (mode != Mode.NONE && Input.GetKeyDown(KeyCode.Tab))
         {
+            planetTypeInteractionIndex += 1;
             newPotentialPlanet();
         }
         if (mode == Mode.PICK_LOCATION || mode == Mode.SLINGSHOT)
@@ -129,7 +132,7 @@ public class LaunchManager : MonoBehaviour
         Debug.Assert(mode != Mode.NONE);
         mode = Mode.NONE;
 
-        
+
 
         if (potentialPlanet != null)
         {
@@ -192,7 +195,8 @@ public class LaunchManager : MonoBehaviour
             Destroy(potentialPlanet);
             potentialPlanet = null;
         }
-        var newPlanet = planetBuilder.Build();
+        var newPlanetType = planetBuilder.scriptable_planets[planetTypeInteractionIndex % planetBuilder.scriptable_planets.Count];
+        var newPlanet = planetBuilder.Build(newPlanetType);
         potentialPlanet = newPlanet.Item1;
         potentialPlanet.name = "PreviewPlanet";
         potentialPlanet.tag = "Untagged";

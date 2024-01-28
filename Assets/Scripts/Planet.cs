@@ -2,11 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-public class PlanetTypeToStatsTypeTuple
-{
-    public Planet_Type planetType;
-    public StatsPlanetType statsPlanetType;
-}
 
 [RequireComponent(typeof(Rigidbody))]
 [ExecuteInEditMode]
