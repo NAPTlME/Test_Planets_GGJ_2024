@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b0fe3de799d2df47b451ee118b55adc, type: 3}
+  m_Name: Earth-Like
+  m_EditorClassIdentifier: 
+  type: 0
+  MinMass: 100
+  MaxMass: 300
+  MinScale: 4
+  MaxScale: 6
+  collisionSound: {fileID: 8300000, guid: d1ba7d817f31ee243948331f35d121e6, type: 3}
+  optional_prefab: {fileID: 0}
+  TilesAvailable:
+  - {fileID: 11400000, guid: bf4cf76f1fb34f446b3eebf4fc4195ba, type: 2}
+  - {fileID: 11400000, guid: bd9e29f76708b034380727f1265b40e9, type: 2}
+  - {fileID: 11400000, guid: 53945cd7b6167fb40ae4eb909ebfdecd, type: 2}
+  - {fileID: 11400000, guid: 65399f3fe825bbe46981c2b3bbad0f6b, type: 2}
+  - {fileID: 11400000, guid: 69706a6b4f21c1b48a83b9b7e40efb3f, type: 2}
