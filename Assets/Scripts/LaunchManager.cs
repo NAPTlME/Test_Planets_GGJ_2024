@@ -14,12 +14,16 @@ public class LaunchManager : MonoBehaviour
     public int TopDownHeight = 100;
     
     public GameObject planetPrefab;
-    public Planet scriptablePlanet;
+    
+    public Planet currentPlanet;
     private GameObject potentialPlanet;
     private Vector3 launchLoc;
     public Launch_Arrow LaunchArrow;
     private StatsPlanetType statsPlanetType = StatsPlanetType.SMALL;
     private CameraManager cameraManager;
+
+    [Header("Planet Builder")]
+    public DodecPlanetBuild planetBuilder;
 
     public enum Mode
     {
@@ -35,7 +39,7 @@ public class LaunchManager : MonoBehaviour
         Cursor.visible = true;
         mode = Mode.NONE;
         var emptyObj = new GameObject("empty");
-        scriptablePlanet = planetPrefab.GetComponent<Planet>();
+        currentPlanet = planetPrefab.GetComponent<Planet>();
 
         cameraManager = Camera.main.gameObject.GetComponent<CameraManager>();
     }
@@ -66,7 +70,7 @@ public class LaunchManager : MonoBehaviour
         }
         if (mode != Mode.NONE && Input.GetKeyDown(KeyCode.Tab))
         {
-            switchPlanet();
+            newPotentialPlanet();
         }
         if (mode == Mode.PICK_LOCATION || mode == Mode.SLINGSHOT)
         {
@@ -76,7 +80,17 @@ public class LaunchManager : MonoBehaviour
             if (zeroPlane.Raycast(ray, out enter))
             {
                 Vector3 hitPoint = ray.GetPoint(enter);
+                if (potentialPlanet == null)
+                {
+                    newPotentialPlanet();
+                }
+                // amt to move planet
+                var planetMoveDelta = hitPoint - potentialPlanet.transform.position;
                 potentialPlanet.transform.position = hitPoint;
+                // also move any child rigidbodies
+                var childRigidBodies = potentialPlanet.GetComponentsInChildren<Rigidbody>().Skip(1).ToList();
+                //childRigidBodies.ForEach(x => x.transform.position += planetMoveDelta);
+                //Debug.Log("number of child rigidbodies: " + childRigidBodies.Count);
             }
         }
         if (mode == Mode.SLINGSHOT)
@@ -97,10 +111,7 @@ public class LaunchManager : MonoBehaviour
         Debug.Assert(mode == Mode.NONE || mode == Mode.SLINGSHOT);
         mode = Mode.PICK_LOCATION;
 
-        potentialPlanet = Instantiate(planetPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        potentialPlanet.name = "PreviewPlanet";
-        potentialPlanet.tag = "Untagged";
-        potentialPlanet.GetComponents<Collider>().ToList().ForEach(sel => sel.enabled = false);
+        newPotentialPlanet();
         // Note: if what we want is the colliders to be disabled in the initial state,
         // what we should do is have them disabled in the prefab and then enabling them on
         // Launch() like for the planetGravity component, so commenting out this code for
@@ -143,40 +154,48 @@ public class LaunchManager : MonoBehaviour
         // if we wanted... later
         Debug.Assert(mode == Mode.SLINGSHOT);
         var curLoc = potentialPlanet.transform.position;
-        Destroy(potentialPlanet);
+        var newPlanet = potentialPlanet;
         potentialPlanet = null;
-        var newPlanet = Instantiate(planetPrefab, curLoc, Quaternion.identity);
         newPlanet.name = "LaunchedPlanet";
         Rigidbody rbody = newPlanet.GetComponent<Rigidbody>();
-        rbody.mass = InitialPlanetMass;
         var direction = (launchLoc - curLoc).normalized;
         var dist = (launchLoc - curLoc).magnitude;
         rbody.AddForce(direction * (float)Math.Pow(dist, 1.5f) * SLINGSHOT_COEF);
         LaunchArrow.FadeOut(0.4f);
         // Enable the gravity on the planet only once it's been launched / released:
         newPlanet.GetComponent<PlanetGravity>().enabled = true;
-        var colliders = newPlanet.GetComponents<Collider>();
+        var colliders = newPlanet.GetComponentsInChildren<Collider>();
         foreach (var collider in colliders)
         {
             collider.enabled = true;
         }
-        newPlanet.transform.GetChild(0).gameObject.SetActive(true);
+        newPlanet.GetComponent<Planet>().SetTrailRendererEnabled(true);
 
-        StatsManager.getInstance().PlanetLaunched(StatsManager.getInstance().PlanetTypePrefabToEnum[scriptablePlanet.planetType]);
+        // find all entitys and set home (for some reason it is not setting)
+        var childEntities = newPlanet.GetComponentsInChildren<Objects_On_Planet>();
+        Debug.Log("num children entities: " + childEntities.Count());
+        //var planetObj = newPlanet.GetComponent<Planet>();
+        //childEntities.ToList().ForEach(x => x.homePlanet = planetObj);
+        //newPlanet.transform.GetComponentInChildren<TrailRenderer>().gameObject.SetActive(true); // todo this doesn't seem to be working.
+
+        StatsManager.getInstance().PlanetLaunched(currentPlanet.planetType);
         cameraManager.SetFocusTarget(newPlanet.transform);
         // Go back to launch mode for another launch:
         StartPickLocation();
     }
 
-    private void switchPlanet()
+    private void newPotentialPlanet()
     {
-        int i = scriptablePlanet.planetTypes.IndexOf(scriptablePlanet.planetType);
-        i += 1;
-        var newPlanetType = scriptablePlanet.planetTypes[i % scriptablePlanet.planetTypes.Count];
-        scriptablePlanet.planetType = newPlanetType;
-        Destroy(potentialPlanet);
-        potentialPlanet = Instantiate(planetPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        if (potentialPlanet != null)
+        {
+            Destroy(potentialPlanet);
+            potentialPlanet = null;
+        }
+        var newPlanet = planetBuilder.Build();
+        potentialPlanet = newPlanet.Item1;
         potentialPlanet.name = "PreviewPlanet";
         potentialPlanet.tag = "Untagged";
+        potentialPlanet.GetComponentsInChildren<Collider>().ToList().ForEach(sel => sel.enabled = false);
+        currentPlanet.planetType = newPlanet.Item2;
     }
 }

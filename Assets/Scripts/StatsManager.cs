@@ -24,19 +24,19 @@ public class StatsManager : MonoBehaviour
 
     int remainingToKillBeforeGameOver = MAX_RESIDENTS_KILLED;
 
-    private Dictionary<StatsPlanetType, int> PlanetTypeToPoints = new Dictionary<StatsPlanetType, int>() {
-        {StatsPlanetType.SMALL, 35},
-        {StatsPlanetType.MEDIUM, 50},
-        {StatsPlanetType.LARGE, 100},
+    private Dictionary<Planet_Type, int> PlanetTypeToPoints = new Dictionary<Planet_Type, int>() {
+        {Planet_Type.moon, 35},
+        {Planet_Type.earth, 50},
+        {Planet_Type.gas, 100},
     };
 
-    private Dictionary<StatsPlanetType, int> PlanetTypeToResidents = new Dictionary<StatsPlanetType, int>() {
-        {StatsPlanetType.SMALL, 35000},
-        {StatsPlanetType.MEDIUM, 50000},
-        {StatsPlanetType.LARGE, 100000},
+    private Dictionary<Planet_Type, int> PlanetTypeToResidents = new Dictionary<Planet_Type, int>() { // to make this dependent on radius and only for earth-like?
+        {Planet_Type.moon, 35000},
+        {Planet_Type.earth, 50000},
+        {Planet_Type.gas, 100000},
     };
 
-    public Dictionary<PlanetType, StatsPlanetType> PlanetTypePrefabToEnum = new Dictionary<PlanetType, StatsPlanetType>();
+    //public Dictionary<Planet_Type, StatsPlanetType> PlanetTypePrefabToEnum = new Dictionary<Planet_Type, StatsPlanetType>();
 
 
     public static StatsManager getInstance()
@@ -44,21 +44,20 @@ public class StatsManager : MonoBehaviour
         return instance;
     }
 
-    public void PlanetLaunched(StatsPlanetType type)
+    public void PlanetLaunched(Planet_Type type)
     {
-        Debug.Log("Launched planet of stats type:");
-        Debug.Log(type);
+        //Debug.Log("Launched planet of stats type:");
+        //Debug.Log(type);
         score += PlanetTypeToPoints[type];
         planetsUsed += 1;
     }
 
-    public void KillResidents(PlanetType type)
+    public void KillResidents(Planet_Type type)
     {
-        var enumType = PlanetTypePrefabToEnum[type];
-        var newKilledResidents = PlanetTypeToResidents[enumType];
+        var newKilledResidents = PlanetTypeToResidents[type];
         killedResidents += newKilledResidents;
         remainingToKillBeforeGameOver -= newKilledResidents;
-        score -= PlanetTypeToPoints[enumType];
+        score -= PlanetTypeToPoints[type];
         if (remainingToKillBeforeGameOver <= 0)
         {
             GlobalManager.getInstance().GameOver(score);

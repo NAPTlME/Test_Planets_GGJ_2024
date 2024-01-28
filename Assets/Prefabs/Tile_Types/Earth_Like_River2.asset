@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93647888122be5542924e104c466a369, type: 3}
+  m_Name: Earth_Like_River2
+  m_EditorClassIdentifier: 
+  type: 0
+  TileMaterial: {fileID: 2100000, guid: c4aee4383635389418cd24ba7df91e0e, type: 2}
+  AllowedEntities:
+  - {fileID: 8372173972663505566, guid: 861471bc407bd7e4e83920df51da7825, type: 3}
+  - {fileID: 258678210699410234, guid: 49be23faac5c20346a59a301febc8e19, type: 3}

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93647888122be5542924e104c466a369, type: 3}
+  m_Name: Moon_Barren4
+  m_EditorClassIdentifier: 
+  type: 1
+  TileMaterial: {fileID: 2100000, guid: e6d1b8f0577c8f74c8863be35a77f1b4, type: 2}
+  AllowedEntities:
+  - {fileID: 882537057766494832, guid: 4de9d891e42a417459a41479106cb3b7, type: 3}
+  - {fileID: 882537057766494832, guid: 0bb4e0da52fc0b44897d15bea4f4f3b6, type: 3}
+  - {fileID: 5014204896323902106, guid: 97331b9dfa3b06443be73091b20f95a7, type: 3}
+  - {fileID: 5014204896323902106, guid: aac39ddc7159d6a4b8affbab6503c129, type: 3}
+  - {fileID: 8282016913002439161, guid: 758a6250b50c2c04ca105675fd9bf70d, type: 3}
+  - {fileID: 8282016913002439161, guid: a983fa042893c26499866961737e982e, type: 3}

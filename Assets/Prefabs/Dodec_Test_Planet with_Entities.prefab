@@ -1187,10 +1187,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bed4f9f29c63914abf19e80f528de60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3.8
+  PLANET_NAMES:
+  - Vertigo
+  - Ulia
+  - Pluto
+  - Ceres
+  - Makemake
+  - Haumea
+  - Eris
+  - Arkas
+  - Galileo
+  - Dagon
+  - Wangshu
+  - Veles
+  - Makropulos
+  - Belisama
+  planetType: {fileID: 11400000, guid: b85683594cc9f479e87156f49f866f77, type: 2}
+  planetTypes: []
+  PlanetTypePrefabToEnumHackArray: 
   mass: 35
-  rbody: {fileID: 0}
+  rbody: {fileID: 8718003504782808844}
   previousVelocity: {x: 0, y: 0, z: 0}
+  planetName: Ceres 555
 --- !u!54 &8718003504782808844
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1231,7 +1249,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 8718003504782808844}
-  planet: {fileID: 2147875369039028398}
 --- !u!64 &8857925049249701363
 MeshCollider:
   m_ObjectHideFlags: 0

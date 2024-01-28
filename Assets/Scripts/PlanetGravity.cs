@@ -9,7 +9,7 @@ public class PlanetGravity : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("GravityPlanet: OnEnable");
+        //Debug.Log("GravityPlanet: OnEnable");
         GravityManager.getInstance().RegisterPlanet(this);
     }
     private void OnDisable()
@@ -26,8 +26,8 @@ public class PlanetGravity : MonoBehaviour
             var distanceFromSun = vector.magnitude;
             if (distanceFromSun > GravityManager.getInstance().MaxDistanceBeforeBending && distanceFromSun < GravityManager.getInstance().MaxDistanceBeforeBending * 10)
             {
-                Debug.Log(Time.frameCount + "  " + distanceFromSun);
-                Debug.Log("Adding perpendicular force!");
+                //Debug.Log(Time.frameCount + "  " + distanceFromSun);
+                //Debug.Log("Adding perpendicular force!");
                 // var vectorPerpendicularToTrajectory = Vector3.Cross(vector, Vector3.back);
                 var vectorPerpendicularToTrajectory = new Vector3(vector.z, 0, vector.x * -1);
                 rigidBody.AddForce(

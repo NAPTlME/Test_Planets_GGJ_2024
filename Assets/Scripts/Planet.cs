@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 public class PlanetTypeToStatsTypeTuple
 {
-    public PlanetType planetType;
+    public Planet_Type planetType;
     public StatsPlanetType statsPlanetType;
 }
 
@@ -28,9 +29,7 @@ public class Planet : MonoBehaviour
         "Makropulos",
         "Belisama"
     };
-    public PlanetType planetType;
-    public List<PlanetType> planetTypes;
-    public List<StatsPlanetType> PlanetTypePrefabToEnumHackArray;
+    public Planet_Type planetType;
 
 
     public float radius { get; private set; }
@@ -38,17 +37,17 @@ public class Planet : MonoBehaviour
     public Rigidbody rbody;
     public Vector3 previousVelocity;
     public string planetName;
+    public TrailRenderer trailRenderer;
     // Start is called before the first frame update
 
     private bool destroyed = false;
     void Start()
     {
         rbody = GetComponent<Rigidbody>();
-        ApplyPlanetType();
-        for (var i = 0; i < planetTypes.Count; i++)
+        for (var i = 0; i < System.Enum.GetNames(typeof(Planet_Type)).Length; i++)
         {
-            var type = planetTypes[i];
-            StatsManager.getInstance().PlanetTypePrefabToEnum[type] = PlanetTypePrefabToEnumHackArray[i];
+            //var type = planetTypes[i];
+            //StatsManager.getInstance().PlanetTypePrefabToEnum[type] = PlanetTypePrefabToEnumHackArray[i];
         }
         var rand = new System.Random();
         planetName = PLANET_NAMES[rand.Next(PLANET_NAMES.Count)];
@@ -62,7 +61,7 @@ public class Planet : MonoBehaviour
     // Updates the components when variables are changed
     void OnEnable()
     {
-        ApplyPlanetType();
+
     }
 
     // Update is called once per frame
@@ -83,7 +82,7 @@ public class Planet : MonoBehaviour
             Debug.Log("Crashing into the sun, BURN!");
             var exp = GetComponent<ParticleSystem>();
             exp.Play();
-            GetComponent<MeshRenderer>().enabled = false;
+            GetComponentsInChildren<MeshRenderer>().Select(sel => sel.enabled = false);
             StatsManager.getInstance().KillResidents(this.planetType);
             // Note: we could use `this.enabled = false` instead but I don't
             // trust it to happen soon enough before the next run/couple of runs of
@@ -91,20 +90,8 @@ public class Planet : MonoBehaviour
             destroyed = true;
         }
     }
-
-    private void ApplyPlanetType()
+    public void SetTrailRendererEnabled(bool x)
     {
-        if (planetType is null) return;
-
-        // Set the material of the mesh
-        GetComponent<MeshRenderer>().material = planetType.tileMaterial;
-
-        // Set the mass
-        GetComponent<Rigidbody>().mass = planetType.mass;
-
-        // Set the scale
-        float scale = planetType.scale;
-        transform.localScale = new Vector3(scale, scale, scale);
-        radius = scale;
+        trailRenderer.gameObject.SetActive(x);
     }
 }
