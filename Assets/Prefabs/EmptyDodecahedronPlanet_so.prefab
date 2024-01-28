@@ -203,16 +203,12 @@ MonoBehaviour:
   - Veles
   - Makropulos
   - Belisama
-  planetType: {fileID: 11400000, guid: b85683594cc9f479e87156f49f866f77, type: 2}
-  planetTypes:
-  - {fileID: 11400000, guid: b85683594cc9f479e87156f49f866f77, type: 2}
-  - {fileID: 11400000, guid: 33a80fd40e0764058b6a04a31e284894, type: 2}
-  - {fileID: 11400000, guid: 868b741f3e3f841f0a2f7d3948cf3299, type: 2}
-  PlanetTypePrefabToEnumHackArray: 000000000200000001000000
+  planetType: 0
   mass: 0
   rbody: {fileID: 8718003504782808844}
   previousVelocity: {x: 0, y: 0, z: 0}
-  planetName: 
+  planetName: Makemake 983
+  trailRenderer: {fileID: 4113255626362329963}
 --- !u!135 &853528039951440146
 SphereCollider:
   m_ObjectHideFlags: 0

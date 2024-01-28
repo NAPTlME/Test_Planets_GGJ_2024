@@ -158,12 +158,13 @@ public class LaunchManager : MonoBehaviour
         LaunchArrow.FadeOut(0.4f);
         // Enable the gravity on the planet only once it's been launched / released:
         newPlanet.GetComponent<PlanetGravity>().enabled = true;
-        var colliders = newPlanet.GetComponents<Collider>();
+        var colliders = newPlanet.GetComponentsInChildren<Collider>();
         foreach (var collider in colliders)
         {
             collider.enabled = true;
         }
-        newPlanet.transform.GetComponentInChildren<TrailRenderer>().gameObject.SetActive(true); // todo this doesn't seem to be working.
+        newPlanet.GetComponent<Planet>().SetTrailRendererEnabled(true);
+        //newPlanet.transform.GetComponentInChildren<TrailRenderer>().gameObject.SetActive(true); // todo this doesn't seem to be working.
 
         StatsManager.getInstance().PlanetLaunched(currentPlanet.planetType);
         cameraManager.SetFocusTarget(newPlanet.transform);
@@ -182,7 +183,7 @@ public class LaunchManager : MonoBehaviour
         potentialPlanet = newPlanet.Item1;
         potentialPlanet.name = "PreviewPlanet";
         potentialPlanet.tag = "Untagged";
-        potentialPlanet.GetComponents<Collider>().ToList().ForEach(sel => sel.enabled = false);
+        potentialPlanet.GetComponentsInChildren<Collider>().ToList().ForEach(sel => sel.enabled = false);
         currentPlanet.planetType = newPlanet.Item2;
     }
 }

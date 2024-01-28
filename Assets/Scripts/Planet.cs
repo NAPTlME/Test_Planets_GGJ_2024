@@ -37,6 +37,7 @@ public class Planet : MonoBehaviour
     public Rigidbody rbody;
     public Vector3 previousVelocity;
     public string planetName;
+    public TrailRenderer trailRenderer;
     // Start is called before the first frame update
 
     private bool destroyed = false;
@@ -88,5 +89,9 @@ public class Planet : MonoBehaviour
             // the physics, the boolean should be trusthworthy
             destroyed = true;
         }
+    }
+    public void SetTrailRendererEnabled(bool x)
+    {
+        trailRenderer.gameObject.SetActive(x);
     }
 }
