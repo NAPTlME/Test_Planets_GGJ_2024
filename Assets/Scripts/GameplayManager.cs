@@ -33,6 +33,11 @@ public class GlobalManager : MonoBehaviour
         {
             instance = this;
         }
+        var mmMusic = GameObject.Find("MainMenuMusic");
+        if (mmMusic != null)
+        {
+            mmMusic.GetComponent<MainMenuMusic>().StopMusic();
+        }
     }
 
     // Update is called once per frame

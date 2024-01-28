@@ -2,12 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ButtonSound : MonoBehaviour
 {
+    public GameObject arrow;
     public void ButtonHover()
     {
         // GameManager.PlayButtonSound(0);
+        arrow.GetComponent<Image>().enabled = true;
+    }
+
+    public void ButtonUnhover()
+    {
+        // GameManager.PlayButtonSound(0);
+        arrow.GetComponent<Image>().enabled = false;
     }
 
     public void ButtonClickPlay()
@@ -19,7 +28,14 @@ public class ButtonSound : MonoBehaviour
     public void ButtonClickQuit()
     {
         // GameManager.PlayButtonSound(1);
-        // Application.Quit();
-
+        Debug.Log("quit");
+        if (Application.isEditor)
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+        } 
+        else
+        {
+            Application.Quit();
+        }
     }
 }
