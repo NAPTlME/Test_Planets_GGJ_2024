@@ -5,8 +5,16 @@ using UnityEngine;
 public class MainMenuMusic : MonoBehaviour
 {
     private AudioSource audioSource;
+    public static MainMenuMusic singleton; 
     private void Awake()
     {
+        if (singleton != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        singleton = this;
         Debug.Log("Awake");
         DontDestroyOnLoad(transform.gameObject);
         audioSource = GetComponent<AudioSource>();
