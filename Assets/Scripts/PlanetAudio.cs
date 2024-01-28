@@ -22,7 +22,7 @@ public class PlanetAudio : MonoBehaviour
     {
         if (collision.gameObject.tag == "Sun")
         {
-            Debug.Log("Crashing into the sun, playing SFX");
+            // Debug.Log("Crashing into the sun, playing SFX");
             audioSource.Play();
             Destroy(this.gameObject, audioSource.clip.length);
         }
