@@ -4,14 +4,17 @@ using System.Collections.Generic;
 using TMPro;
 using System.Linq;
 using Unity.Burst.CompilerServices;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GlobalManager : MonoBehaviour
 {
     public bool paused;
+    private static GlobalManager instance = null;
     public TMP_Text pausedText;
     public GameObject planetText;
     public Canvas screenCanvas;
+    bool gameIsOver = false;
     public LaunchManager launchManager;
     public Vector3 prevMousePos;
     // Start is called before the first frame update
@@ -20,11 +23,22 @@ public class GlobalManager : MonoBehaviour
         paused = false;
         launchManager = GameObject.Find("LaunchManager").GetComponent<LaunchManager>();
     }
+    public static GlobalManager getInstance()
+    {
+        return instance;
+    }
+    private void Awake()
+    {
+        if (null == instance)
+        {
+            instance = this;
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!gameIsOver && Input.GetKeyDown(KeyCode.Space))
         {
             if (!paused)
             {
@@ -35,7 +49,12 @@ public class GlobalManager : MonoBehaviour
                 Resume();
             }
         }
-        
+        else if (gameIsOver && Input.anyKey)
+        {
+            SceneManager.LoadScene(
+                GameManager.GetSceneNameFromEnum(Scenes.MenuScreen),
+                LoadSceneMode.Single);
+        }
     }
 
     private void FixedUpdate()
@@ -71,7 +90,12 @@ public class GlobalManager : MonoBehaviour
             }
         }
     }
-
+    public void GameOver(int score)
+    {
+        gameIsOver = true;
+        Pause();
+        pausedText.text = "Game Over";
+    }
     private void Pause()
     {
         paused = true;
