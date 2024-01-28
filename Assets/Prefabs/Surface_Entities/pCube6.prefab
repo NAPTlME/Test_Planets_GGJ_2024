@@ -127,8 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   homePlanet: {fileID: 0}
   planets: []
-  ArbitraryVelocityDeltaThreshold: 1
-  VelocityDeltaCatchupRate: 0.4
+  ArbitraryVelocityDeltaThreshold: 5
+  VelocityDeltaCatchupRate: 0.77
 --- !u!136 &887302834907570626
 CapsuleCollider:
   m_ObjectHideFlags: 0
