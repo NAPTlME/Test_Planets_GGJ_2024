@@ -153,7 +153,6 @@ GameObject:
   - component: {fileID: 3686997303975326272}
   - component: {fileID: -4761215652911535481}
   - component: {fileID: 7066035990955324203}
-  - component: {fileID: 1007554361765903256}
   m_Layer: 0
   m_Name: EmptyDodecahedronPlanet_so
   m_TagString: Planet
@@ -209,7 +208,7 @@ MonoBehaviour:
   mass: 0
   rbody: {fileID: 8718003504782808844}
   previousVelocity: {x: 0, y: 0, z: 0}
-  planetName: Galileo 352
+  planetName: Makemake 880
   trailRenderer: {fileID: 4113255626362329963}
 --- !u!135 &853528039951440146
 SphereCollider:
@@ -5177,28 +5176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8816d863d0d69b4f9bc1a561d639d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &1007554361765903256
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7348139280587474309}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3989152559073418409, guid: 6f7cff4063faaae41b4c7079ec2ef517, type: 3}
 --- !u!1001 &6853076916971344127
 PrefabInstance:
   m_ObjectHideFlags: 0

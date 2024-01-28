@@ -16,3 +16,4 @@ MonoBehaviour:
   TileMaterial: {fileID: 2100000, guid: c4aee4383635389418cd24ba7df91e0e, type: 2}
   AllowedEntities:
   - {fileID: 8372173972663505566, guid: 861471bc407bd7e4e83920df51da7825, type: 3}
+  - {fileID: 258678210699410234, guid: 49be23faac5c20346a59a301febc8e19, type: 3}

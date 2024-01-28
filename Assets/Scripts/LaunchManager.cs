@@ -84,7 +84,13 @@ public class LaunchManager : MonoBehaviour
                 {
                     newPotentialPlanet();
                 }
+                // amt to move planet
+                var planetMoveDelta = hitPoint - potentialPlanet.transform.position;
                 potentialPlanet.transform.position = hitPoint;
+                // also move any child rigidbodies
+                var childRigidBodies = potentialPlanet.GetComponentsInChildren<Rigidbody>().Skip(1).ToList();
+                //childRigidBodies.ForEach(x => x.transform.position += planetMoveDelta);
+                //Debug.Log("number of child rigidbodies: " + childRigidBodies.Count);
             }
         }
         if (mode == Mode.SLINGSHOT)
@@ -164,6 +170,12 @@ public class LaunchManager : MonoBehaviour
             collider.enabled = true;
         }
         newPlanet.GetComponent<Planet>().SetTrailRendererEnabled(true);
+
+        // find all entitys and set home (for some reason it is not setting)
+        var childEntities = newPlanet.GetComponentsInChildren<Objects_On_Planet>();
+        Debug.Log("num children entities: " + childEntities.Count());
+        //var planetObj = newPlanet.GetComponent<Planet>();
+        //childEntities.ToList().ForEach(x => x.homePlanet = planetObj);
         //newPlanet.transform.GetComponentInChildren<TrailRenderer>().gameObject.SetActive(true); // todo this doesn't seem to be working.
 
         StatsManager.getInstance().PlanetLaunched(currentPlanet.planetType);

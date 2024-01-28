@@ -17,3 +17,4 @@ MonoBehaviour:
   AllowedEntities:
   - {fileID: 882537057766494832, guid: 1de73a135d7fc0749ae89e439b32200a, type: 3}
   - {fileID: 5312740206990568720, guid: 9384272a133eb9247b3791062a91f231, type: 3}
+  - {fileID: 8732030962446352668, guid: 6bdc6820fb592f84096bf9332842d86f, type: 3}

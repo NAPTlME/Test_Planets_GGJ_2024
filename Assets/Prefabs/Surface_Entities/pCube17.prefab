@@ -31,8 +31,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -103,7 +103,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 7.15
   m_Height: 25.084518
@@ -150,5 +150,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   homePlanet: {fileID: 0}
   planets: []
-  ArbitraryVelocityDeltaThreshold: 50
-  VelocityDeltaCatchupRate: 0.1
+  ArbitraryVelocityDeltaThreshold: 1
+  VelocityDeltaCatchupRate: 0.4

@@ -46,8 +46,8 @@ public class StatsManager : MonoBehaviour
 
     public void PlanetLaunched(Planet_Type type)
     {
-        Debug.Log("Launched planet of stats type:");
-        Debug.Log(type);
+        //Debug.Log("Launched planet of stats type:");
+        //Debug.Log(type);
         score += PlanetTypeToPoints[type];
         planetsUsed += 1;
     }

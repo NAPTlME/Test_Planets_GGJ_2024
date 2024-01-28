@@ -27,7 +27,6 @@ public class DodecPlanetBuild : MonoBehaviour
         if (planet_so == null)
         {
             var index = Mathf.FloorToInt(Random.value * scriptable_planets.Count);
-            Debug.Log(index);
             planet_so = scriptable_planets.ElementAt(index);
         }
         var lerpAmt = Random.value;
@@ -117,10 +116,14 @@ public class DodecPlanetBuild : MonoBehaviour
             var index = Mathf.FloorToInt(Random.value * tileInfo.AllowedEntities.Count);
             entity = Instantiate(tileInfo.AllowedEntities.ElementAt(index), homePlanet.transform);
             // check if entity is one that has the Objects_On_Planet component
-            var objectInfo = entity.GetComponent<Objects_On_Planet>();
-            if (objectInfo != null)
+            var objectInfo = entity.GetComponentsInChildren<Objects_On_Planet>();
+            if (objectInfo.Count() > 0)
             {
-                objectInfo.homePlanet = homePlanet;
+                objectInfo.ToList().ForEach(x =>
+                {
+                    x.homePlanet = homePlanet;
+                    x.planets.Add(homePlanet);
+                });
             }
         }
         return (tile, entity);

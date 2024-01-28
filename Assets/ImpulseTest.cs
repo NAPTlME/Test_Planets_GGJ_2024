@@ -18,7 +18,7 @@ public class ImpulseTest : MonoBehaviour
     {
         if (Input.GetKeyUp("space"))
         {
-            Debug.Log("Adding force along Z");
+            //Debug.Log("Adding force along Z");
             rigidBody.AddForce(Vector3.back * Force);
         }
     }

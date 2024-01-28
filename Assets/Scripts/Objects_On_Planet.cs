@@ -28,18 +28,6 @@ public class Objects_On_Planet : MonoBehaviour
     {
         // Debug.Log("init planet count: " + planets.Count);
         rbody = GetComponent<Rigidbody>();
-        planetDistances = new Dictionary<Planet, float>();
-        var minDist = -1f;
-        foreach(var planet in planets)
-        {
-            var dist = Vector3.Distance(planet.transform.position, transform.position) - planet.radius;
-            planetDistances.Add(planet, dist);
-            if (homePlanet == null || dist < minDist)
-            {
-                minDist = dist;
-                homePlanet = planet;
-            }
-        }
         if (homePlanet != null)
         {
             transform.SetParent(homePlanet.transform);
@@ -55,6 +43,7 @@ public class Objects_On_Planet : MonoBehaviour
 
             //if change in velocity is large, apply that velocity
             var planet_velocity_delta = homePlanet.previousVelocity - rbody.velocity;
+            Debug.Log("Planet velocity delta: " + planet_velocity_delta);
             if (planet_velocity_delta.magnitude > ArbitraryVelocityDeltaThreshold)
             {
                 // if planet velocity delta is obtuse to planet velocity and rbody velocity, do nothing
