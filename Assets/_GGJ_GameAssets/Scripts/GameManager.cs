@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log(sceneName +" Does Not Exist. Loading TitleScreen");
+            Debug.Log(sceneName + " Does Not Exist. Loading TitleScreen");
             SceneManager.LoadScene("TitleScreen");
         }
     }
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
 
     public void PlaySceneUnLoad()
     {
-        singleton.loadingScreen.FadeOut(.5f, 1.0f);
+        // singleton.loadingScreen.FadeOut(.5f, 1.0f);
         isLoading = false;
     }
 

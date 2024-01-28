@@ -123,6 +123,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &258968579 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3363736860262795396, guid: 96363309c362aed4c810a66f728f92e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 496210021}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &496210021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -141,6 +147,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4513673531703798726, guid: 96363309c362aed4c810a66f728f92e3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ButtonClickQuit
       objectReference: {fileID: 0}
     - target: {fileID: 4513673531902155246, guid: 96363309c362aed4c810a66f728f92e3,
         type: 3}
@@ -228,6 +239,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_enableVertexGradient
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7334947850802787713, guid: 96363309c362aed4c810a66f728f92e3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7334947850802787713, guid: 96363309c362aed4c810a66f728f92e3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7334947850802787713, guid: 96363309c362aed4c810a66f728f92e3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7334947850802787713, guid: 96363309c362aed4c810a66f728f92e3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 258968579}
+    - target: {fileID: 7334947850802787713, guid: 96363309c362aed4c810a66f728f92e3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7334947850802787713, guid: 96363309c362aed4c810a66f728f92e3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ButtonClickPlay
+      objectReference: {fileID: 0}
+    - target: {fileID: 7334947850802787713, guid: 96363309c362aed4c810a66f728f92e3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: ButtonSound, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7334947850802787713, guid: 96363309c362aed4c810a66f728f92e3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7334947850802787719, guid: 96363309c362aed4c810a66f728f92e3,
         type: 3}
@@ -355,7 +406,8 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2080310014, guid: 96363309c362aed4c810a66f728f92e3, type: 3}
     m_RemovedGameObjects:
     - {fileID: 3860953329336132456, guid: 96363309c362aed4c810a66f728f92e3, type: 3}
     - {fileID: 3184170424942050062, guid: 96363309c362aed4c810a66f728f92e3, type: 3}
@@ -369,7 +421,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1181875654}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7334947850861117669, guid: 96363309c362aed4c810a66f728f92e3,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1104437568}
   m_SourcePrefab: {fileID: 100100000, guid: 96363309c362aed4c810a66f728f92e3, type: 3}
 --- !u!224 &496210022 stripped
 RectTransform:
@@ -613,7 +669,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GAME TITLE
+  m_text: SOLAR STRUGGLES
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -640,8 +696,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 34
+  m_fontSizeBase: 34
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -808,6 +864,26 @@ Transform:
   - {fileID: 1381560645}
   m_Father: {fileID: 519420032}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1104437562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7334947850861117669, guid: 96363309c362aed4c810a66f728f92e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 496210021}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1104437568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104437562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a747bbadbfebb324283dd4dfdec35af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mySource: {fileID: 0}
+  uiSounds: []
 --- !u!1 &1181875653
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,7 +941,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Start
+  m_text: PLAY
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
