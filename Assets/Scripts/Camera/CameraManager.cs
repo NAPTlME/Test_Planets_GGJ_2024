@@ -23,7 +23,7 @@ public class CameraManager : MonoBehaviour
     void Start()
     {
         currentMainCamera = mainLaunchCamera;
-        currentMiniCamera = miniLaunchCamera;
+        currentMiniCamera = miniPlanetCamera;
         currentMainCamera.Priority = 1;
         currentMiniCamera.Priority = 1;
 
