@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba80a345609195e428d179994720c161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SLINGSHOT_COEF: 1000
-  InitialPlanetMass: 100
-  TopDownHeight: 100
+  SLINGSHOT_COEF: 725
+  InitialPlanetMass: 150
+  TopDownHeight: 200
   defaultCamera: {fileID: 0}
   topDownCamera: {fileID: 0}
   planetPrefab: {fileID: 7348139280587474309, guid: 055e0547d125d2d469ea17e93e8be58a,
