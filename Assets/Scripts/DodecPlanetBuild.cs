@@ -42,21 +42,25 @@ public class DodecPlanetBuild : MonoBehaviour
         // audio source
         AudioSource audio = planet.GetComponent<AudioSource>();
         audio.clip = planet_so.collisionSound;
+
+        var planetCollectionObject = new GameObject("PlanetMeshes");
+        planetCollectionObject.transform.SetParent(planet.transform);
+        planetBehavior.planetCollection = planetCollectionObject;
         //planet radius
         if (planet_so.type == Planet_Type.gas)
         {
-            var mesh = Instantiate(GasGiantPrefab, planet.transform);
+            var mesh = Instantiate(GasGiantPrefab, planetCollectionObject.transform);
             return (planet, planet_so.type);
         } else
         {
             // get the core
             // get 12 instances of the tiles
-            var core = Instantiate(CorePrefab, planet.transform);
+            var core = Instantiate(CorePrefab, planetCollectionObject.transform);
             // get random tiles from the possible tiles
             var tiles = Enumerable.Range(0, 12).Select(sel =>
             {
                 var index = Mathf.FloorToInt(Random.value * planet_so.TilesAvailable.Count);
-                return InstantiatePlanetTile(planet_so.TilesAvailable.ElementAt(index), planetBehavior);
+                return InstantiatePlanetTile(planet_so.TilesAvailable.ElementAt(index), planetBehavior, planetCollectionObject.transform);
             }).ToList();
 
             // negative x is the bottom/flip face
@@ -106,21 +110,22 @@ public class DodecPlanetBuild : MonoBehaviour
             return (planet, planet_so.type);
         }
     }
-    private (GameObject, GameObject) InstantiatePlanetTile(PlanetTile tileInfo, Planet homePlanet)
+    private (GameObject, GameObject) InstantiatePlanetTile(PlanetTile tileInfo, Planet homePlanet, Transform parentTransform)
     {
-        var tile = Instantiate(TilePrefab, homePlanet.transform);
+        var tile = Instantiate(TilePrefab, parentTransform);
         GameObject entity = null;
         tile.GetComponentInChildren<MeshRenderer>().material = tileInfo.TileMaterial;
         if (tileInfo.AllowedEntities.Count > 0 && Random.value <= objectSpawnChance)
         {
             var index = Mathf.FloorToInt(Random.value * tileInfo.AllowedEntities.Count);
-            entity = Instantiate(tileInfo.AllowedEntities.ElementAt(index), homePlanet.transform);
+            entity = Instantiate(tileInfo.AllowedEntities.ElementAt(index), parentTransform);
             // check if entity is one that has the Objects_On_Planet component
             var objectInfo = entity.GetComponentsInChildren<Objects_On_Planet>();
             if (objectInfo.Count() > 0)
             {
                 objectInfo.ToList().ForEach(x =>
                 {
+                    x.transform.parent = homePlanet.transform;
                     x.homePlanet = homePlanet;
                     x.planets.Add(homePlanet);
                 });

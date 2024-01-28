@@ -25,6 +25,7 @@ public class Planet : MonoBehaviour
         "Belisama"
     };
     public Planet_Type planetType;
+    public GameObject planetCollection;
 
 
     public float radius { get; private set; }
@@ -77,7 +78,8 @@ public class Planet : MonoBehaviour
             Debug.Log("Crashing into the sun, BURN!");
             var exp = GetComponent<ParticleSystem>();
             exp.Play();
-            GetComponentsInChildren<MeshRenderer>().Select(sel => sel.enabled = false);
+            //GetComponentsInChildren<MeshRenderer>().Select(sel => sel.enabled = false);
+            planetCollection.SetActive(false);
             StatsManager.getInstance().KillResidents(this.planetType);
             // Note: we could use `this.enabled = false` instead but I don't
             // trust it to happen soon enough before the next run/couple of runs of
