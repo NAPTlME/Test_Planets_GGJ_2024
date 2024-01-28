@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b0fe3de799d2df47b451ee118b55adc, type: 3}
   m_Name: Gas
   m_EditorClassIdentifier: 
-  type: 2
+  type: 0
   MinMass: 500
   MaxMass: 500
   MinScale: 5
