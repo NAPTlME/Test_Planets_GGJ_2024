@@ -22,16 +22,16 @@ public class CameraManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentMainCamera = mainPlanetCamera;
-        currentMiniCamera = miniLaunchCamera;
+        currentMainCamera = mainLaunchCamera;
+        currentMiniCamera = miniPlanetCamera;
         currentMainCamera.Priority = 1;
         currentMiniCamera.Priority = 1;
 
-        launchRig.isFocused = false;
-        planetCameraRig.isFocused = true;
+        launchRig.isFocused = true;
+        planetCameraRig.isFocused = false;
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     // Update is called once per frame

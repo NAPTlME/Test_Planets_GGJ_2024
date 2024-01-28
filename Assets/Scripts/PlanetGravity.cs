@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlanetGravity : MonoBehaviour
 {
     public Rigidbody rigidBody;
+    private bool destroyed = false;
 
     private void OnEnable()
     {
@@ -19,12 +20,19 @@ public class PlanetGravity : MonoBehaviour
     private void FixedUpdate()
     {
         var sun = GravityManager.getInstance().gameObject;
-        if (this.gameObject.tag != "Sun")
+        if (!destroyed && this.gameObject.tag != "Sun")
         {
             var sunPosition = sun.transform.position;
             var vector = this.gameObject.transform.position - sunPosition;
             var distanceFromSun = vector.magnitude;
-            if (distanceFromSun > GravityManager.getInstance().MaxDistanceBeforeBending && distanceFromSun < GravityManager.getInstance().MaxDistanceBeforeBending * 10)
+            if (distanceFromSun > GravityManager.getInstance().MaxDistanceBeforeLost)
+            {
+                destroyed = true;
+                StatsManager.getInstance().LostPlanet(
+                    this.gameObject.GetComponent<Planet>().planetType);
+                Destroy(this.gameObject, 3); // Disappear in 3 secs
+            }
+            else if (distanceFromSun > GravityManager.getInstance().MaxDistanceBeforeBending)
             {
                 //Debug.Log(Time.frameCount + "  " + distanceFromSun);
                 //Debug.Log("Adding perpendicular force!");
@@ -33,7 +41,7 @@ public class PlanetGravity : MonoBehaviour
                 rigidBody.AddForce(
                     GravityManager.getInstance().BendingForce * (vector / distanceFromSun * -1
                     / GravityManager.getInstance().PullBackToPerpendicularRatio +
-                    vectorPerpendicularToTrajectory)
+                    vectorPerpendicularToTrajectory) * rigidBody.mass
                 );
             }
         }

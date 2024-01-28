@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gas
   m_EditorClassIdentifier: 
   type: 2
-  MinMass: 250
+  MinMass: 500
   MaxMass: 500
   MinScale: 5
   MaxScale: 7

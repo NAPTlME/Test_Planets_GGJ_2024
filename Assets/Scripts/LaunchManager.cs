@@ -8,19 +8,20 @@ using System.Linq;
 public class LaunchManager : MonoBehaviour
 {
     public float SLINGSHOT_COEF = 1000f;// 5000f;
-    public float InitialPlanetMass = 100.0f;
     public const float LINE_WIDTH = .2f;
 
     public int TopDownHeight = 100;
-    
+
     public GameObject planetPrefab;
-    
+
     public Planet currentPlanet;
     private GameObject potentialPlanet;
     private Vector3 launchLoc;
     public Launch_Arrow LaunchArrow;
     private StatsPlanetType statsPlanetType = StatsPlanetType.SMALL;
     private CameraManager cameraManager;
+
+    int planetTypeInteractionIndex = 0;
 
     [Header("Planet Builder")]
     public DodecPlanetBuild planetBuilder;
@@ -37,7 +38,7 @@ public class LaunchManager : MonoBehaviour
     void Start()
     {
         Cursor.visible = true;
-        mode = Mode.NONE;
+        mode = Mode.PICK_LOCATION;
         var emptyObj = new GameObject("empty");
         currentPlanet = planetPrefab.GetComponent<Planet>();
 
@@ -46,7 +47,7 @@ public class LaunchManager : MonoBehaviour
 
     void Update()
     {
-        if (mode != Mode.NONE && Input.GetKeyDown(KeyCode.Escape))
+        if (mode != Mode.NONE && Input.GetKeyDown(KeyCode.L))
         {
             cameraManager.SwapCameras();
             Exit();
@@ -70,6 +71,7 @@ public class LaunchManager : MonoBehaviour
         }
         if (mode != Mode.NONE && Input.GetKeyDown(KeyCode.Tab))
         {
+            planetTypeInteractionIndex += 1;
             newPotentialPlanet();
         }
         if (mode == Mode.PICK_LOCATION || mode == Mode.SLINGSHOT)
@@ -129,7 +131,7 @@ public class LaunchManager : MonoBehaviour
         Debug.Assert(mode != Mode.NONE);
         mode = Mode.NONE;
 
-        
+
 
         if (potentialPlanet != null)
         {
@@ -160,7 +162,7 @@ public class LaunchManager : MonoBehaviour
         Rigidbody rbody = newPlanet.GetComponent<Rigidbody>();
         var direction = (launchLoc - curLoc).normalized;
         var dist = (launchLoc - curLoc).magnitude;
-        rbody.AddForce(direction * (float)Math.Pow(dist, 1.5f) * SLINGSHOT_COEF);
+        rbody.AddForce(direction * (float)Math.Pow(dist, 1.5f) * SLINGSHOT_COEF * rbody.mass);
         LaunchArrow.FadeOut(0.4f);
         // Enable the gravity on the planet only once it's been launched / released:
         newPlanet.GetComponent<PlanetGravity>().enabled = true;
@@ -170,6 +172,7 @@ public class LaunchManager : MonoBehaviour
             collider.enabled = true;
         }
         newPlanet.GetComponent<Planet>().SetTrailRendererEnabled(true);
+        newPlanet.tag = "Planet";
 
         // find all entitys and set home (for some reason it is not setting)
         var childEntities = newPlanet.GetComponentsInChildren<Objects_On_Planet>();
@@ -191,7 +194,8 @@ public class LaunchManager : MonoBehaviour
             Destroy(potentialPlanet);
             potentialPlanet = null;
         }
-        var newPlanet = planetBuilder.Build();
+        var newPlanetType = planetBuilder.scriptable_planets[planetTypeInteractionIndex % planetBuilder.scriptable_planets.Count];
+        var newPlanet = planetBuilder.Build(newPlanetType);
         potentialPlanet = newPlanet.Item1;
         potentialPlanet.name = "PreviewPlanet";
         potentialPlanet.tag = "Untagged";

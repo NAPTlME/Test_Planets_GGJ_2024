@@ -52,7 +52,14 @@ public class StatsManager : MonoBehaviour
         planetsUsed += 1;
     }
 
-    public void KillResidents(Planet_Type type)
+    public void LostPlanet(Planet_Type type)
+    {
+        Debug.Log("Planet lost!");
+        Debug.Log(type);
+        KillResidents(type, true);
+    }
+
+    public void KillResidents(Planet_Type type, bool overrideAsLost = false)
     {
         var newKilledResidents = PlanetTypeToResidents[type];
         killedResidents += newKilledResidents;
@@ -66,7 +73,15 @@ public class StatsManager : MonoBehaviour
         }
         else
         {
-            KilledResidentsTemporary.text = newKilledResidents + " RESIDENTS DIED !!\n" + remainingToKillBeforeGameOver + " RESIDENTS REMAINING BEFORE THE GODS NOTICE.";
+            if (overrideAsLost)
+            {
+                KilledResidentsTemporary.text = newKilledResidents + " RESIDENTS LOST IN SPACE !!\n" + remainingToKillBeforeGameOver + " RESIDENTS REMAINING BEFORE THE GODS NOTICE.";
+            }
+            else
+            {
+                KilledResidentsTemporary.text = newKilledResidents + " RESIDENTS DIED !!\n" + remainingToKillBeforeGameOver + " RESIDENTS REMAINING BEFORE THE GODS NOTICE.";
+
+            }
             tempResidentsKilledPromptHideFrameNumber = Time.frameCount + 120; // ~1s
         }
     }

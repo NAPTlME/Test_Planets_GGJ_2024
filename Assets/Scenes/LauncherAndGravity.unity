@@ -472,8 +472,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Press L to enter Launch Mode\n\nHold LMB to aim Planet Launcher, \nrelease
-    to launch\n\nTab to switch between planet types"
+  m_text: "Press L to enter/exit Launch Mode\n\nHold LMB to aim Planet Launcher,
+    \nrelease to launch\n\nTab to switch between planet types"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -728,6 +728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxDistanceBeforeBending: 100
+  MaxDistanceBeforeLost: 100
   BendingForce: 1000000
   PullBackToPerpendicularRatio: 5
   gravityPlanets: []
@@ -819,6 +820,21 @@ PrefabInstance:
         type: 3}
       propertyPath: near clip plane
       value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779827858155003145, guid: 664b1ac3f474b4c66aa8d403addcf912,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.9056604
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779827858155003145, guid: 664b1ac3f474b4c66aa8d403addcf912,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.5955145
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779827858155003145, guid: 664b1ac3f474b4c66aa8d403addcf912,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.38875046
       objectReference: {fileID: 0}
     - target: {fileID: 7479631340328309338, guid: 664b1ac3f474b4c66aa8d403addcf912,
         type: 3}
@@ -1520,12 +1536,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6257521725005702685, guid: e343cdf1f3198af499da89b979946e32,
-        type: 3}
-      propertyPath: planetPrefab
-      value: 
-      objectReference: {fileID: 7348139280587474309, guid: 133c2f8d6384e42a09d9f4285f347278,
-        type: 3}
     - target: {fileID: 6257521725005702685, guid: e343cdf1f3198af499da89b979946e32,
         type: 3}
       propertyPath: defaultCamera

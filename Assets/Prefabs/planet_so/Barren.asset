@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Barren
   m_EditorClassIdentifier: 
   type: 1
-  MinMass: 50
-  MaxMass: 200
+  MinMass: 100
+  MaxMass: 100
   MinScale: 3
   MaxScale: 5
   collisionSound: {fileID: 8300000, guid: 89754657e372c224ca370a491ac4c3b2, type: 3}

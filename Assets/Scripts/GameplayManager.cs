@@ -43,7 +43,7 @@ public class GlobalManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gameIsOver && Input.GetKeyDown(KeyCode.Space))
+        if (!gameIsOver && Input.GetKeyDown(KeyCode.Escape))
         {
             if (!paused)
             {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Earth-Like
   m_EditorClassIdentifier: 
   type: 0
-  MinMass: 100
+  MinMass: 300
   MaxMass: 300
   MinScale: 4
   MaxScale: 6

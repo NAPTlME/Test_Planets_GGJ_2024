@@ -25,17 +25,15 @@ public class ButtonSound : MonoBehaviour
         SceneManager.LoadScene(GameManager.GetSceneNameFromEnum(Scenes.TutorialFirst), LoadSceneMode.Single);
     }
 
+    public void ButtonClickCredits()
+    {
+        SceneManager.LoadScene(GameManager.GetSceneNameFromEnum(Scenes.Credits), LoadSceneMode.Single);
+    }
+
     public void ButtonClickQuit()
     {
         // GameManager.PlayButtonSound(1);
         Debug.Log("quit");
-        if (Application.isEditor)
-        {
-            UnityEditor.EditorApplication.isPlaying = false;
-        } 
-        else
-        {
-            Application.Quit();
-        }
+        Application.Quit();
     }
 }
