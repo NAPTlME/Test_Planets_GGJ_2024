@@ -2,19 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class Planet : MonoBehaviour
 {
-    public float radius; // could maybe get radius in world units from collider?
-    public float mass; // should probably change this to mass so it can be used for both small objects as well as celestial bodies
-    // Start is called before the first frame update
+    public PlanetType planetType;
+
+    public float radius { get; private set; }
+
     void Start()
     {
-
+        ApplyPlanetType();
     }
 
-    // Update is called once per frame
+    // Updates the components when variables are changed
+    void OnEnable()
+    {
+        ApplyPlanetType();
+    }
+
     void Update()
     {
         
+    }
+
+    private void ApplyPlanetType()
+    {
+        if (planetType is null) return;
+
+        // Set the material of the mesh
+        GetComponent<MeshRenderer>().material = planetType.tileMaterial;
+
+        // Set the mass
+        GetComponent<Rigidbody>().mass = planetType.mass;
+
+        // Set the scale
+        float scale = planetType.scale;
+        transform.localScale = new Vector3(scale, scale, scale);
+        radius = scale;
     }
 }
