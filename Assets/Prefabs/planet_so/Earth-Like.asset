@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Earth-Like
   m_EditorClassIdentifier: 
   type: 0
-  MinMass: 100
-  MaxMass: 100
+  MinMass: 300
+  MaxMass: 300
   MinScale: 4
   MaxScale: 6
   collisionSound: {fileID: 8300000, guid: d1ba7d817f31ee243948331f35d121e6, type: 3}
