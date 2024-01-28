@@ -4966,7 +4966,7 @@ GameObject:
   - component: {fileID: 759922470111181298}
   m_Layer: 0
   m_Name: Sun
-  m_TagString: Untagged
+  m_TagString: Sun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4980,7 +4980,7 @@ Transform:
   m_GameObject: {fileID: 5222611778781554490}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.69082534, y: 0.552, z: 6.131}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5098,8 +5098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bed4f9f29c63914abf19e80f528de60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
-  mass: 0
+  planetType: {fileID: 0}
 --- !u!114 &3371548996081920474
 MonoBehaviour:
   m_ObjectHideFlags: 0
