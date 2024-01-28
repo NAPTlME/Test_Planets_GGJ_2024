@@ -131,6 +131,136 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: BendingForce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: MaxDistanceBeforeBending
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: PullBackToPerpendicularRatio
+      value: 0.0005
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[0]
+      value: 
+      objectReference: {fileID: 393639641}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[5]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[6]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[7]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[8]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[9]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[10]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[11]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[12]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[13]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[14]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[15]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[16]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[17]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[18]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[19]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[20]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[21]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2313464237684208287, guid: 0e85022b13aab8b4ca7513755ccfd68a,
         type: 3}
       propertyPath: rbody
@@ -151,6 +281,11 @@ PrefabInstance:
       propertyPath: KilledResidentsTemporary
       value: 
       objectReference: {fileID: 1928547355}
+    - target: {fileID: 7176847483235181067, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+        type: 3}
+      propertyPath: m_Mass
+      value: 175230
+      objectReference: {fileID: 0}
     - target: {fileID: 8775345521383326460, guid: 0e85022b13aab8b4ca7513755ccfd68a,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -342,6 +477,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &393639641 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3371548996081920474, guid: 0e85022b13aab8b4ca7513755ccfd68a,
+    type: 3}
+  m_PrefabInstance: {fileID: 97230109}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 753fb0a434cfcfc4aad42aef0606976f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,6 +685,21 @@ PrefabInstance:
       propertyPath: near clip plane
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 5364322772943723390, guid: 625c6323c2069cf4fa17ccdc435446d2,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.6226415
+      objectReference: {fileID: 0}
+    - target: {fileID: 5364322772943723390, guid: 625c6323c2069cf4fa17ccdc435446d2,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.49752584
+      objectReference: {fileID: 0}
+    - target: {fileID: 5364322772943723390, guid: 625c6323c2069cf4fa17ccdc435446d2,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.41411534
+      objectReference: {fileID: 0}
     - target: {fileID: 5400548657252903481, guid: 625c6323c2069cf4fa17ccdc435446d2,
         type: 3}
       propertyPath: launchCamera
@@ -723,6 +885,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c3b48545bd59243bd4bc2e38c2cf80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxDistanceBeforeBending: 100
+  BendingForce: 1000000
+  PullBackToPerpendicularRatio: 5
   gravityPlanets: []
 --- !u!1001 &1837855610
 PrefabInstance:
