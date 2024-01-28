@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PlanetTypeToStatsTypeTuple
 {
-    public PlanetType planetType;
+    public Planet_Type planetType;
     public StatsPlanetType statsPlanetType;
 }
 
@@ -28,9 +28,7 @@ public class Planet : MonoBehaviour
         "Makropulos",
         "Belisama"
     };
-    public PlanetType planetType;
-    public List<PlanetType> planetTypes;
-    public List<StatsPlanetType> PlanetTypePrefabToEnumHackArray;
+    public Planet_Type planetType;
 
 
     public float radius { get; private set; }
@@ -44,10 +42,10 @@ public class Planet : MonoBehaviour
     void Start()
     {
         rbody = GetComponent<Rigidbody>();
-        for (var i = 0; i < planetTypes.Count; i++)
+        for (var i = 0; i < System.Enum.GetNames(typeof(Planet_Type)).Length; i++)
         {
-            var type = planetTypes[i];
-            StatsManager.getInstance().PlanetTypePrefabToEnum[type] = PlanetTypePrefabToEnumHackArray[i];
+            //var type = planetTypes[i];
+            //StatsManager.getInstance().PlanetTypePrefabToEnum[type] = PlanetTypePrefabToEnumHackArray[i];
         }
         var rand = new System.Random();
         planetName = PLANET_NAMES[rand.Next(PLANET_NAMES.Count)];

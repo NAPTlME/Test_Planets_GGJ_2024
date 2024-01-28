@@ -22,7 +22,7 @@ public class DodecPlanetBuild : MonoBehaviour
     {
     }
 
-    public GameObject Build(PlanetSO planet_so = null)
+    public (GameObject, Planet_Type) Build(PlanetSO planet_so = null)
     {
         if (planet_so == null)
         {
@@ -47,7 +47,7 @@ public class DodecPlanetBuild : MonoBehaviour
         if (planet_so.type == Planet_Type.gas)
         {
             var mesh = Instantiate(GasGiantPrefab, planet.transform);
-            return planet;
+            return (planet, planet_so.type);
         } else
         {
             // get the core
@@ -104,7 +104,7 @@ public class DodecPlanetBuild : MonoBehaviour
             {
                 tiles.ElementAt(11).Item2.transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
             }
-            return planet;
+            return (planet, planet_so.type);
         }
     }
     private (GameObject, GameObject) InstantiatePlanetTile(PlanetTile tileInfo, Planet homePlanet)

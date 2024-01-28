@@ -70,7 +70,7 @@ public class LaunchManager : MonoBehaviour
         }
         if (mode != Mode.NONE && Input.GetKeyDown(KeyCode.Tab))
         {
-            switchPlanet();
+            newPotentialPlanet();
         }
         if (mode == Mode.PICK_LOCATION || mode == Mode.SLINGSHOT)
         {
@@ -101,10 +101,7 @@ public class LaunchManager : MonoBehaviour
         Debug.Assert(mode == Mode.NONE || mode == Mode.SLINGSHOT);
         mode = Mode.PICK_LOCATION;
 
-        potentialPlanet = planetBuilder.Build();
-        potentialPlanet.name = "PreviewPlanet";
-        potentialPlanet.tag = "Untagged";
-        potentialPlanet.GetComponents<Collider>().ToList().ForEach(sel => sel.enabled = false);
+        newPotentialPlanet();
         // Note: if what we want is the colliders to be disabled in the initial state,
         // what we should do is have them disabled in the prefab and then enabling them on
         // Launch() like for the planetGravity component, so commenting out this code for
@@ -163,21 +160,24 @@ public class LaunchManager : MonoBehaviour
         }
         newPlanet.transform.GetChild(0).gameObject.SetActive(true);
 
-        StatsManager.getInstance().PlanetLaunched(StatsManager.getInstance().PlanetTypePrefabToEnum[currentPlanet.planetType]);
+        StatsManager.getInstance().PlanetLaunched(currentPlanet.planetType);
         cameraManager.SetFocusTarget(newPlanet.transform);
         // Go back to launch mode for another launch:
         StartPickLocation();
     }
 
-    private void switchPlanet()
+    private void newPotentialPlanet()
     {
-        int i = currentPlanet.planetTypes.IndexOf(currentPlanet.planetType);
-        i += 1;
-        var newPlanetType = currentPlanet.planetTypes[i % currentPlanet.planetTypes.Count];
-        currentPlanet.planetType = newPlanetType;
-        Destroy(potentialPlanet);
-        potentialPlanet = Instantiate(planetPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        if (potentialPlanet != null)
+        {
+            Destroy(potentialPlanet);
+            potentialPlanet = null;
+        }
+        var newPlanet = planetBuilder.Build();
+        potentialPlanet = newPlanet.Item1;
         potentialPlanet.name = "PreviewPlanet";
         potentialPlanet.tag = "Untagged";
+        potentialPlanet.GetComponents<Collider>().ToList().ForEach(sel => sel.enabled = false);
+        currentPlanet.planetType = newPlanet.Item2;
     }
 }
