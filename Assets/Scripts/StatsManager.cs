@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using TMPro;
 public enum StatsPlanetType
 {
     SMALL,
@@ -14,7 +14,9 @@ public class StatsManager : MonoBehaviour
 
     private static StatsManager instance = null;
     private int score = 0;
-    private int killResidents = 0;
+    private int killedResidents = 0;
+    private int planetsUsed = 0;
+    public TMP_Text StatsText;
 
     private Dictionary<StatsPlanetType, int> PlanetTypeToPoints = new Dictionary<StatsPlanetType, int>() {
         {StatsPlanetType.SMALL, 10},
@@ -41,12 +43,13 @@ public class StatsManager : MonoBehaviour
         Debug.Log("Launched planet of stats type:");
         Debug.Log(type);
         score += PlanetTypeToPoints[type];
+        planetsUsed += 1;
     }
 
     public void KillResidents(PlanetType type)
     {
         var enumType = PlanetTypePrefabToEnum[type];
-        killResidents += PlanetTypeToResidents[enumType];
+        killedResidents += PlanetTypeToResidents[enumType];
     }
 
     private void Awake()
@@ -59,10 +62,9 @@ public class StatsManager : MonoBehaviour
 
     private void Update()
     {
-        if (Time.frameCount % 600 == 0)
+        if (StatsText != null)
         {
-            Debug.Log("Current score: " + score);
-            Debug.Log("Killed Residents: " + killResidents);
+            StatsText.text = "Planets used: " + planetsUsed + "\nResidents Killed: " + killedResidents + "\nScore: " + score;
         }
     }
 }
