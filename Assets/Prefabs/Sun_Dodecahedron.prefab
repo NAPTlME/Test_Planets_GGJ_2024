@@ -5091,10 +5091,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c3b48545bd59243bd4bc2e38c2cf80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxDistanceBeforeBending: 1000
-  MaxDistanceBeforeLost: 160
-  BendingForce: 0.003
-  PullBackToPerpendicularRatio: 0.0005
+  MaxDistanceBeforeBending: 120
+  MaxDistanceBeforeLost: 180
+  BendingForce: 0.01
+  PullBackToPerpendicularRatio: 0.0002
   gravityPlanets: []
 --- !u!114 &7141560427436503104
 MonoBehaviour:
