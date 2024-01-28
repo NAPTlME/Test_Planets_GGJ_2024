@@ -26,7 +26,7 @@ public class OrbitRig : MonoBehaviour
 
     public float maxDistance = 30f;
 
-    private float currentDistance = 10f;
+    private float currentDistance;
 
 
 
@@ -34,6 +34,8 @@ public class OrbitRig : MonoBehaviour
     void Start()
     {
         target = defaultTarget;
+
+        currentDistance = maxDistance;
     }
 
     // Update is called once per frame
