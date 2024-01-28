@@ -7,6 +7,7 @@ using UnityEngine;
 public class Planet : MonoBehaviour
 {
     public PlanetType planetType;
+    public List<PlanetType> planetTypes;
     public float radius { get; private set; }
     public float mass; // should probably change this to mass so it can be used for both small objects as well as celestial bodies
     public Rigidbody rbody;

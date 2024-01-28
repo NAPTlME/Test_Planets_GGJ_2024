@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: OceanPlanet
   m_EditorClassIdentifier: 
   mass: 300
-  scale: 3
+  scale: 6
   tileMaterial: {fileID: 2100000, guid: 36b75316411c8ba43a723cfa12253465, type: 2}
   collisionSound: {fileID: 8300000, guid: b8f6cbbf07c96d24bb4ea8605509c21f, type: 3}
