@@ -18,6 +18,9 @@ public class Objects_On_Planet : MonoBehaviour
     public const float CENTER_OF_MASS_GIZMO_RAD = 0.04f;
     public const float BASE_GRAVITY_COEF = 9f;
 
+    public float ArbitraryVelocityDeltaThreshold = 50f;
+    public float VelocityDeltaCatchupRate = 0.1f;
+
     Rigidbody rbody;
 
     // Start is called before the first frame update
@@ -46,6 +49,25 @@ public class Objects_On_Planet : MonoBehaviour
     // FixedUpdate runs on a predetermined tick rate (50hz by default)
     void FixedUpdate()
     {
+        // pass parent transformation on to the children
+        if (transform.parent != null && homePlanet != null)
+        {
+            //rbody.MovePosition(transform.position + homePlanet.rbody.velocity * Time.fixedDeltaTime);// hacky fix for child rigidbodies not inheriting the movement of their parent rigidbodies
+            //rbody.AddForce(homePlanet.rbody.GetAccumulatedForce() / homePlanet.mass * rbody.mass, ForceMode.Force);
+            //rbody.velocity = homePlanet.rbody.velocity;
+
+            //if change in velocity is large, apply that velocity
+            var planet_velocity_delta = homePlanet.previousVelocity - rbody.velocity;
+            if (planet_velocity_delta.magnitude > ArbitraryVelocityDeltaThreshold)
+            {
+                // if planet velocity delta is obtuse to planet velocity and rbody velocity, do nothing
+                if (!(Vector3.Dot(planet_velocity_delta, rbody.velocity) < 0 && Vector3.Dot(planet_velocity_delta, homePlanet.previousVelocity) < 0))
+                {
+                    rbody.velocity += VelocityDeltaCatchupRate * planet_velocity_delta;
+                }
+            }
+
+        }
         // Debug.Log("planet count: " + planets.Count);
         var newPlanetDistances = planets.Select(planet => (planet, Vector3.Distance(planet.transform.position, transform.position) - planet.radius))
             .ToList()
