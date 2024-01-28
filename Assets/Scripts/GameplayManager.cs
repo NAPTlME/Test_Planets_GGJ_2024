@@ -40,14 +40,22 @@ public class GlobalManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (launchManager.mode == LaunchManager.Mode.NONE)
+        if (launchManager.mode == LaunchManager.Mode.NONE || launchManager.mode == LaunchManager.Mode.PICK_LOCATION)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit[] hits;
             hits = Physics.RaycastAll(ray, Mathf.Infinity);
-            if (hits.Length > 0)
+            var planetHits = new List<RaycastHit>();
+            foreach (var hit in hits)
             {
-                var hit = hits.OrderBy(hit => (Camera.main.WorldToScreenPoint(hit.transform.position) - Input.mousePosition).magnitude).First();
+                if (hit.transform.gameObject.tag == "Planet")
+                {
+                    planetHits.Add(hit);
+                }
+            }
+            if (planetHits.Count > 0)
+            {
+                var hit = planetHits.OrderBy(hit => (Camera.main.WorldToScreenPoint(hit.transform.position) - Input.mousePosition).magnitude).First();
                 string planetName = hit.transform.gameObject.GetComponent<Planet>().planetName;
                 Vector2 screenPoint = Camera.main.WorldToScreenPoint(hit.transform.position);
                 var textPoint = new Vector2(screenPoint.x, screenPoint.y + 50);
