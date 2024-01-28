@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class LaunchManager : MonoBehaviour
 {
@@ -90,6 +91,7 @@ public class LaunchManager : MonoBehaviour
         potentialPlanet = Instantiate(planetPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         potentialPlanet.name = "PreviewPlanet";
         potentialPlanet.tag = "Untagged";
+        potentialPlanet.GetComponents<Collider>().ToList().ForEach(sel => sel.enabled = false);
         // Note: if what we want is the colliders to be disabled in the initial state,
         // what we should do is have them disabled in the prefab and then enabling them on
         // Launch() like for the planetGravity component, so commenting out this code for
@@ -143,7 +145,7 @@ public class LaunchManager : MonoBehaviour
         LaunchArrow.FadeOut(0.4f);
         // Enable the gravity on the planet only once it's been launched / released:
         newPlanet.GetComponent<PlanetGravity>().enabled = true;
-        var colliders = newPlanet.GetComponents<SphereCollider>();
+        var colliders = newPlanet.GetComponents<Collider>();
         foreach (var collider in colliders)
         {
             collider.enabled = true;
