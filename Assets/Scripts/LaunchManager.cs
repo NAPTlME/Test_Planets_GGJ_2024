@@ -48,7 +48,7 @@ public class LaunchManager : MonoBehaviour
 
     void Update()
     {
-        if (mode != Mode.NONE && Input.GetKeyDown(KeyCode.Escape))
+        if (mode != Mode.NONE && Input.GetKeyDown(KeyCode.L))
         {
             cameraManager.SwapCameras();
             Exit();
