@@ -5067,7 +5067,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5222611778781554490}
   serializedVersion: 4
-  m_Mass: 10000
+  m_Mass: 17523
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -5086,6 +5086,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2313464237684208287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5222611778781554490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bed4f9f29c63914abf19e80f528de60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planetType: {fileID: 0}
+  planetTypes: []
+  mass: 0
+  rbody: {fileID: 0}
+  previousVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &3371548996081920474
 MonoBehaviour:
   m_ObjectHideFlags: 0
