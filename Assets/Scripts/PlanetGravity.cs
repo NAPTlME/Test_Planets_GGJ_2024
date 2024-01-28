@@ -18,4 +18,15 @@ public class PlanetGravity : MonoBehaviour
     {
         GravityManager.getInstance().ForgetPlanet(this);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject == GravityManager.getInstance().gameObject)
+        {
+            Debug.Log("Crashing into the sun, BURN!");
+            var exp = GetComponent<ParticleSystem>();
+            exp.Play();
+            GetComponent<MeshRenderer>().enabled = false;
+        }
+    }
 }

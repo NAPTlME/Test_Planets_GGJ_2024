@@ -84,6 +84,7 @@ public class LaunchManager : MonoBehaviour
         Debug.Assert(mode == Mode.NONE || mode == Mode.SLINGSHOT);
         mode = Mode.PICK_LOCATION;
         defaultCamera.gameObject.SetActive(false);
+        topDownCamera.gameObject.GetComponent<AudioListener>().enabled = true;
         topDownCamera.gameObject.SetActive(true);
         topDownCamera.transform.position = new Vector3(0, TopDownHeight, 0);
         potentialPlanet = Instantiate(planetPrefab, new Vector3(0, 0, 0), Quaternion.identity);
@@ -147,6 +148,7 @@ public class LaunchManager : MonoBehaviour
         {
             collider.enabled = true;
         }
+        newPlanet.transform.GetChild(0).gameObject.SetActive(true);
         // Go back to launch mode for another launch:
         StartPickLocation();
     }

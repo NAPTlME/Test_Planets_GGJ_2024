@@ -4963,6 +4963,7 @@ GameObject:
   - component: {fileID: 7176847483235181067}
   - component: {fileID: 2313464237684208287}
   - component: {fileID: 3371548996081920474}
+  - component: {fileID: 759922470111181298}
   m_Layer: 0
   m_Name: Sun
   m_TagString: Untagged
@@ -5113,3 +5114,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 7176847483235181067}
   planet: {fileID: 2313464237684208287}
+--- !u!114 &759922470111181298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5222611778781554490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c3b48545bd59243bd4bc2e38c2cf80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityPlanets: []
