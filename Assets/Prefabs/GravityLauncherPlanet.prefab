@@ -284,6 +284,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetType: {fileID: 11400000, guid: b85683594cc9f479e87156f49f866f77, type: 2}
+  mass: 0
+  rbody: {fileID: 0}
+  previousVelocity: {x: 0, y: 0, z: 0}
 --- !u!54 &8718003504782808844
 Rigidbody:
   m_ObjectHideFlags: 0
