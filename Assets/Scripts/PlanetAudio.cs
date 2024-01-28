@@ -20,7 +20,7 @@ public class PlanetAudio : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == GravityManager.getInstance().gameObject)
+        if (collision.gameObject.tag == "Sun")
         {
             Debug.Log("Crashing into the sun, playing SFX");
             audioSource.Play();
