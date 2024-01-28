@@ -150,5 +150,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   homePlanet: {fileID: 0}
   planets: []
-  ArbitraryVelocityDeltaThreshold: 5
-  VelocityDeltaCatchupRate: 0.5
+  ArbitraryVelocityDeltaThreshold: 1
+  VelocityDeltaCatchupRate: 0.4
