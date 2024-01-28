@@ -48,11 +48,13 @@ public class LaunchManager : MonoBehaviour
     {
         if (mode != Mode.NONE && Input.GetKeyDown(KeyCode.Escape))
         {
+            cameraManager.SwapCameras();
             Exit();
             return;
         }
         if (mode == Mode.NONE && Input.GetKeyDown(KeyCode.L))
         {
+            cameraManager.SwapCameras();
             StartPickLocation();
             return;
         }
@@ -99,8 +101,6 @@ public class LaunchManager : MonoBehaviour
         Debug.Assert(mode == Mode.NONE || mode == Mode.SLINGSHOT);
         mode = Mode.PICK_LOCATION;
 
-        cameraManager.SetCamera(cameraManager.launchCamera);
-
         potentialPlanet = planetBuilder.Build();
         potentialPlanet.name = "PreviewPlanet";
         potentialPlanet.tag = "Untagged";
@@ -122,7 +122,7 @@ public class LaunchManager : MonoBehaviour
         Debug.Assert(mode != Mode.NONE);
         mode = Mode.NONE;
 
-        cameraManager.SetCamera(cameraManager.planetCamera);
+        
 
         if (potentialPlanet != null)
         {
