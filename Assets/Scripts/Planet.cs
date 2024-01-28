@@ -44,7 +44,6 @@ public class Planet : MonoBehaviour
     void Start()
     {
         rbody = GetComponent<Rigidbody>();
-        ApplyPlanetType();
         for (var i = 0; i < planetTypes.Count; i++)
         {
             var type = planetTypes[i];
@@ -62,7 +61,7 @@ public class Planet : MonoBehaviour
     // Updates the components when variables are changed
     void OnEnable()
     {
-        ApplyPlanetType();
+
     }
 
     // Update is called once per frame
@@ -90,21 +89,5 @@ public class Planet : MonoBehaviour
             // the physics, the boolean should be trusthworthy
             destroyed = true;
         }
-    }
-
-    private void ApplyPlanetType()
-    {
-        if (planetType is null) return;
-
-        // Set the material of the mesh
-        GetComponent<MeshRenderer>().material = planetType.tileMaterial;
-
-        // Set the mass
-        GetComponent<Rigidbody>().mass = planetType.mass;
-
-        // Set the scale
-        float scale = planetType.scale;
-        transform.localScale = new Vector3(scale, scale, scale);
-        radius = scale;
     }
 }

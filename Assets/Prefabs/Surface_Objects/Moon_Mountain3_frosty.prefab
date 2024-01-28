@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 732237816097235439}
   - component: {fileID: 8100628297866879787}
   - component: {fileID: 6255030964246334634}
+  - component: {fileID: 1056786711768905348}
+  - component: {fileID: 8926362219429452229}
   m_Layer: 0
   m_Name: Moon_Mountain3_frosty
   m_TagString: Untagged
@@ -61,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e61cc9befba47a04ea8fdefe08752336, type: 2}
+  - {fileID: 2100000, guid: 359c5ccfe60bf954fb5f6a02c3d40253, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,3 +85,45 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1056786711768905348
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882537057766494832}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 43.620075, y: 20.460045, z: 52.716278}
+  m_Center: {x: 21.605413, y: 89.69575, z: -18.467691}
+--- !u!65 &8926362219429452229
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882537057766494832}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 73.02185, y: 29.4945, z: 36.398994}
+  m_Center: {x: -4.094848, y: 94.21302, z: 27.976852}

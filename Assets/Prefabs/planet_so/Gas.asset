@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b0fe3de799d2df47b451ee118b55adc, type: 3}
   m_Name: Gas
   m_EditorClassIdentifier: 
-  type: 0
-  MinMass: 0
-  MaxMass: 0
-  MinScale: 0
-  MaxScale: 0
+  type: 2
+  MinMass: 250
+  MaxMass: 500
+  MinScale: 5
+  MaxScale: 7
   collisionSound: {fileID: 8300000, guid: b0ebd0e8f4c6cdf489660d421aba3a45, type: 3}
-  optional_prefab: {fileID: 5222611778781554490, guid: b6794f53621944446bdca0c274dc44a0,
+  optional_prefab: {fileID: 2291668453402050211, guid: 9236c78e3047a91499df8a596d72c9ae,
     type: 3}
   TilesAvailable: []

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4169075205213691329}
   - component: {fileID: 8634187697898060445}
   - component: {fileID: 4954773800089956681}
+  - component: {fileID: 8248771437149169686}
+  - component: {fileID: 5038912459596449508}
   m_Layer: 0
   m_Name: Moon_Mountains2
   m_TagString: Untagged
@@ -61,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e61cc9befba47a04ea8fdefe08752336, type: 2}
+  - {fileID: 2100000, guid: b03848ec8a7c63d43ae5fafe5f25fce1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,3 +85,45 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8248771437149169686
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8282016913002439161}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 85.1156, y: 24.122732, z: 40.06802}
+  m_Center: {x: -3.0753045, y: 91.527084, z: 23.96716}
+--- !u!65 &5038912459596449508
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8282016913002439161}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 32.249718, y: 20.643223, z: 36.238308}
+  m_Center: {x: 12.833449, y: 89.787285, z: -29.951746}

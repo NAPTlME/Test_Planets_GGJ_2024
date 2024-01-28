@@ -5,90 +5,131 @@ using System.Linq;
 
 public class DodecPlanetBuild : MonoBehaviour
 {
+    public GameObject EmptyPlanetPrefab;
     public GameObject CorePrefab;
     public GameObject TilePrefab;
-    public Mesh DodecaHedronColliderPrefab;
-    public List<GameObject> EntityCollections;
-    public float entitySpawnChance = 0.3f;
+    public GameObject GasGiantPrefab;
     public float objectSpawnChance = 0.3f;
+    [SerializeField]
+    public List<PlanetSO> scriptable_planets;
+    public GameObject temp_lastPlanet;
     // Start is called before the first frame update
     void Start()
     {
-        Build();
+        temp_lastPlanet = Build();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Destroy(temp_lastPlanet);
+            temp_lastPlanet = Build();
+        }
     }
 
-    void Build()
+    public GameObject Build(PlanetSO planet_so = null)
     {
-        var planet = new GameObject("spawned_planet");
+        if (planet_so == null)
+        {
+            var index = Mathf.FloorToInt(Random.value * scriptable_planets.Count);
+            Debug.Log(index);
+            planet_so = scriptable_planets.ElementAt(index);
+        }
+        var lerpAmt = Random.value;
+        var mass = Mathf.Lerp(planet_so.MinMass, planet_so.MaxMass, lerpAmt);
+        var scale = Mathf.Lerp(planet_so.MinScale, planet_so.MaxScale, lerpAmt);
+        var planet = Instantiate(EmptyPlanetPrefab);
         planet.transform.position = Vector3.zero; // probably not necessary
         // rigidbody, mass
+        Rigidbody rbody = planet.GetComponent<Rigidbody>();
+        rbody.mass = mass;
+        planet.transform.localScale = Vector3.one * scale;
+        Planet planetBehavior = planet.GetComponent<Planet>();
+        // audio source
+        AudioSource audio = planet.GetComponent<AudioSource>();
+        audio.clip = planet_so.collisionSound;
         //planet radius
-        // create empty to hold the planet
-        // get mesh collider
-        // get the core
-        // get 12 instances of the tiles
-        var core = Instantiate(CorePrefab, planet.transform);
-        var tiles = Enumerable.Range(0, 12).Select( sel =>
-         {
-             // for now just using one prefab. potentially will select from a collection
-             //var index = Mathf.FloorToInt(Random.value * TilePrefabs.Count);
-             return Instantiate(TilePrefab, planet.transform);
-         }).ToList();
-
-        // negative x is the bottom/flip face
-        // the interior angles add up to 540 and are 108 each
-        // top stays
-        // duplicate from the top
-        // next layer is 60 degrees in the Z axis
-        Dictionary<int, GameObject> entityCreations = Enumerable.Range(0, 12).Where(wh => Random.value <= entitySpawnChance).ToDictionary(i =>i, i =>
-         {
-             var index = Mathf.FloorToInt(Random.value * EntityCollections.Count);
-             return Instantiate(EntityCollections.ElementAt(index), planet.transform);
-         });
-
-        for (int i = 1; i < 6; i++)
+        if (planet_so.type == Planet_Type.gas)
         {
-            // re: 63.4f. I don't know if there is some skew or not, but this is not typical (I think?).
-            var rotation = Quaternion.AngleAxis(63.4f, Vector3.forward);
-            rotation *= Quaternion.AngleAxis(180, Vector3.up);
-            rotation = Quaternion.AngleAxis(72 * (i-1), Vector3.up) * rotation;
-
-            tiles.ElementAt(i).transform.rotation = rotation;
-
-            if (entityCreations.ContainsKey(i))
+            var mesh = Instantiate(GasGiantPrefab, planet.transform);
+            return planet;
+        } else
+        {
+            // get the core
+            // get 12 instances of the tiles
+            var core = Instantiate(CorePrefab, planet.transform);
+            // get random tiles from the possible tiles
+            var tiles = Enumerable.Range(0, 12).Select(sel =>
             {
-                entityCreations[i].transform.rotation = rotation;
+                var index = Mathf.FloorToInt(Random.value * planet_so.TilesAvailable.Count);
+                return InstantiatePlanetTile(planet_so.TilesAvailable.ElementAt(index), planetBehavior);
+            }).ToList();
+
+            // negative x is the bottom/flip face
+            // the interior angles add up to 540 and are 108 each
+            // top stays
+            // duplicate from the top
+            // next layer is 60 degrees in the Z axis
+
+            for (int i = 1; i < 6; i++)
+            {
+                // re: 63.4f. I don't know if there is some skew or not, but this is not typical (I think?).
+                var rotation = Quaternion.AngleAxis(63.4f, Vector3.forward);
+                rotation *= Quaternion.AngleAxis(180, Vector3.up);
+                rotation = Quaternion.AngleAxis(72 * (i - 1), Vector3.up) * rotation;
+
+                tiles.ElementAt(i).Item1.transform.rotation = rotation;
+
+                if (tiles.ElementAt(i).Item2 != null)
+                {
+                    tiles.ElementAt(i).Item2.transform.rotation = rotation;
+                }
+            }
+            // next layer is 240 degrees in the z axis
+            for (int i = 6; i < 11; i++)
+            {
+                var rotation = Quaternion.AngleAxis(180 + 63.4f, Vector3.forward);
+                rotation *= Quaternion.AngleAxis(180, Vector3.up);
+                rotation = Quaternion.AngleAxis(72 * (i - 1), Vector3.up) * rotation;
+
+                tiles.ElementAt(i).Item1.transform.rotation = rotation;
+
+                if (tiles.ElementAt(i).Item2 != null)
+                {
+                    tiles.ElementAt(i).Item2.transform.rotation = rotation;
+                }
+            }
+
+            // last layer is 180 (x) from top 
+            // and a 180 rotation on y? maybe not?
+
+            tiles.ElementAt(11).Item1.transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
+
+            if (tiles.ElementAt(11).Item2 != null)
+            {
+                tiles.ElementAt(11).Item2.transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
+            }
+            return planet;
+        }
+    }
+    private (GameObject, GameObject) InstantiatePlanetTile(PlanetTile tileInfo, Planet homePlanet)
+    {
+        var tile = Instantiate(TilePrefab, homePlanet.transform);
+        GameObject entity = null;
+        tile.GetComponentInChildren<MeshRenderer>().material = tileInfo.TileMaterial;
+        if (tileInfo.AllowedEntities.Count > 0 && Random.value <= objectSpawnChance)
+        {
+            var index = Mathf.FloorToInt(Random.value * tileInfo.AllowedEntities.Count);
+            entity = Instantiate(tileInfo.AllowedEntities.ElementAt(index), homePlanet.transform);
+            // check if entity is one that has the Objects_On_Planet component
+            var objectInfo = entity.GetComponent<Objects_On_Planet>();
+            if (objectInfo != null)
+            {
+                objectInfo.homePlanet = homePlanet;
             }
         }
-        // next layer is 240 degrees in the z axis
-        for (int i = 6; i < 11; i++)
-        {
-            var rotation = Quaternion.AngleAxis(180 + 63.4f, Vector3.forward);
-            rotation *= Quaternion.AngleAxis(180, Vector3.up);
-            rotation = Quaternion.AngleAxis(72 * (i - 1), Vector3.up) * rotation;
-
-            tiles.ElementAt(i).transform.rotation = rotation;
-
-            if (entityCreations.ContainsKey(i))
-            {
-                entityCreations[i].transform.rotation = rotation;
-            }
-        }
-
-        // last layer is 180 (x) from top 
-        // and a 180 rotation on y? maybe not?
-
-        tiles.ElementAt(11).transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
-
-        if (entityCreations.ContainsKey(11))
-        {
-            entityCreations[11].transform.rotation = Quaternion.AngleAxis(180, Vector3.forward); ;
-        }
+        return (tile, entity);
     }
 }

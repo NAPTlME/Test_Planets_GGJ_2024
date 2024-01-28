@@ -14,12 +14,16 @@ public class LaunchManager : MonoBehaviour
     public int TopDownHeight = 100;
     
     public GameObject planetPrefab;
-    public Planet scriptablePlanet;
+    
+    public Planet currentPlanet;
     private GameObject potentialPlanet;
     private Vector3 launchLoc;
     public Launch_Arrow LaunchArrow;
     private StatsPlanetType statsPlanetType = StatsPlanetType.SMALL;
     private CameraManager cameraManager;
+
+    [Header("Planet Builder")]
+    DodecPlanetBuild planetBuilder;
 
     public enum Mode
     {
@@ -35,7 +39,7 @@ public class LaunchManager : MonoBehaviour
         Cursor.visible = true;
         mode = Mode.NONE;
         var emptyObj = new GameObject("empty");
-        scriptablePlanet = planetPrefab.GetComponent<Planet>();
+        currentPlanet = planetPrefab.GetComponent<Planet>();
 
         cameraManager = Camera.main.gameObject.GetComponent<CameraManager>();
     }
@@ -97,7 +101,7 @@ public class LaunchManager : MonoBehaviour
 
         cameraManager.SetCamera(cameraManager.launchCamera);
 
-        potentialPlanet = Instantiate(planetPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        potentialPlanet = planetBuilder.Build();
         potentialPlanet.name = "PreviewPlanet";
         potentialPlanet.tag = "Untagged";
         potentialPlanet.GetComponents<Collider>().ToList().ForEach(sel => sel.enabled = false);
@@ -143,12 +147,9 @@ public class LaunchManager : MonoBehaviour
         // if we wanted... later
         Debug.Assert(mode == Mode.SLINGSHOT);
         var curLoc = potentialPlanet.transform.position;
-        Destroy(potentialPlanet);
-        potentialPlanet = null;
-        var newPlanet = Instantiate(planetPrefab, curLoc, Quaternion.identity);
+        var newPlanet = potentialPlanet;
         newPlanet.name = "LaunchedPlanet";
         Rigidbody rbody = newPlanet.GetComponent<Rigidbody>();
-        rbody.mass = InitialPlanetMass;
         var direction = (launchLoc - curLoc).normalized;
         var dist = (launchLoc - curLoc).magnitude;
         rbody.AddForce(direction * (float)Math.Pow(dist, 1.5f) * SLINGSHOT_COEF);
@@ -162,7 +163,7 @@ public class LaunchManager : MonoBehaviour
         }
         newPlanet.transform.GetChild(0).gameObject.SetActive(true);
 
-        StatsManager.getInstance().PlanetLaunched(StatsManager.getInstance().PlanetTypePrefabToEnum[scriptablePlanet.planetType]);
+        StatsManager.getInstance().PlanetLaunched(StatsManager.getInstance().PlanetTypePrefabToEnum[currentPlanet.planetType]);
         cameraManager.SetFocusTarget(newPlanet.transform);
         // Go back to launch mode for another launch:
         StartPickLocation();
@@ -170,10 +171,10 @@ public class LaunchManager : MonoBehaviour
 
     private void switchPlanet()
     {
-        int i = scriptablePlanet.planetTypes.IndexOf(scriptablePlanet.planetType);
+        int i = currentPlanet.planetTypes.IndexOf(currentPlanet.planetType);
         i += 1;
-        var newPlanetType = scriptablePlanet.planetTypes[i % scriptablePlanet.planetTypes.Count];
-        scriptablePlanet.planetType = newPlanetType;
+        var newPlanetType = currentPlanet.planetTypes[i % currentPlanet.planetTypes.Count];
+        currentPlanet.planetType = newPlanetType;
         Destroy(potentialPlanet);
         potentialPlanet = Instantiate(planetPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         potentialPlanet.name = "PreviewPlanet";

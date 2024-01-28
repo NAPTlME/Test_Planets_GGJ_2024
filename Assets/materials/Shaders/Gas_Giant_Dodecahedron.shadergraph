@@ -11,6 +11,9 @@
         },
         {
             "m_Id": "53759269a61c43048eff4c9e6936dc15"
+        },
+        {
+            "m_Id": "f44ca9c1ab1642cd931352063bbd756f"
         }
     ],
     "m_Keywords": [],
@@ -227,6 +230,9 @@
         },
         {
             "m_Id": "23bb86cd3c7b4fb3b30d5d8c6a5b69b1"
+        },
+        {
+            "m_Id": "8b7fae0126484d76a791f98a3dd9db57"
         }
     ],
     "m_GroupDatas": [],
@@ -809,6 +815,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "8b7fae0126484d76a791f98a3dd9db57"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "62a61790a8fc4e71b22b97825041511c"
+                },
+                "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "9ac8ff9470db4d80b7ecdb8f62bd4836"
                 },
                 "m_SlotId": 3
@@ -1188,7 +1208,7 @@
     },
     "m_PreviewData": {
         "serializedMesh": {
-            "m_SerializedMesh": "{\"mesh\":{\"fileID\":3989152559073418409,\"guid\":\"e8723e778c420a34bb854ba1cf9e631e\",\"type\":3}}",
+            "m_SerializedMesh": "{\"mesh\":{\"fileID\":3989152559073418409,\"guid\":\"6f7cff4063faaae41b4c7079ec2ef517\",\"type\":3}}",
             "m_Guid": ""
         },
         "preventRotation": false
@@ -3278,6 +3298,9 @@
         },
         {
             "m_Id": "53759269a61c43048eff4c9e6936dc15"
+        },
+        {
+            "m_Id": "f44ca9c1ab1642cd931352063bbd756f"
         }
     ]
 }
@@ -4554,10 +4577,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -3485.999755859375,
-            "y": -402.9999084472656,
-            "width": 207.999755859375,
-            "height": 315.0
+            "x": -6541.0,
+            "y": 97.99995422363281,
+            "width": 208.0,
+            "height": 315.00006103515627
         }
     },
     "m_Slots": [
@@ -5972,6 +5995,42 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "8b7fae0126484d76a791f98a3dd9db57",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -1350.434814453125,
+            "y": 2038.260986328125,
+            "width": 0.0,
+            "height": 0.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "b0d1436c0d1440e1b298dda9401954bc"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "f44ca9c1ab1642cd931352063bbd756f"
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "8c8289205c1c40c19653895ce95aaca4",
     "m_Id": 2,
@@ -7232,6 +7291,21 @@
         "x": 0.0,
         "y": 0.0
     },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "b0d1436c0d1440e1b298dda9401954bc",
+    "m_Id": 0,
+    "m_DisplayName": "EdgeIntensity",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
     "m_Labels": []
 }
 
@@ -9725,6 +9799,34 @@
         "e31": 0.0,
         "e32": 0.0,
         "e33": 1.0
+    }
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "f44ca9c1ab1642cd931352063bbd756f",
+    "m_Guid": {
+        "m_GuidSerialized": "c98d266c-9f3b-437e-a2bb-1e361b39e25c"
+    },
+    "m_Name": "EdgeIntensity",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "EdgeIntensity",
+    "m_DefaultReferenceName": "_EdgeIntensity",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 25.0,
+    "m_FloatType": 0,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
     }
 }
 
