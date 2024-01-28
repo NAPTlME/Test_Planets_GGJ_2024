@@ -170,6 +170,7 @@ public class LaunchManager : MonoBehaviour
             collider.enabled = true;
         }
         newPlanet.GetComponent<Planet>().SetTrailRendererEnabled(true);
+        newPlanet.tag = "Planet";
 
         // find all entitys and set home (for some reason it is not setting)
         var childEntities = newPlanet.GetComponentsInChildren<Objects_On_Planet>();
