@@ -139,7 +139,7 @@ PrefabInstance:
     - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
         type: 3}
       propertyPath: MaxDistanceBeforeBending
-      value: 80
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 759922470111181298, guid: 0e85022b13aab8b4ca7513755ccfd68a,
         type: 3}
