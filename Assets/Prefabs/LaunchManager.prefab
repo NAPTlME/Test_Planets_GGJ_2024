@@ -45,12 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba80a345609195e428d179994720c161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SLINGSHOT_COEF: 40
+  SLINGSHOT_COEF: 5
   TopDownHeight: 200
   planetPrefab: {fileID: 7348139280587474309, guid: 133c2f8d6384e42a09d9f4285f347278,
     type: 3}
   currentPlanet: {fileID: 0}
   LaunchArrow: {fileID: 3571969988155982632}
+  boing: {fileID: 0}
   planetBuilder: {fileID: 0}
   mode: 0
 --- !u!1001 &2523578451745486970
