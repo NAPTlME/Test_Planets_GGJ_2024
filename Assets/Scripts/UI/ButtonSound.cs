@@ -29,13 +29,6 @@ public class ButtonSound : MonoBehaviour
     {
         // GameManager.PlayButtonSound(1);
         Debug.Log("quit");
-        if (Application.isEditor)
-        {
-            UnityEditor.EditorApplication.isPlaying = false;
-        } 
-        else
-        {
-            Application.Quit();
-        }
+        Application.Quit();
     }
 }
