@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4647998961460969027}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.69082534, y: 5.88, z: 5.89}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5.2338, y: 5.2338, z: 5.2338}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -118,5 +118,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bed4f9f29c63914abf19e80f528de60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 30
-  mass: 1200
+  planetType: {fileID: 0}

@@ -14,6 +14,7 @@ public class LaunchManager : MonoBehaviour
     public Camera defaultCamera;
     public Camera topDownCamera;
     public GameObject planetPrefab;
+    public Planet scriptablePlanet;
     public GameObject potentialPlanet;
     public Vector3 launchLoc;
     public Launch_Arrow LaunchArrow;
@@ -31,6 +32,7 @@ public class LaunchManager : MonoBehaviour
         Cursor.visible = true;
         mode = Mode.NONE;
         var emptyObj = new GameObject("empty");
+        scriptablePlanet = planetPrefab.GetComponent<Planet>();
     }
 
     void Update()
@@ -54,6 +56,10 @@ public class LaunchManager : MonoBehaviour
         {
             Launch();
             return;
+        }
+        if (mode != Mode.NONE && Input.GetKeyDown(KeyCode.Tab))
+        {
+            switchPlanet();
         }
         if (mode == Mode.PICK_LOCATION || mode == Mode.SLINGSHOT)
         {
@@ -151,5 +157,16 @@ public class LaunchManager : MonoBehaviour
         newPlanet.transform.GetChild(0).gameObject.SetActive(true);
         // Go back to launch mode for another launch:
         StartPickLocation();
+    }
+
+    private void switchPlanet()
+    {
+        int i = scriptablePlanet.planetTypes.IndexOf(scriptablePlanet.planetType);
+        i += 1;
+        scriptablePlanet.planetType = scriptablePlanet.planetTypes[i % scriptablePlanet.planetTypes.Count];
+        Destroy(potentialPlanet);
+        potentialPlanet = Instantiate(planetPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        potentialPlanet.name = "PreviewPlanet";
+        potentialPlanet.tag = "Untagged";
     }
 }

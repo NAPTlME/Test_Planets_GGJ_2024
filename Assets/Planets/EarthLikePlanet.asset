@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EarthLikePlanet
   m_EditorClassIdentifier: 
   mass: 100
-  scale: 1
+  scale: 4
   tileMaterial: {fileID: 2100000, guid: 30b9e8ec7b3426a4ab3aa991b9c31ae4, type: 2}
   collisionSound: {fileID: 8300000, guid: 89754657e372c224ca370a491ac4c3b2, type: 3}

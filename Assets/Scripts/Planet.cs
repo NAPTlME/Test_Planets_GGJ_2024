@@ -6,6 +6,7 @@ using UnityEngine;
 public class Planet : MonoBehaviour
 {
     public PlanetType planetType;
+    public List<PlanetType> planetTypes;
 
     public float radius { get; private set; }
 
