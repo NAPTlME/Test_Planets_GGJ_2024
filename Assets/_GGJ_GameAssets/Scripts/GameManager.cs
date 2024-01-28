@@ -10,6 +10,7 @@ public enum Scenes
     MenuScreen,
     TutorialFirst,
     TutorialSecond,
+    Credits,
 }
 
 public class GameManager : MonoBehaviour
@@ -23,11 +24,12 @@ public class GameManager : MonoBehaviour
                 return "LauncherAndGravity";
             case Scenes.MenuScreen:
                 return "TitleScreen";
-
             case Scenes.TutorialFirst:
                 return "TutorialScreen-1";
             case Scenes.TutorialSecond:
                 return "TutorialScreen-2";
+            case Scenes.Credits:
+                return "CreditsScreen";
             default:
                 return "";
         }
