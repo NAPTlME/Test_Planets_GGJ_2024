@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(Planet))]
 public class PlanetGravity : MonoBehaviour
 {
     public Rigidbody rigidBody;
-    public Planet planet;
 
     private void OnEnable()
     {
@@ -19,14 +17,4 @@ public class PlanetGravity : MonoBehaviour
         GravityManager.getInstance().ForgetPlanet(this);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Sun")
-        {
-            Debug.Log("Crashing into the sun, BURN!");
-            var exp = GetComponent<ParticleSystem>();
-            exp.Play();
-            GetComponent<MeshRenderer>().enabled = false;
-        }
-    }
 }

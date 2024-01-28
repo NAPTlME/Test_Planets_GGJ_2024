@@ -19,6 +19,8 @@ public class LaunchManager : MonoBehaviour
     public GameObject potentialPlanet;
     public Vector3 launchLoc;
     public Launch_Arrow LaunchArrow;
+
+    private StatsPlanetType statsPlanetType = StatsPlanetType.SMALL;
     public enum Mode
     {
         NONE,
@@ -157,6 +159,7 @@ public class LaunchManager : MonoBehaviour
             collider.enabled = true;
         }
         newPlanet.transform.GetChild(0).gameObject.SetActive(true);
+        StatsManager.getInstance().PlanetLaunched(StatsManager.getInstance().PlanetTypePrefabToEnum[scriptablePlanet.planetType]);
         // Go back to launch mode for another launch:
         StartPickLocation();
     }
@@ -165,7 +168,8 @@ public class LaunchManager : MonoBehaviour
     {
         int i = scriptablePlanet.planetTypes.IndexOf(scriptablePlanet.planetType);
         i += 1;
-        scriptablePlanet.planetType = scriptablePlanet.planetTypes[i % scriptablePlanet.planetTypes.Count];
+        var newPlanetType = scriptablePlanet.planetTypes[i % scriptablePlanet.planetTypes.Count];
+        scriptablePlanet.planetType = newPlanetType;
         Destroy(potentialPlanet);
         potentialPlanet = Instantiate(planetPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         potentialPlanet.name = "PreviewPlanet";
