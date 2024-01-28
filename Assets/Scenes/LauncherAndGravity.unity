@@ -415,6 +415,18 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!114 &747107237 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2749129702541327105, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
+    type: 3}
+  m_PrefabInstance: {fileID: 1928547354}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &820614469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -591,6 +603,18 @@ MonoBehaviour:
   BendingForce: 1000000
   PullBackToPerpendicularRatio: 5
   gravityPlanets: []
+--- !u!114 &870371481 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7458761902121316419, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
+    type: 3}
+  m_PrefabInstance: {fileID: 1928547354}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &916068364 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8775345521383326460, guid: 494c5d8a49464f34b9f5339cc84db286,
@@ -874,6 +898,296 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: BendingForce
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: MaxDistanceBeforeBending
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[5]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[6]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[7]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[8]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[9]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[10]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[11]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[12]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[13]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[14]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[15]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[16]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[17]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[18]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[19]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[20]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[21]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[22]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[23]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[24]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[25]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[26]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[27]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[28]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[29]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[30]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[31]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[32]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[33]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[34]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[35]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[36]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[37]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[38]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[39]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[40]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[41]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[42]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[43]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[44]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[45]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[46]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[47]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[48]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[49]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[50]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[51]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[52]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[53]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: gravityPlanets.Array.data[54]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5222611778781554490, guid: 494c5d8a49464f34b9f5339cc84db286,
         type: 3}
       propertyPath: m_Name
@@ -881,9 +1195,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
         type: 3}
-      propertyPath: StatsText
+      propertyPath: YearText
+      value: 
+      objectReference: {fileID: 747107237}
+    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: ScoreText
+      value: 
+      objectReference: {fileID: 2055926826}
+    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: PlanentsKilledText
       value: 
       objectReference: {fileID: 1928547356}
+    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: ResidentsKilledText
+      value: 
+      objectReference: {fileID: 870371481}
     - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
         type: 3}
       propertyPath: KilledResidentsTemporary
@@ -1169,55 +1498,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1756925880714994372, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -127.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1756925880714994372, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
+    - target: {fileID: 1279199809398020581, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 120.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2283897352944151971, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2283897352944151971, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2283897352944151971, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 180.53998
-      objectReference: {fileID: 0}
-    - target: {fileID: 2283897352944151971, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -117.00049
+      value: -3.600006
       objectReference: {fileID: 0}
     - target: {fileID: 4533257608696886466, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
         type: 3}
       propertyPath: m_Name
       value: CanvasHUD
-      objectReference: {fileID: 0}
-    - target: {fileID: 6642935685402952886, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6642935685402952886, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6642935685402952886, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -100.22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1258,6 +1547,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e9b7a689ae50471f9aaa6a4f2d639eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2055926826 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 884574337300182556, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
+    type: 3}
+  m_PrefabInstance: {fileID: 1928547354}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2073611844

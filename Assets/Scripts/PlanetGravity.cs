@@ -8,6 +8,8 @@ public class PlanetGravity : MonoBehaviour
     public Rigidbody rigidBody;
     private bool destroyed = false;
 
+    public float distanceToSun;
+
     private void OnEnable()
     {
         //Debug.Log("GravityPlanet: OnEnable");
@@ -25,6 +27,7 @@ public class PlanetGravity : MonoBehaviour
             var sunPosition = sun.transform.position;
             var vector = this.gameObject.transform.position - sunPosition;
             var distanceFromSun = vector.magnitude;
+            distanceToSun = distanceFromSun;
             if (distanceFromSun > GravityManager.getInstance().MaxDistanceBeforeLost)
             {
                 destroyed = true;
