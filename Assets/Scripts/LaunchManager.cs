@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using System.Linq;
 
 public class LaunchManager : MonoBehaviour
@@ -11,16 +12,15 @@ public class LaunchManager : MonoBehaviour
     public const float LINE_WIDTH = .2f;
 
     public int TopDownHeight = 100;
-
-    public Camera defaultCamera;
-    public Camera topDownCamera;
+    
     public GameObject planetPrefab;
     public Planet scriptablePlanet;
-    public GameObject potentialPlanet;
-    public Vector3 launchLoc;
+    private GameObject potentialPlanet;
+    private Vector3 launchLoc;
     public Launch_Arrow LaunchArrow;
-
     private StatsPlanetType statsPlanetType = StatsPlanetType.SMALL;
+    private CameraManager cameraManager;
+
     public enum Mode
     {
         NONE,
@@ -36,6 +36,8 @@ public class LaunchManager : MonoBehaviour
         mode = Mode.NONE;
         var emptyObj = new GameObject("empty");
         scriptablePlanet = planetPrefab.GetComponent<Planet>();
+
+        cameraManager = Camera.main.gameObject.GetComponent<CameraManager>();
     }
 
     void Update()
@@ -66,8 +68,8 @@ public class LaunchManager : MonoBehaviour
         }
         if (mode == Mode.PICK_LOCATION || mode == Mode.SLINGSHOT)
         {
-            Ray ray = topDownCamera.ScreenPointToRay(Input.mousePosition);
-            Plane zeroPlane = new Plane(topDownCamera.transform.forward, new Vector3(0, 0, 0));
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Plane zeroPlane = new Plane(Camera.main.transform.forward, new Vector3(0, 0, 0));
             float enter;
             if (zeroPlane.Raycast(ray, out enter))
             {
@@ -92,10 +94,9 @@ public class LaunchManager : MonoBehaviour
     {
         Debug.Assert(mode == Mode.NONE || mode == Mode.SLINGSHOT);
         mode = Mode.PICK_LOCATION;
-        defaultCamera.gameObject.SetActive(false);
-        topDownCamera.gameObject.GetComponent<AudioListener>().enabled = true;
-        topDownCamera.gameObject.SetActive(true);
-        topDownCamera.transform.position = new Vector3(0, TopDownHeight, 0);
+
+        cameraManager.SetCamera(cameraManager.launchCamera);
+
         potentialPlanet = Instantiate(planetPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         potentialPlanet.name = "PreviewPlanet";
         potentialPlanet.tag = "Untagged";
@@ -116,8 +117,9 @@ public class LaunchManager : MonoBehaviour
     {
         Debug.Assert(mode != Mode.NONE);
         mode = Mode.NONE;
-        defaultCamera.gameObject.SetActive(true);
-        topDownCamera.gameObject.SetActive(false);
+
+        cameraManager.SetCamera(cameraManager.planetCamera);
+
         if (potentialPlanet != null)
         {
             Destroy(potentialPlanet);
@@ -159,7 +161,9 @@ public class LaunchManager : MonoBehaviour
             collider.enabled = true;
         }
         newPlanet.transform.GetChild(0).gameObject.SetActive(true);
+
         StatsManager.getInstance().PlanetLaunched(StatsManager.getInstance().PlanetTypePrefabToEnum[scriptablePlanet.planetType]);
+        cameraManager.SetFocusTarget(newPlanet.transform);
         // Go back to launch mode for another launch:
         StartPickLocation();
     }
