@@ -19,7 +19,7 @@ public class Objects_On_Planet : MonoBehaviour
     public const float BASE_GRAVITY_COEF = 9f;
 
     public float ArbitraryVelocityDeltaThreshold = 50f;
-    public float VelocityDeltaCatchupRate = 0.4f;
+    public float VelocityDeltaCatchupRate = 0.1f;
 
     Rigidbody rbody;
 
@@ -60,7 +60,11 @@ public class Objects_On_Planet : MonoBehaviour
             var planet_velocity_delta = homePlanet.previousVelocity - rbody.velocity;
             if (planet_velocity_delta.magnitude > ArbitraryVelocityDeltaThreshold)
             {
-                rbody.velocity += 0.1f * planet_velocity_delta;
+                // if planet velocity delta is obtuse to planet velocity and rbody velocity, do nothing
+                if (!(Vector3.Dot(planet_velocity_delta, rbody.velocity) < 0 && Vector3.Dot(planet_velocity_delta, homePlanet.previousVelocity) < 0))
+                {
+                    rbody.velocity += VelocityDeltaCatchupRate * planet_velocity_delta;
+                }
             }
 
         }
