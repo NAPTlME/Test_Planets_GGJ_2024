@@ -1219,6 +1219,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -100.22
       objectReference: {fileID: 0}
+    - target: {fileID: 6954279073728642443, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
+        type: 3}
+      propertyPath: m_text
+      value: "Hold LMB to aim Planet Launcher, \nrelease to launch\n\nTab to switch
+        between planet types\n\nMouseWheel Up & Down to Zoom in and out"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
