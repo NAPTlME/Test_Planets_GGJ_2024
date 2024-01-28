@@ -12,21 +12,14 @@ public class DodecPlanetBuild : MonoBehaviour
     public float objectSpawnChance = 0.3f;
     [SerializeField]
     public List<PlanetSO> scriptable_planets;
-    public GameObject temp_lastPlanet;
     // Start is called before the first frame update
     void Start()
     {
-        temp_lastPlanet = Build();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Destroy(temp_lastPlanet);
-            temp_lastPlanet = Build();
-        }
     }
 
     public GameObject Build(PlanetSO planet_so = null)

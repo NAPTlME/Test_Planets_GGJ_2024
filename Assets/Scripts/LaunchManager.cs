@@ -23,7 +23,7 @@ public class LaunchManager : MonoBehaviour
     private CameraManager cameraManager;
 
     [Header("Planet Builder")]
-    DodecPlanetBuild planetBuilder;
+    public DodecPlanetBuild planetBuilder;
 
     public enum Mode
     {
