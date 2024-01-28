@@ -13,7 +13,7 @@ public class GravityManager : MonoBehaviour
 
     public float PullBackToPerpendicularRatio = 5f;
     // Not a real constant so we can use Double.Parse()
-    static private double GRAVITY = 1; // that's e-3, can't seem to type it directly as scientific notation, also, G is supposed to be e-11 but Unity's masses are floats, not doubles so they can't go above 1e9 which means keeping G at e-11 means nothing's moving ever
+    static private double GRAVITY = 1;
 
     // This does not need to be public but it makes inspecting it in the inspector for debugging
     // quite convenient

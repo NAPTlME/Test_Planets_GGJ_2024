@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Gas
   m_EditorClassIdentifier: 
   type: 2
-  MinMass: 250
-  MaxMass: 500
+  MinMass: 300
+  MaxMass: 300
   MinScale: 5
   MaxScale: 7
   collisionSound: {fileID: 8300000, guid: b0ebd0e8f4c6cdf489660d421aba3a45, type: 3}
