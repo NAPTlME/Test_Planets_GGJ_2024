@@ -45,13 +45,15 @@ public class DodecPlanetBuild : MonoBehaviour
 
         var planetCollectionObject = new GameObject("PlanetMeshes");
         planetCollectionObject.transform.SetParent(planet.transform);
+        planetCollectionObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         planetBehavior.planetCollection = planetCollectionObject;
         //planet radius
         if (planet_so.type == Planet_Type.gas)
         {
             var mesh = Instantiate(GasGiantPrefab, planetCollectionObject.transform);
             return (planet, planet_so.type);
-        } else
+        }
+        else
         {
             // get the core
             // get 12 instances of the tiles
