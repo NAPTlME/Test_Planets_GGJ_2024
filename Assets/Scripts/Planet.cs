@@ -11,6 +11,23 @@ public class PlanetTypeToStatsTypeTuple
 [ExecuteInEditMode]
 public class Planet : MonoBehaviour
 {
+    public List<string> PLANET_NAMES = new List<string>()
+    {
+        "Vertigo",
+        "Ulia",
+        "Pluto",
+        "Ceres",
+        "Makemake",
+        "Haumea",
+        "Eris",
+        "Arkas",
+        "Galileo",
+        "Dagon",
+        "Wangshu",
+        "Veles",
+        "Makropulos",
+        "Belisama"
+    };
     public PlanetType planetType;
     public List<PlanetType> planetTypes;
     public List<StatsPlanetType> PlanetTypePrefabToEnumHackArray;
@@ -20,6 +37,7 @@ public class Planet : MonoBehaviour
     public float mass; // should probably change this to mass so it can be used for both small objects as well as celestial bodies
     public Rigidbody rbody;
     public Vector3 previousVelocity;
+    public string planetName;
     // Start is called before the first frame update
 
     private bool destroyed = false;
@@ -32,6 +50,13 @@ public class Planet : MonoBehaviour
             var type = planetTypes[i];
             StatsManager.getInstance().PlanetTypePrefabToEnum[type] = PlanetTypePrefabToEnumHackArray[i];
         }
+        var rand = new System.Random();
+        planetName = PLANET_NAMES[rand.Next(PLANET_NAMES.Count)];
+        if (tag == "Sun")
+        {
+            planetName = "Solaris";
+        }
+        planetName += " " + rand.Next(1000);
     }
 
     // Updates the components when variables are changed
