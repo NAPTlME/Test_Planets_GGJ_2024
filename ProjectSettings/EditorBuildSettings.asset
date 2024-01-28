@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LauncherAndGravity.unity
     guid: 01c83a3ff38c8ee4a944188327ae87c8
+  - enabled: 1
+    path: Assets/Scenes/TutorialScreen-1.unity
+    guid: f74770016279f564ab99d634826cf21c
+  - enabled: 1
+    path: Assets/Scenes/TutorialScreen-2.unity
+    guid: 4d1ad24303557ec4a9cdd7a35524cd74
   m_configObjects: {}

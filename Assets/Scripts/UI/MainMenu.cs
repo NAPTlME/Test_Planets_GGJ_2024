@@ -4,11 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 // Lol c# has no string enums
-public class Scenes
-{
-    public const string PlayScreen = "LauncherAndGravity";
-    public const string MenuScreen = "TitleScreen";
-}
+
 public class MainMenu : MonoBehaviour
 {
     public GameObject[] uiPanels;

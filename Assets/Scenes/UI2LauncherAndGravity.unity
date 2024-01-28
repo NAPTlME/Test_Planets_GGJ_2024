@@ -145,12 +145,12 @@ PrefabInstance:
         type: 3}
       propertyPath: StatsText
       value: 
-      objectReference: {fileID: 1928547356}
+      objectReference: {fileID: 1297202441}
     - target: {fileID: 7141560427436503104, guid: 0e85022b13aab8b4ca7513755ccfd68a,
         type: 3}
       propertyPath: KilledResidentsTemporary
       value: 
-      objectReference: {fileID: 1928547355}
+      objectReference: {fileID: 2134866847}
     - target: {fileID: 8775345521383326460, guid: 0e85022b13aab8b4ca7513755ccfd68a,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -538,6 +538,21 @@ PrefabInstance:
       propertyPath: near clip plane
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 5364322772943723390, guid: 625c6323c2069cf4fa17ccdc435446d2,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5364322772943723390, guid: 625c6323c2069cf4fa17ccdc435446d2,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.81037736
+      objectReference: {fileID: 0}
+    - target: {fileID: 5364322772943723390, guid: 625c6323c2069cf4fa17ccdc435446d2,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.6839622
+      objectReference: {fileID: 0}
     - target: {fileID: 5400548657252903481, guid: 625c6323c2069cf4fa17ccdc435446d2,
         type: 3}
       propertyPath: launchCamera
@@ -724,6 +739,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravityPlanets: []
+--- !u!114 &1297202441 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6326062617803918868, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
+    type: 3}
+  m_PrefabInstance: {fileID: 5846800624631103291}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1837855610
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -810,7 +837,19 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 789830664}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1928547354
+--- !u!114 &2134866847 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4271144196983035962, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
+    type: 3}
+  m_PrefabInstance: {fileID: 5846800624631103291}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &5846800624631103291
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -928,30 +967,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d3ee96bf38268f488d90b2e8abc6f53, type: 3}
---- !u!114 &1928547355 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4271144196983035962, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
-    type: 3}
-  m_PrefabInstance: {fileID: 1928547354}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1928547356 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6326062617803918868, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
-    type: 3}
-  m_PrefabInstance: {fileID: 1928547354}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8885808744470106827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1049,4 +1064,4 @@ SceneRoots:
   - {fileID: 1837855610}
   - {fileID: 820614469}
   - {fileID: 361226684}
-  - {fileID: 1928547354}
+  - {fileID: 5846800624631103291}

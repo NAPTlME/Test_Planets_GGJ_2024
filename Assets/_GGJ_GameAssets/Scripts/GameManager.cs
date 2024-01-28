@@ -3,8 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+public enum Scenes
+{
+    PlayScreen,
+    MenuScreen,
+    TutorialFirst,
+    TutorialSecond,
+}
+
 public class GameManager : MonoBehaviour
 {
+
+    public static string GetSceneNameFromEnum(Scenes scene)
+    {
+        switch (scene)
+        {
+            case Scenes.PlayScreen:
+                return "LauncherAndGravity";
+            case Scenes.MenuScreen:
+                return "TitleScreen";
+
+            case Scenes.TutorialFirst:
+                return "TutorialScreen-1";
+            case Scenes.TutorialSecond:
+                return "TutorialScreen-2";
+            default:
+                return "";
+        }
+    }
     public static GameManager singleton;
     public static bool isLoading = false;
     public static bool isStory = true;

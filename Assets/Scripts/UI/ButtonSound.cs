@@ -13,7 +13,7 @@ public class ButtonSound : MonoBehaviour
     public void ButtonClickPlay()
     {
         // GameManager.PlayButtonSound(1);
-        SceneManager.LoadScene(Scenes.PlayScreen, LoadSceneMode.Single);
+        SceneManager.LoadScene(GameManager.GetSceneNameFromEnum(Scenes.TutorialFirst), LoadSceneMode.Single);
     }
 
     public void ButtonClickQuit()
