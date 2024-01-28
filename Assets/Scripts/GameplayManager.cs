@@ -35,6 +35,11 @@ public class GlobalManager : MonoBehaviour
                 Resume();
             }
         }
+        
+    }
+
+    private void FixedUpdate()
+    {
         if (launchManager.mode == LaunchManager.Mode.NONE)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -51,7 +56,7 @@ public class GlobalManager : MonoBehaviour
                 planetText.GetComponent<RectTransform>().localPosition = canvasPos;
                 planetText.GetComponent<TMP_Text>().text = planetName;
                 planetText.GetComponent<TMP_Text>().enabled = true;
-            } 
+            }
             else
             {
                 planetText.GetComponent<TMP_Text>().enabled = false;
