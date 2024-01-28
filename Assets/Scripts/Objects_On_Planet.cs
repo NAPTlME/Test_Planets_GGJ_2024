@@ -52,9 +52,6 @@ public class Objects_On_Planet : MonoBehaviour
         // pass parent transformation on to the children
         if (transform.parent != null && homePlanet != null)
         {
-            //rbody.MovePosition(transform.position + homePlanet.rbody.velocity * Time.fixedDeltaTime);// hacky fix for child rigidbodies not inheriting the movement of their parent rigidbodies
-            //rbody.AddForce(homePlanet.rbody.GetAccumulatedForce() / homePlanet.mass * rbody.mass, ForceMode.Force);
-            //rbody.velocity = homePlanet.rbody.velocity;
 
             //if change in velocity is large, apply that velocity
             var planet_velocity_delta = homePlanet.previousVelocity - rbody.velocity;
