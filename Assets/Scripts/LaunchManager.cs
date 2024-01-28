@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class LaunchManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class LaunchManager : MonoBehaviour
     public Camera defaultCamera;
     public Camera topDownCamera;
     public GameObject planetPrefab;
+    public Planet scriptablePlanet;
     public GameObject potentialPlanet;
     public Vector3 launchLoc;
     public Launch_Arrow LaunchArrow;
@@ -31,6 +33,7 @@ public class LaunchManager : MonoBehaviour
         Cursor.visible = true;
         mode = Mode.NONE;
         var emptyObj = new GameObject("empty");
+        scriptablePlanet = planetPrefab.GetComponent<Planet>();
     }
 
     void Update()
@@ -54,6 +57,10 @@ public class LaunchManager : MonoBehaviour
         {
             Launch();
             return;
+        }
+        if (mode != Mode.NONE && Input.GetKeyDown(KeyCode.Tab))
+        {
+            switchPlanet();
         }
         if (mode == Mode.PICK_LOCATION || mode == Mode.SLINGSHOT)
         {
@@ -90,6 +97,7 @@ public class LaunchManager : MonoBehaviour
         potentialPlanet = Instantiate(planetPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         potentialPlanet.name = "PreviewPlanet";
         potentialPlanet.tag = "Untagged";
+        potentialPlanet.GetComponents<Collider>().ToList().ForEach(sel => sel.enabled = false);
         // Note: if what we want is the colliders to be disabled in the initial state,
         // what we should do is have them disabled in the prefab and then enabling them on
         // Launch() like for the planetGravity component, so commenting out this code for
@@ -143,7 +151,7 @@ public class LaunchManager : MonoBehaviour
         LaunchArrow.FadeOut(0.4f);
         // Enable the gravity on the planet only once it's been launched / released:
         newPlanet.GetComponent<PlanetGravity>().enabled = true;
-        var colliders = newPlanet.GetComponents<SphereCollider>();
+        var colliders = newPlanet.GetComponents<Collider>();
         foreach (var collider in colliders)
         {
             collider.enabled = true;
@@ -151,5 +159,16 @@ public class LaunchManager : MonoBehaviour
         newPlanet.transform.GetChild(0).gameObject.SetActive(true);
         // Go back to launch mode for another launch:
         StartPickLocation();
+    }
+
+    private void switchPlanet()
+    {
+        int i = scriptablePlanet.planetTypes.IndexOf(scriptablePlanet.planetType);
+        i += 1;
+        scriptablePlanet.planetType = scriptablePlanet.planetTypes[i % scriptablePlanet.planetTypes.Count];
+        Destroy(potentialPlanet);
+        potentialPlanet = Instantiate(planetPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        potentialPlanet.name = "PreviewPlanet";
+        potentialPlanet.tag = "Untagged";
     }
 }

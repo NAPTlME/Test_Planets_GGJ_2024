@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 3606143106436127868}
   - component: {fileID: 4586423005529603056}
   - component: {fileID: 2044711526321115904}
-  - component: {fileID: 5536974958927032818}
   - component: {fileID: 853528039951440146}
   - component: {fileID: 2147875369039028398}
   - component: {fileID: 8718003504782808844}
+  - component: {fileID: 4254713317849928618}
+  - component: {fileID: 8857925049249701363}
   m_Layer: 0
-  m_Name: Planet_02
+  m_Name: Dodec_Test_Planet
   m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 7348139280587474309}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.011564821, y: 9.43, z: 0.56}
   m_LocalScale: {x: 3.8, y: 3.8, z: 3.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -44,7 +45,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7348139280587474309}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 3989152559073418409, guid: e8723e778c420a34bb854ba1cf9e631e, type: 3}
 --- !u!23 &2044711526321115904
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -87,27 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &5536974958927032818
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7348139280587474309}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &853528039951440146
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -125,7 +105,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 7.56
   m_Center: {x: 0, y: 0, z: 0}
@@ -141,7 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bed4f9f29c63914abf19e80f528de60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetType: {fileID: 0}
+  radius: 0
+  mass: 35
 --- !u!54 &8718003504782808844
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -150,7 +131,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7348139280587474309}
   serializedVersion: 4
-  m_Mass: 500
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -169,3 +150,39 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4254713317849928618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7348139280587474309}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 753fb0a434cfcfc4aad42aef0606976f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidBody: {fileID: 8718003504782808844}
+  planet: {fileID: 2147875369039028398}
+--- !u!64 &8857925049249701363
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7348139280587474309}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3989152559073418409, guid: e8723e778c420a34bb854ba1cf9e631e, type: 3}
