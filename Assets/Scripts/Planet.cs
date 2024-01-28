@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 public class PlanetTypeToStatsTypeTuple
 {
     public Planet_Type planetType;
@@ -80,7 +81,7 @@ public class Planet : MonoBehaviour
             Debug.Log("Crashing into the sun, BURN!");
             var exp = GetComponent<ParticleSystem>();
             exp.Play();
-            GetComponent<MeshRenderer>().enabled = false;
+            GetComponentsInChildren<MeshRenderer>().Select(sel => sel.enabled = false);
             StatsManager.getInstance().KillResidents(this.planetType);
             // Note: we could use `this.enabled = false` instead but I don't
             // trust it to happen soon enough before the next run/couple of runs of

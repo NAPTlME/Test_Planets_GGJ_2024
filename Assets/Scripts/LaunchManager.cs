@@ -80,6 +80,10 @@ public class LaunchManager : MonoBehaviour
             if (zeroPlane.Raycast(ray, out enter))
             {
                 Vector3 hitPoint = ray.GetPoint(enter);
+                if (potentialPlanet == null)
+                {
+                    newPotentialPlanet();
+                }
                 potentialPlanet.transform.position = hitPoint;
             }
         }
@@ -145,6 +149,7 @@ public class LaunchManager : MonoBehaviour
         Debug.Assert(mode == Mode.SLINGSHOT);
         var curLoc = potentialPlanet.transform.position;
         var newPlanet = potentialPlanet;
+        potentialPlanet = null;
         newPlanet.name = "LaunchedPlanet";
         Rigidbody rbody = newPlanet.GetComponent<Rigidbody>();
         var direction = (launchLoc - curLoc).normalized;
@@ -158,7 +163,7 @@ public class LaunchManager : MonoBehaviour
         {
             collider.enabled = true;
         }
-        newPlanet.transform.GetChild(0).gameObject.SetActive(true);
+        newPlanet.transform.GetComponentInChildren<TrailRenderer>().gameObject.SetActive(true); // todo this doesn't seem to be working.
 
         StatsManager.getInstance().PlanetLaunched(currentPlanet.planetType);
         cameraManager.SetFocusTarget(newPlanet.transform);
