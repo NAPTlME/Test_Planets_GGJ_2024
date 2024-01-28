@@ -37,7 +37,7 @@ public class LaunchManager : MonoBehaviour
     void Start()
     {
         Cursor.visible = true;
-        mode = Mode.NONE;
+        mode = Mode.PICK_LOCATION;
         var emptyObj = new GameObject("empty");
         currentPlanet = planetPrefab.GetComponent<Planet>();
 
