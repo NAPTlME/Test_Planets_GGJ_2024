@@ -205,10 +205,11 @@ MonoBehaviour:
   - Makropulos
   - Belisama
   planetType: 0
+  planetCollection: {fileID: 0}
   mass: 0
   rbody: {fileID: 8718003504782808844}
   previousVelocity: {x: 0, y: 0, z: 0}
-  planetName: Makemake 880
+  planetName: Arkas 467
   trailRenderer: {fileID: 4113255626362329963}
 --- !u!135 &853528039951440146
 SphereCollider:
@@ -344,7 +345,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
