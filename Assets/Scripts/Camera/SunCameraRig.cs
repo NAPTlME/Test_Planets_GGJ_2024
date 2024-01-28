@@ -19,7 +19,7 @@ public class SunCameraRig : MonoBehaviour
     void Start()
     {
         mainCamera = GetComponentInChildren<Cinemachine.CinemachineVirtualCamera>();
-        currentFov = maxFov;
+        currentFov = minFov;
     }
 
     // Update is called once per frame
