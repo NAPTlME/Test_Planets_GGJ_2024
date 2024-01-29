@@ -25,6 +25,7 @@ public class StatsManager : MonoBehaviour
     public TMP_Text ScoreText;
     public TMP_Text YearText;
     public TMP_Text KilledResidentsTemporary;
+    private AudioSource audioSource;
 
     double tempResidentsKilledPromptHideFrameNumber = 0f;
 
@@ -72,6 +73,10 @@ public class StatsManager : MonoBehaviour
         killedResidents += newKilledResidents;
         remainingToKillBeforeGameOver -= newKilledResidents;
         score -= PlanetTypeToPoints[type];
+        if (!overrideAsLost)
+        {
+            screamAudioClip.Play();
+        }
         if (remainingToKillBeforeGameOver <= 0)
         {
             GlobalManager.getInstance().GameOver(score);
@@ -104,6 +109,7 @@ public class StatsManager : MonoBehaviour
     private void Start()
     {
         secondsSinceLastYear = 0;
+        audioSource = GetComponent<AudioSource>();
         years = 0;
     }
 
