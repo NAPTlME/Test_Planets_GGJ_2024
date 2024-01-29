@@ -9,6 +9,20 @@ public enum StatsPlanetType
     MEDIUM,
     LARGE
 }
+
+public class JokeSpec
+{
+    public string text = "";
+    public bool used = false;
+
+    public int threshold;
+
+    public JokeSpec(int threshold, string text)
+    {
+        this.text = text;
+        this.threshold = threshold;
+    }
+}
 public class StatsManager : MonoBehaviour
 {
     public RippleGridAnim rippleGridAnim;
@@ -28,7 +42,15 @@ public class StatsManager : MonoBehaviour
     public TMP_Text KilledResidentsTemporary;
     private AudioSource audioSource;
 
+    private JokeSpec[] jokes = new JokeSpec[] {
+        new JokeSpec((int)(0.3 * MAX_RESIDENTS_KILLED), "This is going to look bad on the quarterly results."),
+        new JokeSpec((int)(0.6 * MAX_RESIDENTS_KILLED), "Who hired you again?"),
+        new JokeSpec((int)(0.7 * MAX_RESIDENTS_KILLED), "Chuck Norris' grandson lived on this planet!"),
+        new JokeSpec((int)(0.9 * MAX_RESIDENTS_KILLED), "Hey! Those are real people!"),
+    };
+
     double tempResidentsKilledPromptHideFrameNumber = 0f;
+    double tempJokesKilledPromptHideFrameNumber = 0f;
 
     int remainingToKillBeforeGameOver = MAX_RESIDENTS_KILLED;
 
@@ -78,6 +100,19 @@ public class StatsManager : MonoBehaviour
         {
             audioSource.Play();
         }
+
+        foreach (var joke in jokes)
+        {
+            if (remainingToKillBeforeGameOver <= joke.threshold && !joke.used)
+            {
+                JokesTextee.text = joke.text;
+                joke.used = true;
+                tempJokesKilledPromptHideFrameNumber = Time.frameCount + 400;
+                break;
+            }
+        }
+
+
         if (remainingToKillBeforeGameOver <= 0)
         {
             GlobalManager.getInstance().GameOver(score);
@@ -144,6 +179,10 @@ public class StatsManager : MonoBehaviour
         if (tempResidentsKilledPromptHideFrameNumber < Time.frameCount)
         {
             KilledResidentsTemporary.text = "";
+        }
+        if (tempJokesKilledPromptHideFrameNumber < Time.frameCount)
+        {
+            JokesTextee.text = "";
         }
     }
 }
