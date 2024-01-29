@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0005368785, g: 0.014379445, b: 0.042892344, a: 1}
+  m_IndirectSpecularColor: {r: 0.00053739443, g: 0.014381196, b: 0.042893115, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -798,7 +798,7 @@ MonoBehaviour:
   maxRippleIntensity: 13.69
   temp: 0
   decayRate: 0.1
-  stepRate: 0.1
+  stepRate: 0.05
   rippleSpeed: 0.2
 --- !u!1001 &1481937773
 PrefabInstance:
