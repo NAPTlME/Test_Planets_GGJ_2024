@@ -48,13 +48,13 @@ public class LaunchManager : MonoBehaviour
 
     void Update()
     {
-        if (mode != Mode.NONE && Input.GetKeyDown(KeyCode.L))
+        if (mode != Mode.NONE && Input.GetKeyDown(KeyCode.Space))
         {
             cameraManager.SwapCameras();
             Exit();
             return;
         }
-        if (mode == Mode.NONE && Input.GetKeyDown(KeyCode.L))
+        if (mode == Mode.NONE && Input.GetKeyDown(KeyCode.Space))
         {
             cameraManager.SwapCameras();
             StartPickLocation();
@@ -70,7 +70,7 @@ public class LaunchManager : MonoBehaviour
             Launch();
             return;
         }
-        if (mode != Mode.NONE && Input.GetKeyDown(KeyCode.Tab))
+        if (mode != Mode.NONE && (Input.GetKeyDown(KeyCode.Tab) || Input.GetMouseButtonDown(1)))
         {
             planetTypeInteractionIndex += 1;
             newPotentialPlanet();
