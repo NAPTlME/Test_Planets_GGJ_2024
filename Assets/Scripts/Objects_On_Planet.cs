@@ -43,7 +43,7 @@ public class Objects_On_Planet : MonoBehaviour
 
             //if change in velocity is large, apply that velocity
             var planet_velocity_delta = homePlanet.previousVelocity - rbody.velocity;
-            Debug.Log("Planet velocity delta: " + planet_velocity_delta);
+            // Debug.Log("Planet velocity delta: " + planet_velocity_delta);
             if (planet_velocity_delta.magnitude > ArbitraryVelocityDeltaThreshold)
             {
                 // if planet velocity delta is obtuse to planet velocity and rbody velocity, do nothing
