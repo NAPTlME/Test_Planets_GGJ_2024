@@ -21,6 +21,7 @@ public class StatsManager : MonoBehaviour
     private int years = 0;
 
     public TMP_Text PlanentsKilledText;
+    public TMP_Text JokesTextee;
     public TMP_Text ResidentsKilledText;
     public TMP_Text ScoreText;
     public TMP_Text YearText;

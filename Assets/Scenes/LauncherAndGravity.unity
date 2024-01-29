@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00060930033, g: 0.014377007, b: 0.04282859, a: 1}
+  m_IndirectSpecularColor: {r: 0.00054174603, g: 0.014386994, b: 0.0428925, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -906,6 +906,11 @@ PrefabInstance:
       objectReference: {fileID: 2055926826}
     - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
         type: 3}
+      propertyPath: JokesTextee
+      value: 
+      objectReference: {fileID: 1928547358}
+    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
       propertyPath: rippleGridAnim
       value: 
       objectReference: {fileID: 1104687784}
@@ -1245,6 +1250,18 @@ MonoBehaviour:
 --- !u!114 &1928547357 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7458761902121316419, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
+    type: 3}
+  m_PrefabInstance: {fileID: 1928547354}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1928547358 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6418843672030419909, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
     type: 3}
   m_PrefabInstance: {fileID: 1928547354}
   m_PrefabAsset: {fileID: 0}
