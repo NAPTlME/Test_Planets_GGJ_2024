@@ -7,7 +7,7 @@ using System.Linq;
 
 public class LaunchManager : MonoBehaviour
 {
-    public float SLINGSHOT_COEF = 1000f;// 5000f;
+    public float SLINGSHOT_COEF;// 5000f;
     public const float LINE_WIDTH = .2f;
 
     public int TopDownHeight = 100;
@@ -163,7 +163,7 @@ public class LaunchManager : MonoBehaviour
         Rigidbody rbody = newPlanet.GetComponent<Rigidbody>();
         var direction = (launchLoc - curLoc).normalized;
         var dist = (launchLoc - curLoc).magnitude;
-        rbody.AddForce(direction * (float)Math.Pow(dist, 1.5f) * SLINGSHOT_COEF * rbody.mass);
+        rbody.AddForce(direction * dist * SLINGSHOT_COEF * rbody.mass);
         LaunchArrow.FadeOut(0.4f);
         // Enable the gravity on the planet only once it's been launched / released:
         newPlanet.GetComponent<PlanetGravity>().enabled = true;
