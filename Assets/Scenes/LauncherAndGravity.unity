@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00053684134, g: 0.01437907, b: 0.04289121, a: 1}
+  m_IndirectSpecularColor: {r: 0.0005368785, g: 0.014379445, b: 0.042892344, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -580,18 +580,6 @@ MonoBehaviour:
   BendingForce: 1000000
   PullBackToPerpendicularRatio: 5
   gravityPlanets: []
---- !u!114 &870371481 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7458761902121316419, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
-    type: 3}
-  m_PrefabInstance: {fileID: 1928547354}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &916068364 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8775345521383326460, guid: 494c5d8a49464f34b9f5339cc84db286,
@@ -669,7 +657,7 @@ PrefabInstance:
     - target: {fileID: 5779827858155003145, guid: 664b1ac3f474b4c66aa8d403addcf912,
         type: 3}
       propertyPath: field of view
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5779827858155003145, guid: 664b1ac3f474b4c66aa8d403addcf912,
         type: 3}
@@ -782,6 +770,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1104687783 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5222611778781554490, guid: 494c5d8a49464f34b9f5339cc84db286,
+    type: 3}
+  m_PrefabInstance: {fileID: 1816263871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1104687784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104687783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f70f259569d8edd408ae881ae05c7f85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridMat: {fileID: 2100000, guid: 830f445f0d5610c4689d450ae40d1b6f, type: 2}
+  minRad: 0.01
+  activeRad: 0.19
+  maxRad: 0.4
+  minRippleTime: 0.9
+  maxRippleTime: 3.8
+  minRippleIntensity: 12
+  maxRippleIntensity: 13.69
+  temp: 0
+  decayRate: 0.1
+  stepRate: 0.1
+  rippleSpeed: 0.2
 --- !u!1001 &1481937773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -892,14 +910,14 @@ PrefabInstance:
       objectReference: {fileID: 2055926826}
     - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
         type: 3}
+      propertyPath: rippleGridAnim
+      value: 
+      objectReference: {fileID: 1104687784}
+    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
       propertyPath: PlanentsKilledText
       value: 
       objectReference: {fileID: 1928547356}
-    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
-        type: 3}
-      propertyPath: ResidentsKilledText
-      value: 
-      objectReference: {fileID: 870371481}
     - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
         type: 3}
       propertyPath: KilledResidentsTemporary
@@ -978,7 +996,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5222611778781554490, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1104687784}
   m_SourcePrefab: {fileID: 100100000, guid: 494c5d8a49464f34b9f5339cc84db286, type: 3}
 --- !u!1001 &1837855610
 PrefabInstance:
@@ -1046,7 +1068,7 @@ PrefabInstance:
     - target: {fileID: 4895218671114944385, guid: 8c351bfe862324a8bb9c73bb916977e7,
         type: 3}
       propertyPath: m_Lens.FieldOfView
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
