@@ -89,7 +89,7 @@ public class StatsManager : MonoBehaviour
                 KilledResidentsTemporary.text = newKilledResidents + " RESIDENTS DIED !!\n" + remainingToKillBeforeGameOver + " RESIDENTS REMAINING BEFORE THE GODS NOTICE.";
 
             }
-            tempResidentsKilledPromptHideFrameNumber = Time.frameCount + 120; // ~1s
+            tempResidentsKilledPromptHideFrameNumber = Time.frameCount + 200; // ~1s
         }
     }
 
@@ -110,7 +110,7 @@ public class StatsManager : MonoBehaviour
     private void Update()
     {
         secondsSinceLastYear += Time.deltaTime;
-        if(secondsSinceLastYear > 5)
+        if (secondsSinceLastYear > 5)
         {
             secondsSinceLastYear -= 5;
             years++;
@@ -132,6 +132,7 @@ public class StatsManager : MonoBehaviour
         {
             YearText.text = years.ToString("D6");
         }
+
 
         if (tempResidentsKilledPromptHideFrameNumber < Time.frameCount)
         {
