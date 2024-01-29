@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00053739443, g: 0.014381196, b: 0.042893115, a: 1}
+  m_IndirectSpecularColor: {r: 0.0005402334, g: 0.014384856, b: 0.042888574, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -657,7 +657,7 @@ PrefabInstance:
     - target: {fileID: 5779827858155003145, guid: 664b1ac3f474b4c66aa8d403addcf912,
         type: 3}
       propertyPath: field of view
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5779827858155003145, guid: 664b1ac3f474b4c66aa8d403addcf912,
         type: 3}
@@ -1068,7 +1068,7 @@ PrefabInstance:
     - target: {fileID: 4895218671114944385, guid: 8c351bfe862324a8bb9c73bb916977e7,
         type: 3}
       propertyPath: m_Lens.FieldOfView
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1460,6 +1460,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Music
+      objectReference: {fileID: 0}
+    - target: {fileID: 6934844144480587603, guid: 3fa4648daa656c64fa56a97d81a3af7f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
