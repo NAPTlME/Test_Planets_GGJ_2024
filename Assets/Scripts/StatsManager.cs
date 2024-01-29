@@ -89,7 +89,7 @@ public class StatsManager : MonoBehaviour
                 KilledResidentsTemporary.text = newKilledResidents + " RESIDENTS DIED !!\n" + remainingToKillBeforeGameOver + " RESIDENTS REMAINING BEFORE THE GODS NOTICE.";
 
             }
-            tempResidentsKilledPromptHideFrameNumber = Time.frameCount + 200; // ~1s
+            tempResidentsKilledPromptHideFrameNumber = Time.frameCount + 350; // ~1s
         }
     }
 
