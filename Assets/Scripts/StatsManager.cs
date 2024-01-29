@@ -11,7 +11,7 @@ public enum StatsPlanetType
 }
 public class StatsManager : MonoBehaviour
 {
-
+    public RippleGridAnim rippleGridAnim;
     const int MAX_RESIDENTS_KILLED = 1000000;
     private static StatsManager instance = null;
     private int score = 0;
@@ -61,6 +61,7 @@ public class StatsManager : MonoBehaviour
 
     public void KillResidents(Planet_Type type, bool overrideAsLost = false)
     {
+        rippleGridAnim.increaseTemp();
         var newKilledResidents = PlanetTypeToResidents[type];
         killedResidents += newKilledResidents;
         remainingToKillBeforeGameOver -= newKilledResidents;
