@@ -63,13 +63,13 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: -0.21
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
-  far clip plane: 5000
-  field of view: 40
+  near clip plane: 1500
+  far clip plane: 2500
+  field of view: 10
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -191,3 +191,4 @@ MonoBehaviour:
   miniLaunchCamera: {fileID: 0}
   miniPlanetCamera: {fileID: 0}
   planetCameraRig: {fileID: 0}
+  launchRig: {fileID: 0}

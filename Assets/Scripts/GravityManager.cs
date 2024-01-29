@@ -8,7 +8,7 @@ public class GravityManager : MonoBehaviour
 
     private static GravityManager instance = null;
     public double MaxDistanceBeforeBending = 90f; // checked when it seemed "too far"
-    public double MaxDistanceBeforeLost = 100f;
+    public double MaxDistanceBeforeLost = 200f;
     public float BendingForce = 100f;
 
     public float PullBackToPerpendicularRatio = 5f;

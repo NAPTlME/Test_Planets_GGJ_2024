@@ -20,6 +20,7 @@ public class LaunchManager : MonoBehaviour
     public Launch_Arrow LaunchArrow;
     private StatsPlanetType statsPlanetType = StatsPlanetType.SMALL;
     private CameraManager cameraManager;
+    public GameObject boing;
 
     int planetTypeInteractionIndex = 0;
 
@@ -183,6 +184,8 @@ public class LaunchManager : MonoBehaviour
 
         StatsManager.getInstance().PlanetLaunched(currentPlanet.planetType);
         cameraManager.SetFocusTarget(newPlanet.transform);
+
+        boing.GetComponent<AudioSource>().Play();
         // Go back to launch mode for another launch:
         StartPickLocation();
     }

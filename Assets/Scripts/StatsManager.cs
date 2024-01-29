@@ -17,7 +17,13 @@ public class StatsManager : MonoBehaviour
     private int score = 0;
     private int killedResidents = 0;
     private int planetsUsed = 0;
-    public TMP_Text StatsText;
+    private float secondsSinceLastYear = 0;
+    private int years = 0;
+
+    public TMP_Text PlanentsKilledText;
+    public TMP_Text ResidentsKilledText;
+    public TMP_Text ScoreText;
+    public TMP_Text YearText;
     public TMP_Text KilledResidentsTemporary;
 
     double tempResidentsKilledPromptHideFrameNumber = 0f;
@@ -95,12 +101,38 @@ public class StatsManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        secondsSinceLastYear = 0;
+        years = 0;
+    }
+
     private void Update()
     {
-        if (StatsText != null)
+        secondsSinceLastYear += Time.deltaTime;
+        if(secondsSinceLastYear > 5)
         {
-            StatsText.text = "Planets used: " + planetsUsed + "\nResidents Killed: " + killedResidents + "\nScore: " + score;
+            secondsSinceLastYear -= 5;
+            years++;
         }
+
+        if (PlanentsKilledText != null)
+        {
+            PlanentsKilledText.text = planetsUsed.ToString("D6");
+        }
+        if (ResidentsKilledText != null)
+        {
+            ResidentsKilledText.text = killedResidents.ToString("D6");
+        }
+        if (ScoreText != null)
+        {
+            ScoreText.text = score.ToString("D6");
+        }
+        if (YearText != null)
+        {
+            YearText.text = years.ToString("D6");
+        }
+
         if (tempResidentsKilledPromptHideFrameNumber < Time.frameCount)
         {
             KilledResidentsTemporary.text = "";
