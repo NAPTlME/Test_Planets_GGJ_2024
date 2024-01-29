@@ -75,7 +75,7 @@ public class StatsManager : MonoBehaviour
         score -= PlanetTypeToPoints[type];
         if (!overrideAsLost)
         {
-            screamAudioClip.Play();
+            audioSource.Play();
         }
         if (remainingToKillBeforeGameOver <= 0)
         {
