@@ -7,20 +7,20 @@ public class RippleGridAnim : MonoBehaviour
 
     public Material gridMat;
     public float minRad = 0.01f;
-    public float activeRad = 0.192f;
+    public float activeRad = 0.19f;
     public float maxRad = 0.4f;
 
     public float minRippleTime = 0.9f;
     public float maxRippleTime = 3.8f;
 
-    public float minRippleIntensity = 4.3f;
+    public float minRippleIntensity = 12f;
     public float maxRippleIntensity = 13.69f;
 
     public float temp = 0f;
     public float decayRate = 0.1f;
     public float stepRate = 0.3f;
 
-    public float rippleSpeed = 1f;
+    public float rippleSpeed = 0.2f;
     private float currRippleTime = 0f;
 
     private bool isCalled = false;

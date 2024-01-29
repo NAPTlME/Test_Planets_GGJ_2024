@@ -580,18 +580,6 @@ MonoBehaviour:
   BendingForce: 1000000
   PullBackToPerpendicularRatio: 5
   gravityPlanets: []
---- !u!114 &870371481 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7458761902121316419, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
-    type: 3}
-  m_PrefabInstance: {fileID: 1928547354}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &916068364 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8775345521383326460, guid: 494c5d8a49464f34b9f5339cc84db286,
@@ -802,16 +790,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridMat: {fileID: 2100000, guid: 830f445f0d5610c4689d450ae40d1b6f, type: 2}
   minRad: 0.01
-  activeRad: 0.192
+  activeRad: 0.19
   maxRad: 0.4
   minRippleTime: 0.9
   maxRippleTime: 3.8
-  minRippleIntensity: 4.3
+  minRippleIntensity: 12
   maxRippleIntensity: 13.69
   temp: 0
-  decayRate: 0.03
-  stepRate: 0.2
-  rippleSpeed: 1
+  decayRate: 0.1
+  stepRate: 0.1
+  rippleSpeed: 0.2
 --- !u!1001 &1481937773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -922,17 +910,14 @@ PrefabInstance:
       objectReference: {fileID: 2055926826}
     - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
         type: 3}
-      propertyPath: PlanentsKilledText
-      value: 
-      objectReference: {fileID: 1928547356}
-    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
-        type: 3}
       propertyPath: rippleGridAnim
       value: 
       objectReference: {fileID: 1104687784}
-      propertyPath: ResidentsKilledText
+    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: PlanentsKilledText
       value: 
-      objectReference: {fileID: 870371481}
+      objectReference: {fileID: 1928547356}
     - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
         type: 3}
       propertyPath: KilledResidentsTemporary
