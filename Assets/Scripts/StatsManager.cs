@@ -43,8 +43,8 @@ public class StatsManager : MonoBehaviour
     private AudioSource audioSource;
 
     private JokeSpec[] jokes = new JokeSpec[] {
-        new JokeSpec((int)(0.3 * MAX_RESIDENTS_KILLED), "This is going to look bad on the quarterly results."),
-        new JokeSpec((int)(0.6 * MAX_RESIDENTS_KILLED), "Who hired you again?"),
+        new JokeSpec((int)(0.3 * MAX_RESIDENTS_KILLED), "You have a long way to go, apprentice."),
+        new JokeSpec((int)(0.6 * MAX_RESIDENTS_KILLED), "More tactful, you must be."),
         new JokeSpec((int)(0.7 * MAX_RESIDENTS_KILLED), "Chuck Norris' grandson lived on this planet!"),
         new JokeSpec((int)(0.9 * MAX_RESIDENTS_KILLED), "Hey! Those are real people!"),
     };
