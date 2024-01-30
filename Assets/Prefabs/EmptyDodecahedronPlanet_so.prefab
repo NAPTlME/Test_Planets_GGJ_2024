@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6284335672590659129}
   - component: {fileID: 4113255626362329963}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,17 +145,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3606143106436127868}
-  - component: {fileID: 2147875369039028398}
-  - component: {fileID: 853528039951440146}
   - component: {fileID: 8718003504782808844}
   - component: {fileID: 4254713317849928618}
   - component: {fileID: 7940365976245965688}
   - component: {fileID: 3686997303975326272}
   - component: {fileID: -4761215652911535481}
   - component: {fileID: 7066035990955324203}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EmptyDodecahedronPlanet_so
-  m_TagString: Planet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,61 +175,6 @@ Transform:
   - {fileID: 6382089237000156948}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2147875369039028398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7348139280587474309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bed4f9f29c63914abf19e80f528de60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PLANET_NAMES:
-  - Vertigo
-  - Ulia
-  - Pluto
-  - Ceres
-  - Makemake
-  - Haumea
-  - Eris
-  - Arkas
-  - Galileo
-  - Dagon
-  - Wangshu
-  - Veles
-  - Makropulos
-  - Belisama
-  planetType: 0
-  planetCollection: {fileID: 0}
-  mass: 0
-  rbody: {fileID: 8718003504782808844}
-  previousVelocity: {x: 0, y: 0, z: 0}
-  planetName: Arkas 467
-  trailRenderer: {fileID: 4113255626362329963}
---- !u!135 &853528039951440146
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7348139280587474309}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 7.56
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8718003504782808844
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -251,7 +194,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -272,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 8718003504782808844}
+  distanceToSun: 0
 --- !u!198 &7940365976245965688
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5265,6 +5209,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dodecahedron_solid_rescale
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6f7cff4063faaae41b4c7079ec2ef517,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5293,7 +5242,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0

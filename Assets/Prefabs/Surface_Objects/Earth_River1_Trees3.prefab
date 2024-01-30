@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6261513070148552699}
   - component: {fileID: 4802300733997118843}
   - component: {fileID: 1585273865965592394}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Earth_River1_Trees3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
