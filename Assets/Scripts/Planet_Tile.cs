@@ -12,6 +12,8 @@ public class PlanetTile : ScriptableObject
 {
     public Planet_Type type;
     public Material TileMaterial;
+    public float chanceToSpawnTile;
+    public float chanceToSpawnEntity;
     [SerializeField]
     public List<GameObject> AllowedEntities;
 }

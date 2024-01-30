@@ -9,7 +9,6 @@ public class DodecPlanetBuild : MonoBehaviour
     public GameObject CorePrefab;
     public GameObject TilePrefab;
     public GameObject GasGiantPrefab;
-    public float objectSpawnChance = 0.3f;
     [SerializeField]
     public List<PlanetSO> scriptable_planets;
     // Start is called before the first frame update
@@ -58,10 +57,23 @@ public class DodecPlanetBuild : MonoBehaviour
             // get the core
             // get 12 instances of the tiles
             var core = Instantiate(CorePrefab, planetCollectionObject.transform);
+            var tileCumulativeChance = planet_so.TilesAvailable.Sum(x => x.chanceToSpawnTile);
+            var tilesChance = new List<float>();
+            float nextChance = 0f;
+            for (int i = 0; i < planet_so.TilesAvailable.Count; i++)
+            {
+                nextChance += planet_so.TilesAvailable.ElementAt(i).chanceToSpawnTile / tileCumulativeChance;
+                if (i == planet_so.TilesAvailable.Count - 1)
+                {
+                    nextChance = 1f;
+                }
+                tilesChance.Add(nextChance);
+            }
             // get random tiles from the possible tiles
             var tiles = Enumerable.Range(0, 12).Select(sel =>
             {
-                var index = Mathf.FloorToInt(Random.value * planet_so.TilesAvailable.Count);
+                var chance = Random.value;
+                int index = tilesChance.Select((t, i) => (t, i)).Where(x => x.t <= chance).Select(x => x.i).Last();
                 return InstantiatePlanetTile(planet_so.TilesAvailable.ElementAt(index), planetBehavior, planetCollectionObject.transform);
             }).ToList();
 
@@ -117,7 +129,7 @@ public class DodecPlanetBuild : MonoBehaviour
         var tile = Instantiate(TilePrefab, parentTransform);
         GameObject entity = null;
         tile.GetComponentInChildren<MeshRenderer>().material = tileInfo.TileMaterial;
-        if (tileInfo.AllowedEntities.Count > 0 && Random.value <= objectSpawnChance)
+        if (tileInfo.AllowedEntities.Count > 0 && Random.value <= tileInfo.chanceToSpawnEntity)
         {
             var index = Mathf.FloorToInt(Random.value * tileInfo.AllowedEntities.Count);
             entity = Instantiate(tileInfo.AllowedEntities.ElementAt(index), parentTransform);

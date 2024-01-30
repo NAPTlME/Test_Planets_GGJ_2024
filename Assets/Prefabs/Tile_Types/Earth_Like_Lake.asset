@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   TileMaterial: {fileID: 2100000, guid: 2e256adb3e51b674c9a9755e95b9d9f7, type: 2}
+  chanceToSpawnTile: 0.1
+  chanceToSpawnEntity: 0.1
   AllowedEntities:
   - {fileID: 1995257142204254340, guid: 1a088b38102b35c42babc44c0bfc2228, type: 3}
   - {fileID: 1144829184422661111, guid: 8a0e756b3df1f424fa06ff164c8231e4, type: 3}
