@@ -163,7 +163,9 @@ MonoBehaviour:
   DIST_ACCEL_COEF: 175
   ArbitraryVelocityDeltaThreshold: 1
   VelocityDeltaCatchupRate: 0.4
+  pitchRange: 0.1
   Center: {fileID: 6486679299244737781}
+  CanBeKilled: 0
 --- !u!136 &887302834907570626
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -198,7 +200,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 52c53fb78ccadfa4ab16f2630a651eb7, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

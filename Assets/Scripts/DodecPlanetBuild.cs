@@ -73,7 +73,7 @@ public class DodecPlanetBuild : MonoBehaviour
             {
                 var chance = Random.value;
 
-                int index = tilesChance.Select((t, i) => (t, i)).Where(x => x.t >= chance).Select(x => x.i).Last();
+                int index = tilesChance.Select((t, i) => (t, i)).Where(x => x.t >= chance).Select(x => x.i).First();
                 return InstantiatePlanetTile(planet_so.TilesAvailable.ElementAt(index), planetBehavior, planetCollectionObject.transform);
             }).ToList();
             // scale after instantiation

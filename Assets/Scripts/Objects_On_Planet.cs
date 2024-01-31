@@ -100,7 +100,7 @@ public class Objects_On_Planet : MonoBehaviour
         var directionToPlanet = (homePlanet.localPlanetObj.transform.position - Center.position).normalized;
         var gravityForceFromPlanet = directionToPlanet * BASE_GRAVITY_COEF * homePlanet.radius;
         var totalGravityForce = gravityForceFromPlanet;
-        Debug.Log("Force from home planet: " + gravityForceFromPlanet.magnitude);
+        //Debug.Log("Force from home planet: " + gravityForceFromPlanet.magnitude);
         // sum up forces from non home planets
         planets.ForEach(planet =>
         {
@@ -114,7 +114,7 @@ public class Objects_On_Planet : MonoBehaviour
             var ToOtherPlanet = (planet.localPlanetObj.transform.position - Center.position);
             var directionToOtherPlanet = ToOtherPlanet.normalized;
             var newDist = ToOtherPlanet.magnitude - planet.radius;
-            Debug.Log(planet.planetName + " dist: " + newDist);
+            //Debug.Log(planet.planetName + " dist: " + newDist);
             var accelCoef = Mathf.Max(this.planetDistances.GetValueOrDefault(planet.planetName, 0) - newDist, 0) * DIST_ACCEL_COEF;
             var gravityForceMag = (accelCoef + 1) / Mathf.Pow(newDist, 2f);
 
@@ -124,8 +124,8 @@ public class Objects_On_Planet : MonoBehaviour
             }
 
             var gravityForceFromOtherPlanet = directionToOtherPlanet * (BASE_GRAVITY_COEF * planet.radius) * gravityForceMag; // base gravity coef by radius for approximating the effect of scale
-            Debug.DrawLine(Center.position, planet.localPlanetObj.transform.position);
-            Debug.Log("Force applied by " + planet.planetName + ": " + gravityForceFromOtherPlanet.magnitude);
+            //Debug.DrawLine(Center.position, planet.localPlanetObj.transform.position);
+            //Debug.Log("Force applied by " + planet.planetName + ": " + gravityForceFromOtherPlanet.magnitude);
             totalGravityForce += gravityForceFromOtherPlanet;
             this.planetDistances = newPlanetDistances;
         });
@@ -166,6 +166,7 @@ public class Objects_On_Planet : MonoBehaviour
     {
         if (CanBeKilled && collision.gameObject.CompareTag("Sun"))
         {
+            Debug.Log("entity touched the sun");
             audioSource.pitch = 1 + (UnityEngine.Random.value - 0.5f) * pitchRange;
             audioSource.Play();
             var mesh = GetComponent<MeshRenderer>();
