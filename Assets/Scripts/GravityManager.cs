@@ -25,7 +25,6 @@ public class GravityManager : MonoBehaviour
 
     public void RegisterPlanet(PlanetGravity planetGravity)
     {
-        // Debug.Log("registering planet");
         gravityPlanets.Add(planetGravity);
     }
 
@@ -33,7 +32,6 @@ public class GravityManager : MonoBehaviour
     {
         // TODO: This is inefficient, we should look into using sets, but IDK C#'s default hashing requirements
         // and there won't be many planets so this is good enough for now
-        // Debug.Log("forgetting planet");
         gravityPlanets.Remove(planetGravity);
     }
 
@@ -49,6 +47,7 @@ public class GravityManager : MonoBehaviour
     private void FixedUpdate()
     {
         // TODO: Later, consider halving the second loop for optimization
+        // todo: for ij
         foreach (var planetGravity in gravityPlanets)
         {
             foreach (var planetGravityOther in gravityPlanets)

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0005402334, g: 0.014384856, b: 0.042888574, a: 1}
+  m_IndirectSpecularColor: {r: 0.00054652523, g: 0.014385697, b: 0.042888492, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -274,6 +274,111 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1550142d7e99984fad98ea7920861e0, type: 3}
+--- !u!1 &358494980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 358494984}
+  - component: {fileID: 358494983}
+  - component: {fileID: 358494982}
+  - component: {fileID: 358494981}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &358494981
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358494980}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &358494982
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358494980}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &358494983
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358494980}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &358494984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358494980}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 270.3, y: -34.331997, z: 31.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,7 +762,7 @@ PrefabInstance:
     - target: {fileID: 5779827858155003145, guid: 664b1ac3f474b4c66aa8d403addcf912,
         type: 3}
       propertyPath: field of view
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5779827858155003145, guid: 664b1ac3f474b4c66aa8d403addcf912,
         type: 3}
@@ -683,6 +788,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BackGroundColor.r
       value: 0.38875046
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779827858155003145, guid: 664b1ac3f474b4c66aa8d403addcf912,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 887
       objectReference: {fileID: 0}
     - target: {fileID: 7479631340328309338, guid: 664b1ac3f474b4c66aa8d403addcf912,
         type: 3}
@@ -863,6 +973,11 @@ PrefabInstance:
       propertyPath: m_ClearFlags
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3353614264272202756, guid: 439fec6de7f8b4a05bacdc3bce1faf83,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 951
+      objectReference: {fileID: 0}
     - target: {fileID: 6795925615159887046, guid: 439fec6de7f8b4a05bacdc3bce1faf83,
         type: 3}
       propertyPath: m_Name
@@ -893,6 +1008,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 759922470111181298, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: MaxDistanceBeforeLost
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 5222611778781554490, guid: 494c5d8a49464f34b9f5339cc84db286,
         type: 3}
       propertyPath: m_Name
@@ -1068,7 +1188,7 @@ PrefabInstance:
     - target: {fileID: 4895218671114944385, guid: 8c351bfe862324a8bb9c73bb916977e7,
         type: 3}
       propertyPath: m_Lens.FieldOfView
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1585,15 +1705,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a722ff3238d4f3443bdff530a3fe50da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EmptyPlanetPrefab: {fileID: 7348139280587474309, guid: b77cd184adc87184eb4a498a8448e677,
+  EmptyPlanetPrefab: {fileID: 2908956023951638943, guid: ceaa207d8b0140c478ad553c5c49641c,
     type: 3}
   CorePrefab: {fileID: 862483356417115159, guid: bc7ba2951e7a1eb4a8d4c3c348735db5,
     type: 3}
   TilePrefab: {fileID: 2069684927163639606, guid: b8412e10130a42741adc5da375362ca9,
     type: 3}
-  GasGiantPrefab: {fileID: 2291668453402050211, guid: 9236c78e3047a91499df8a596d72c9ae,
-    type: 3}
-  objectSpawnChance: 0.3
   scriptable_planets:
   - {fileID: 11400000, guid: f26a27eda2334fc42a40246a94fa6977, type: 2}
   - {fileID: 11400000, guid: 93e860c5102e0144bade2969bf25d1e5, type: 2}
@@ -1621,3 +1738,4 @@ SceneRoots:
   - {fileID: 1631154677858358292}
   - {fileID: 162339208}
   - {fileID: 946126221}
+  - {fileID: 358494984}

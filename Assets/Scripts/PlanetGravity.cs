@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlanetGravity : MonoBehaviour
@@ -12,7 +13,6 @@ public class PlanetGravity : MonoBehaviour
 
     private void OnEnable()
     {
-        //Debug.Log("GravityPlanet: OnEnable");
         GravityManager.getInstance().RegisterPlanet(this);
     }
     private void OnDisable()
@@ -22,7 +22,7 @@ public class PlanetGravity : MonoBehaviour
     private void FixedUpdate()
     {
         var sun = GravityManager.getInstance().gameObject;
-        if (!destroyed && this.gameObject.tag != "Sun")
+        if (!destroyed && !gameObject.CompareTag("Sun"))
         {
             var sunPosition = sun.transform.position;
             var vector = this.gameObject.transform.position - sunPosition;
@@ -31,14 +31,13 @@ public class PlanetGravity : MonoBehaviour
             if (distanceFromSun > GravityManager.getInstance().MaxDistanceBeforeLost)
             {
                 destroyed = true;
+                var planet = this.GetComponentInParent<Planet>();
                 StatsManager.getInstance().LostPlanet(
-                    this.gameObject.GetComponent<Planet>().planetType);
-                Destroy(this.gameObject, 3); // Disappear in 3 secs
+                    planet.planetType);
+                Destroy(planet.gameObject, 3); // Disappear in 3 secs
             }
             else if (distanceFromSun > GravityManager.getInstance().MaxDistanceBeforeBending)
             {
-                //Debug.Log(Time.frameCount + "  " + distanceFromSun);
-                //Debug.Log("Adding perpendicular force!");
                 // var vectorPerpendicularToTrajectory = Vector3.Cross(vector, Vector3.back);
                 var vectorPerpendicularToTrajectory = new Vector3(vector.z, 0, vector.x * -1);
                 rigidBody.AddForce(
@@ -47,6 +46,30 @@ public class PlanetGravity : MonoBehaviour
                     vectorPerpendicularToTrajectory) * rigidBody.mass
                 );
             }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("This: " + this.gameObject.name + " hit: " + collision.gameObject.name);
+        if (!destroyed && collision.gameObject.CompareTag("Sun"))
+        {
+            Debug.Log("Crashing into the sun, BURN!");
+            var exp = GetComponent<ParticleSystem>();
+            exp.Play();
+            var planet = this.transform.GetComponentInParent<Planet>();
+            //GetComponentsInChildren<MeshRenderer>().Select(sel => sel.enabled = false);
+            planet.planetCollection.SetActive(false);
+            PlanetAudio planetAudio = GetComponent<PlanetAudio>();
+            planetAudio.audioSource.Play();
+            StatsManager.getInstance().KillResidents(planet.planetType);
+            // release entities
+            planet.localPlanetObj.GetComponentsInChildren<Objects_On_Planet>().ToList().ForEach(x => x.transform.SetParent(null, true));
+            // Note: we could use `this.enabled = false` instead but I don't
+            // trust it to happen soon enough before the next run/couple of runs of
+            // the physics, the boolean should be trusthworthy
+            destroyed = true;
+            Destroy(planet.gameObject, planetAudio.audioSource.clip.length);
         }
     }
 }

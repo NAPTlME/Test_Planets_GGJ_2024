@@ -88,12 +88,7 @@ public class LaunchManager : MonoBehaviour
                     newPotentialPlanet();
                 }
                 // amt to move planet
-                var planetMoveDelta = hitPoint - potentialPlanet.transform.position;
                 potentialPlanet.transform.position = hitPoint;
-                // also move any child rigidbodies
-                var childRigidBodies = potentialPlanet.GetComponentsInChildren<Rigidbody>().Skip(1).ToList();
-                //childRigidBodies.ForEach(x => x.transform.position += planetMoveDelta);
-                //Debug.Log("number of child rigidbodies: " + childRigidBodies.Count);
             }
         }
         if (mode == Mode.SLINGSHOT)
@@ -157,33 +152,29 @@ public class LaunchManager : MonoBehaviour
         // if we wanted... later
         Debug.Assert(mode == Mode.SLINGSHOT);
         var curLoc = potentialPlanet.transform.position;
-        var newPlanet = potentialPlanet;
+        var planetObj = potentialPlanet;
+        var newPlanet = planetObj.GetComponent<Planet>();
         potentialPlanet = null;
-        newPlanet.name = "LaunchedPlanet";
-        Rigidbody rbody = newPlanet.GetComponent<Rigidbody>();
+        newPlanet.name = "LaunchedPlanet_" + newPlanet.planetName;
+        Rigidbody rbody = newPlanet.orbitalPlanetObj.GetComponent<Rigidbody>();
         var direction = (launchLoc - curLoc).normalized;
         var dist = (launchLoc - curLoc).magnitude;
         rbody.AddForce(direction * (float)Math.Pow(dist, 1.5f) * SLINGSHOT_COEF * rbody.mass);
         LaunchArrow.FadeOut(0.4f);
         // Enable the gravity on the planet only once it's been launched / released:
-        newPlanet.GetComponent<PlanetGravity>().enabled = true;
+        newPlanet.orbitalPlanetObj.GetComponent<PlanetGravity>().enabled = true;
         var colliders = newPlanet.GetComponentsInChildren<Collider>();
         foreach (var collider in colliders)
         {
             collider.enabled = true;
         }
-        newPlanet.GetComponent<Planet>().SetTrailRendererEnabled(true);
+        var rbodyEntities = newPlanet.localPlanetObj.GetComponentsInChildren<Objects_On_Planet>();
+        rbodyEntities.ToList().ForEach(x => x.SetCanBeKilled(0.3f));
+        newPlanet.SetTrailRendererEnabled(true);
         newPlanet.tag = "Planet";
 
-        // find all entitys and set home (for some reason it is not setting)
-        var childEntities = newPlanet.GetComponentsInChildren<Objects_On_Planet>();
-        Debug.Log("num children entities: " + childEntities.Count());
-        //var planetObj = newPlanet.GetComponent<Planet>();
-        //childEntities.ToList().ForEach(x => x.homePlanet = planetObj);
-        //newPlanet.transform.GetComponentInChildren<TrailRenderer>().gameObject.SetActive(true); // todo this doesn't seem to be working.
-
         StatsManager.getInstance().PlanetLaunched(currentPlanet.planetType);
-        cameraManager.SetFocusTarget(newPlanet.transform);
+        cameraManager.SetFocusTarget(newPlanet.orbitalPlanetObj.transform);
 
         boing.GetComponent<AudioSource>().Play();
         // Go back to launch mode for another launch:
