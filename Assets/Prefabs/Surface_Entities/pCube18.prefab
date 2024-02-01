@@ -153,6 +153,7 @@ MonoBehaviour:
   homePlanet: {fileID: 0}
   planets: []
   DIST_ACCEL_COEF: 175
+  MaxDistFromHomePlanetSurface: 500
   ArbitraryVelocityDeltaThreshold: 1
   VelocityDeltaCatchupRate: 0.4
   pitchRange: 0.1
