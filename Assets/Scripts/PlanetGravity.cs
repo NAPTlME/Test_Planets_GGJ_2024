@@ -9,7 +9,7 @@ public class PlanetGravity : MonoBehaviour
     public Rigidbody rigidBody;
     private bool destroyed = false;
 
-    public float distanceToSun;
+    public float distanceToSun { get; private set; }
 
     private void OnEnable()
     {

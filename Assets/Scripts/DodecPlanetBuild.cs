@@ -144,7 +144,7 @@ public class DodecPlanetBuild : MonoBehaviour
                     // there are troubles with the center of mass scaling when placed in the planets.
                     x.GetComponent<Rigidbody>().centerOfMass *= homePlanet.radius;
                     x.transform.SetParent(homePlanet.localPlanetObj.transform, true);
-                    x.homePlanet = homePlanet;
+                    x.SetHomePlanet(homePlanet);
                     x.planets.Add(homePlanet);
                 });
             }

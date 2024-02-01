@@ -169,7 +169,11 @@ public class LaunchManager : MonoBehaviour
             collider.enabled = true;
         }
         var rbodyEntities = newPlanet.localPlanetObj.GetComponentsInChildren<Objects_On_Planet>();
-        rbodyEntities.ToList().ForEach(x => x.SetCanBeKilled(0.3f));
+        rbodyEntities.ToList().ForEach(x =>
+        {
+            x.SetCanBeKilled(0.01f);
+            x.SetHomePlanet(newPlanet);
+        });
         newPlanet.SetTrailRendererEnabled(true);
         newPlanet.tag = "Planet";
 

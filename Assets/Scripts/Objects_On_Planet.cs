@@ -20,6 +20,7 @@ public class Objects_On_Planet : MonoBehaviour
     public const float CENTER_OF_MASS_GIZMO_RAD = 0.04f;
     public const float BASE_GRAVITY_COEF = 9f;
     public const float MaxSolarSystemDistance = 300f;
+    public float MaxDistFromHomePlanetSurface = 1f;
 
     public float ArbitraryVelocityDeltaThreshold = 50f;
     public float VelocityDeltaCatchupRate = 0.1f;
@@ -38,10 +39,7 @@ public class Objects_On_Planet : MonoBehaviour
         rbody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         col = GetComponent<Collider>();
-        if (homePlanet != null)
-        {
-            transform.SetParent(homePlanet.localPlanetObj.transform);
-        }
+        SetHomePlanet(homePlanet);
         planetDistances = new Dictionary<String, float>();
     }
 
@@ -58,8 +56,7 @@ public class Objects_On_Planet : MonoBehaviour
         if (homePlanet != null && homePlanet.destroyed)
         {
             // clear home planet
-            homePlanet = null;
-            transform.SetParent(null, true);
+            SetHomePlanet(null);
         }
         if (transform.position.magnitude > MaxSolarSystemDistance)
         {
@@ -78,39 +75,43 @@ public class Objects_On_Planet : MonoBehaviour
 
         // set minimum distance planet as home planet
         Planet minPlanet = null;
-        float minDistance = -1f;
-        foreach(var planetDistance in newPlanetDistances)
+
+        var potentialMinPlanet = newPlanetDistances.Where(wh => wh.Value <= MaxDistFromHomePlanetSurface).OrderBy(ord => ord.Value).Select(sel => planets.Where(wh => wh.planetName == sel.Key).First());
+        if (potentialMinPlanet.Count() > 0)
         {
-            if (minPlanet == null || planetDistance.Value < minDistance) {
-                minPlanet = planets.Where(wh => wh.planetName == planetDistance.Key).First();
-                minDistance = planetDistance.Value;
-            }
-        };
+            minPlanet = potentialMinPlanet.First();
+        }
         if (newPlanetDistances.Count > 0) {
-            homePlanet = minPlanet;
-            transform.SetParent(homePlanet.localPlanetObj.transform, true);
+            if (homePlanet != minPlanet)
+            {
+                SetHomePlanet(minPlanet);
+            }
         } else {
             // case for no planets nearby
-            homePlanet = null;
+            SetHomePlanet(null);
             this.planetDistances = newPlanetDistances;
             return;
         }
 
         // force from home planet
-        var directionToPlanet = (homePlanet.localPlanetObj.transform.position - Center.position).normalized;
-        var gravityForceFromPlanet = directionToPlanet * BASE_GRAVITY_COEF * homePlanet.radius;
-        var totalGravityForce = gravityForceFromPlanet;
+        var totalGravityForce = Vector3.zero;
+        if (homePlanet != null)
+        {
+            var directionToPlanet = (homePlanet.localPlanetObj.transform.position - Center.position).normalized;
+            var gravityForceFromPlanet = directionToPlanet * BASE_GRAVITY_COEF * homePlanet.radius;
+            totalGravityForce += gravityForceFromPlanet;
+        }
         //Debug.Log("Force from home planet: " + gravityForceFromPlanet.magnitude);
         // sum up forces from non home planets
         planets.ForEach(planet =>
         {
-            /*if (GameObject.ReferenceEquals(planet, homePlanet)) {
-                return;
-            }*/
-            if (planet.planetName == homePlanet.planetName)
-            {
+            if (GameObject.ReferenceEquals(planet, homePlanet)) {
                 return;
             }
+            /*if (planet.planetName == homePlanet.planetName)
+            {
+                return;
+            }*/
             var ToOtherPlanet = (planet.localPlanetObj.transform.position - Center.position);
             var directionToOtherPlanet = ToOtherPlanet.normalized;
             var newDist = ToOtherPlanet.magnitude - planet.radius;
@@ -130,6 +131,41 @@ public class Objects_On_Planet : MonoBehaviour
             this.planetDistances = newPlanetDistances;
         });
         rbody.AddForce(totalGravityForce, ForceMode.Acceleration);
+    }
+
+    // necessary to make the entities appear to behave naturally when switching planets and taking on their transforms
+    public void SetHomePlanet(Planet newHomePlanet)
+    {
+        if (homePlanet != null)
+        {
+            //rbody.velocity += homePlanet.orbitalPlanetObj.GetComponent<Rigidbody>().velocity; // todo make the orbital planet hold it's rigidbody info so we don't have to GetComponent so much
+        }
+        if (newHomePlanet != null)
+        {
+            var newHomeRbody = newHomePlanet.orbitalPlanetObj.GetComponent<Rigidbody>();
+            if (newHomeRbody != null)
+            {
+                Debug.Log("newHomeRbody: " + newHomeRbody);
+                Debug.Log(newHomeRbody.velocity);
+                if (rbody != null)// not sure why, but this happens on awake
+                {
+                    //rbody.velocity -= newHomeRbody.velocity;
+                }
+                homePlanet = newHomePlanet;
+            }
+            transform.SetParent(homePlanet.localPlanetObj.transform, true);
+            if (!planets.Contains(homePlanet))
+            {
+                planets.Add(homePlanet);
+            }
+        }
+        else
+        {
+            transform.SetParent(null, true);
+        }
+        homePlanet = newHomePlanet;
+
+        
     }
 
     public void SetCanBeKilled(float t)
