@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0005380732, g: 0.01438053, b: 0.04288376, a: 1}
+  m_IndirectSpecularColor: {r: 0.00056667416, g: 0.01440995, b: 0.04283979, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -590,6 +590,47 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 499124072695542487, guid: 664b1ac3f474b4c66aa8d403addcf912,
+        type: 3}
+      propertyPath: m_CustomBlends
+      value: 
+      objectReference: {fileID: 11400000, guid: 3cedeeced6384304dacfc537779eb3ce,
+        type: 2}
+    - target: {fileID: 499124072695542487, guid: 664b1ac3f474b4c66aa8d403addcf912,
+        type: 3}
+      propertyPath: m_DefaultBlend.m_Time
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 499124072695542487, guid: 664b1ac3f474b4c66aa8d403addcf912,
+        type: 3}
+      propertyPath: m_DefaultBlend.m_Style
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 499124072695542487, guid: 664b1ac3f474b4c66aa8d403addcf912,
+        type: 3}
+      propertyPath: m_DefaultBlend.m_CustomCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 499124072695542487, guid: 664b1ac3f474b4c66aa8d403addcf912,
+        type: 3}
+      propertyPath: m_DefaultBlend.m_CustomCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 499124072695542487, guid: 664b1ac3f474b4c66aa8d403addcf912,
+        type: 3}
+      propertyPath: m_DefaultBlend.m_CustomCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 499124072695542487, guid: 664b1ac3f474b4c66aa8d403addcf912,
+        type: 3}
+      propertyPath: m_DefaultBlend.m_CustomCurve.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 499124072695542487, guid: 664b1ac3f474b4c66aa8d403addcf912,
+        type: 3}
+      propertyPath: m_DefaultBlend.m_CustomCurve.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1181931635266177757, guid: 664b1ac3f474b4c66aa8d403addcf912,
         type: 3}
       propertyPath: m_LocalPosition.x
