@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using Cinemachine;
 
 public class GravityManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class GravityManager : MonoBehaviour
     // This does not need to be public but it makes inspecting it in the inspector for debugging
     // quite convenient
     public List<PlanetGravity> gravityPlanets = new List<PlanetGravity>();
+    public Action<PlanetGravity> OnActivePlanetChanged;
     public static GravityManager getInstance()
     {
         return instance;
@@ -94,5 +96,6 @@ public class GravityManager : MonoBehaviour
     {
         gravityPlanets.ForEach(x => x.vCamera.Priority = 10);
         activePlanet.vCamera.Priority = 11;
+        OnActivePlanetChanged.Invoke(activePlanet);
     }
 }
