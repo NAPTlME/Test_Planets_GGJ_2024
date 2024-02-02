@@ -2,22 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Cinemachine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlanetGravity : MonoBehaviour
 {
     public Rigidbody rigidBody;
+    public CinemachineFreeLook vCamera;
     private bool destroyed = false;
 
     public float distanceToSun { get; private set; }
 
     private void OnEnable()
     {
+        vCamera.gameObject.SetActive(true);
         GravityManager.getInstance().RegisterPlanet(this);
     }
     private void OnDisable()
     {
         GravityManager.getInstance().ForgetPlanet(this);
+    }
+    public void SetCameraPriority(int x)
+    {
+        vCamera.Priority = x;
     }
     private void FixedUpdate()
     {

@@ -14,8 +14,8 @@ TagManager:
   - 
   - Water
   - UI
-  - MainCamera
-  - MiniCamera
+  - OverheadCamera
+  - PlanetCamera
   - OrbitalPlanet
   - LocalPlanet
   - Entity

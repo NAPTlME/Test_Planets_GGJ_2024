@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class GravityManager : MonoBehaviour
 {
@@ -63,5 +64,35 @@ public class GravityManager : MonoBehaviour
             }
 
         }
+    }
+
+    public void CyclePlanetCam(int x)
+    {
+        Debug.Log("CyclePlanet: " + "+ " + x);
+        if (gravityPlanets.Count > 0)
+        {
+            // only intend to use x as -1|1, but factoring in other potential uses (in case a scroll wheel is used and the value can be more than 1
+            if (x + gravityPlanets.Count <= 0) // handle large negative numbers as no movement
+            {
+                x = 0;
+            }
+            // get which index has the highest priority (10 vs 11) 
+            var activeIndex = gravityPlanets.Select((planet, i) => (i, planet.vCamera.Priority)).OrderByDescending(x => x.Priority).Select(x => x.i).First();
+            Debug.Log("Active Index: " + activeIndex);
+            activeIndex += x;
+            if (activeIndex < 0)
+            {
+                activeIndex += gravityPlanets.Count;
+            }
+
+            activeIndex = activeIndex % gravityPlanets.Count;
+            Debug.Log("New Index: " + activeIndex);
+            SetActivePlanetCam(gravityPlanets.ElementAt(activeIndex));
+        }
+    }
+    public void SetActivePlanetCam(PlanetGravity activePlanet)
+    {
+        gravityPlanets.ForEach(x => x.vCamera.Priority = 10);
+        activePlanet.vCamera.Priority = 11;
     }
 }

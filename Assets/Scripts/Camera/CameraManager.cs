@@ -1,28 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
+public enum CameraType
+{
+    Overhead,
+    Orbital
+}
+
 public class CameraManager : MonoBehaviour
 {
-    public CinemachineBrain miniCamera;
+    public Camera mainCamera;
+    public Camera miniCamera;
 
-    public CinemachineVirtualCamera mainLaunchCamera;
-    public CinemachineVirtualCamera mainPlanetCamera;
+    public CameraType MainCameraType;
 
-    public CinemachineVirtualCamera miniLaunchCamera;
-    public CinemachineVirtualCamera miniPlanetCamera;
-
-    public OrbitRig planetCameraRig;
-    public SunCameraRig launchRig;
-
-    private CinemachineVirtualCamera currentMainCamera;
-    private CinemachineVirtualCamera currentMiniCamera;
+    public event Action<CameraType> OnMainCameraChanged;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentMainCamera = mainLaunchCamera;
+        MainCameraType = CameraType.Overhead;
+        /*currentMainCamera = mainLaunchCamera;
         currentMiniCamera = miniPlanetCamera;
         currentMainCamera.Priority = 1;
         currentMiniCamera.Priority = 1;
@@ -31,62 +32,17 @@ public class CameraManager : MonoBehaviour
         planetCameraRig.isFocused = false;
 
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        Cursor.lockState = CursorLockMode.None;*/
     }
 
     public void SwapCameras()
     {
-        if(launchRig.isFocused)
-        {
-            launchRig.isFocused = false;
-            planetCameraRig.isFocused = true;
-
-            SetCamera(mainPlanetCamera);
-            SetMiniCamera(miniLaunchCamera);
-        } else
-        {
-            launchRig.isFocused = true;
-            planetCameraRig.isFocused = false;
-
-            SetCamera(mainLaunchCamera);
-            SetMiniCamera(miniPlanetCamera);
-        }
-    }
-
-    public void SetCamera(CinemachineVirtualCamera newFocus)
-    {
-        currentMainCamera.Priority = 0;
-        newFocus.Priority = 1;
-
-        currentMainCamera = newFocus;
-
-        if(newFocus.Equals(mainLaunchCamera))
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        } else if (newFocus.Equals(mainPlanetCamera))
-        {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-    }
-
-    public void SetMiniCamera(CinemachineVirtualCamera newFocus)
-    {
-        currentMiniCamera.Priority = 0;
-        newFocus.Priority = 1;
-
-        currentMiniCamera = newFocus;
-    }
-
-    public void SetFocusTarget(Transform target)
-    {
-        planetCameraRig.target = target;
+        MainCameraType = MainCameraType == CameraType.Orbital ? CameraType.Overhead : CameraType.Orbital;
+        // manually setting the bitmask by string values here
+        var overheadMask = LayerMask.GetMask(new string[] { "Default", "TransparentFx", "Ignore Raycast", "Water", "UI", "OverheadCamera", "OrbitalPlanet", "LocalPlanet", "Entity" });
+        var orbitalMask = LayerMask.GetMask(new string[] { "Default", "TransparentFx", "Ignore Raycast", "Water", "UI", "PlanetCamera", "OrbitalPlanet", "LocalPlanet", "Entity" });
+        mainCamera.cullingMask = MainCameraType == CameraType.Overhead ? overheadMask : orbitalMask;
+        miniCamera.cullingMask = MainCameraType == CameraType.Overhead ? orbitalMask : overheadMask;
+        OnMainCameraChanged?.Invoke(MainCameraType);
     }
 }
