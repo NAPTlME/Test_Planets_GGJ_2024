@@ -57,6 +57,7 @@ public class LaunchManager : MonoBehaviour
                 break;
         }
         HandlePlanetCameraCycle();
+        HandleCameraZoom();
     }
 
     private void HandleModeNone()
@@ -101,6 +102,15 @@ public class LaunchManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.D))
         {
             GravityManager.getInstance().CyclePlanetCam(1);
+        }
+    }
+    private void HandleCameraZoom()
+    {
+        // putting this here because we don't have a standard place for inputs..
+        var mouseScrollYDelta = Input.mouseScrollDelta.y;
+        if (mouseScrollYDelta != 0)
+        {
+            GlobalManager.getInstance().cameraManager.ZoomMainCam(mouseScrollYDelta);
         }
     }
     private bool HandleLauncherActiveLogic_Before_ShouldContinue()
@@ -211,7 +221,6 @@ public class LaunchManager : MonoBehaviour
         });
         newPlanet.SetTrailRendererEnabled(true);
         newPlanet.tag = "Planet";
-        planetGrav.Launched();
 
         StatsManager.getInstance().PlanetLaunched(currentPlanet.planetType);
         GravityManager.getInstance().SetActivePlanetCam(planetGrav);

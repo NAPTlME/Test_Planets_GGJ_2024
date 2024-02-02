@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 18.23, z: -7.3}
+  m_FollowOffset: {x: 0, y: 2.5, z: -23.21}
   m_XDamping: 0.01
   m_YDamping: 0.01
   m_ZDamping: 0.01
@@ -423,7 +423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 18.23, z: -7.3}
+  m_FollowOffset: {x: 0, y: 2.5, z: -23.21}
   m_XDamping: 0.01
   m_YDamping: 0.01
   m_ZDamping: 0.01
@@ -567,14 +567,14 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_YAxis:
-    Value: 1
+    Value: 0.5
     m_SpeedMode: 0
-    m_MaxSpeed: 2
+    m_MaxSpeed: 3
     m_AccelTime: 0.2
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
-    m_InvertInput: 0
+    m_InvertInput: 1
     m_MinValue: 0
     m_MaxValue: 1
     m_Wrap: 0
@@ -644,6 +644,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f554bd35e640843ac09ff1febb0858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minFov: 40
+  maxFov: 80
+  zoomSpeed: 1
 --- !u!1 &8856199848536340208
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,7 +706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 18.23, z: -7.3}
+  m_FollowOffset: {x: 0, y: 2.5, z: -23.21}
   m_XDamping: 0.01
   m_YDamping: 0.01
   m_ZDamping: 0.01
