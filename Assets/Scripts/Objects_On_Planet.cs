@@ -22,25 +22,28 @@ public class Objects_On_Planet : MonoBehaviour
     public const float MaxSolarSystemDistance = 300f;
     public float MaxDistFromHomePlanetSurface = 1f;
 
-    public float ArbitraryVelocityDeltaThreshold = 50f;
-    public float VelocityDeltaCatchupRate = 0.1f;
-
     Rigidbody rbody;
     AudioSource audioSource;
     public float pitchRange = 0.1f;
-    private Collider col;
-    private Vector3 lastLocalPos;
     public Transform Center;
     public bool CanBeKilled = false;
+    public BoxCollider boxCollider;
+
+    public float minIdle = 2f;
+    public float maxIdle = 5f;
+    public float idleUntilTime = 0f;
+    private bool canJumpAgain = true;
+
+    public float hopForce = 2f;
 
     // Start is called before the first frame update
     void Start()
     {
         rbody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
-        col = GetComponent<Collider>();
         SetHomePlanet(homePlanet);
         planetDistances = new Dictionary<String, float>();
+        boxCollider = GetComponent<BoxCollider>();
     }
 
     private void Update()
@@ -67,6 +70,18 @@ public class Objects_On_Planet : MonoBehaviour
     // FixedUpdate runs on a predetermined tick rate (50hz by default)
     void FixedUpdate()
     {
+        if (CanBeKilled)
+        {
+            if (Time.time > idleUntilTime)
+            {
+                if (idleUntilTime != 0 && canJumpAgain)
+                {
+                    StartCoroutine(StartMove());
+                }
+
+                idleUntilTime = Time.time + minIdle + (maxIdle - minIdle) * UnityEngine.Random.value;
+            }
+        }
         // remove planets that are destroyed
         planets = planets.Where(planet => planet != null && !planet.destroyed).Distinct().ToList();
         var newPlanetDistances = planets.Select(planet => (planet.planetName, Vector3.Distance(planet.localPlanetObj.transform.position, Center.position) - planet.radius))
@@ -108,10 +123,6 @@ public class Objects_On_Planet : MonoBehaviour
             if (GameObject.ReferenceEquals(planet, homePlanet)) {
                 return;
             }
-            /*if (planet.planetName == homePlanet.planetName)
-            {
-                return;
-            }*/
             var ToOtherPlanet = (planet.localPlanetObj.transform.position - Center.position);
             var directionToOtherPlanet = ToOtherPlanet.normalized;
             var newDist = ToOtherPlanet.magnitude - planet.radius;
@@ -180,6 +191,42 @@ public class Objects_On_Planet : MonoBehaviour
             yield return true;
         }
         CanBeKilled = true;
+    }
+
+    IEnumerator StartMove()
+    {
+        Ray r = new Ray(Center.position, transform.TransformDirection(Vector3.down));
+        var bottomOfBox = boxCollider.bounds.center - transform.TransformDirection(new Vector3(0, boxCollider.bounds.extents.y * 1.5f));
+        var rayDist = (Center.position - bottomOfBox).magnitude;
+        Debug.Log("Checking for hit");
+        if (Physics.Raycast(r, rayDist, LayerMask.NameToLayer("LocalPlanet"))){
+            canJumpAgain = false;
+            // rotate 30 degrees +-
+            var rotateSpeed = 30f;
+            var rotateDegrees = 30f * UnityEngine.Random.Range(-1f, 1f);
+            Debug.Log("rotateDegrees: " + rotateDegrees);
+            Debug.Log("rotateDegrees: " + rotateDegrees);
+            var rotateTime = Mathf.Abs(rotateDegrees) / rotateSpeed;
+            Debug.Log("rotateTime: " + rotateTime);
+            var endTime = Time.time + rotateTime;
+            bool neg = rotateDegrees < 0;
+            rotateSpeed *= neg ? -1 : 1;
+            Debug.DrawRay(Center.position, transform.TransformDirection(Vector3.up), Color.magenta, 2f);
+            while (Time.time < endTime)
+            {
+                //rbody.MoveRotation(rbody.rotation * Quaternion.AngleAxis(rotateSpeed * Time.fixedDeltaTime, transform.position - homePlanet.localPlanetObj.transform.position));
+                rbody.MoveRotation(rbody.rotation * Quaternion.AngleAxis(rotateSpeed * Time.fixedDeltaTime, transform.TransformDirection(Vector3.up)));
+                yield return null;
+            }
+
+            while (Time.time < endTime + 0.2f)
+            {
+                yield return null;
+            }
+            rbody.AddForce(transform.TransformDirection(new Vector3(0, 1, 1)) * hopForce, ForceMode.Impulse);
+            canJumpAgain = true;
+            idleUntilTime = Time.time + minIdle + (maxIdle - minIdle) * UnityEngine.Random.value;
+        }
     }
 
     private void OnTriggerEnter(Collider obj)

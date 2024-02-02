@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 452400108182387893}
   - component: {fileID: 887302834907570626}
   - component: {fileID: 7104387705545702402}
+  - component: {fileID: 3371140541550828438}
   m_Layer: 0
   m_Name: pCube6
   m_TagString: Untagged
@@ -162,11 +163,14 @@ MonoBehaviour:
   planets: []
   DIST_ACCEL_COEF: 175
   MaxDistFromHomePlanetSurface: 500
-  ArbitraryVelocityDeltaThreshold: 1
-  VelocityDeltaCatchupRate: 0.4
   pitchRange: 0.1
   Center: {fileID: 6486679299244737781}
   CanBeKilled: 0
+  boxCollider: {fileID: 0}
+  minIdle: 2
+  maxIdle: 5
+  idleUntilTime: 0
+  hopForce: 2
 --- !u!136 &887302834907570626
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -286,3 +290,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &3371140541550828438
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995257142204254340}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 5.2467594, y: 14.198494, z: 2.7690933}
+  m_Center: {x: 0.038055703, y: 86.56478, z: 0.12911274}
