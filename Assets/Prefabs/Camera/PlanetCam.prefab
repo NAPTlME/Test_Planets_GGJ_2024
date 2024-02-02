@@ -593,7 +593,7 @@ MonoBehaviour:
   m_XAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 300
+    m_MaxSpeed: 400
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
@@ -618,7 +618,7 @@ MonoBehaviour:
     m_RecenteringTime: 2
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
-  m_BindingMode: 1
+  m_BindingMode: 5
   m_SplineCurvature: 0.2
   m_Orbits:
   - m_Height: 18.23
@@ -644,9 +644,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f554bd35e640843ac09ff1febb0858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minFov: 40
-  maxFov: 80
-  zoomSpeed: 1
 --- !u!1 &8856199848536340208
 GameObject:
   m_ObjectHideFlags: 0
