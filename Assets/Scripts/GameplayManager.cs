@@ -17,6 +17,7 @@ public class GlobalManager : MonoBehaviour
     bool gameIsOver = false;
     public LaunchManager launchManager;
     public Vector3 prevMousePos;
+    public CameraManager cameraManager;
     // Start is called before the first frame update
     void Start()
     {

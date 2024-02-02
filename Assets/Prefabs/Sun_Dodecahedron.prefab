@@ -5079,7 +5079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 7176847483235181067}
-  distanceToSun: 0
+  vCamera: {fileID: 0}
 --- !u!114 &759922470111181298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5093,7 +5093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxDistanceBeforeBending: 120
-  MaxDistanceBeforeLost: 180
+  MaxDistanceBeforeLost: 300
   BendingForce: 0.01
   PullBackToPerpendicularRatio: 0.0002
   gravityPlanets: []

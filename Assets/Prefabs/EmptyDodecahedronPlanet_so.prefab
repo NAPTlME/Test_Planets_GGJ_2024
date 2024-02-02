@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 8718003504782808844}
-  distanceToSun: 0
+  vCamera: {fileID: 0}
 --- !u!198 &7940365976245965688
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5121,6 +5121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8816d863d0d69b4f9bc1a561d639d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
 --- !u!1001 &6853076916971344127
 PrefabInstance:
   m_ObjectHideFlags: 0
