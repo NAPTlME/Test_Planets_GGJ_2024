@@ -154,15 +154,15 @@ MonoBehaviour:
   homePlanet: {fileID: 0}
   planets: []
   DIST_ACCEL_COEF: 175
+  SUN_GRAVITY_COEF: 36
   MaxDistFromHomePlanetSurface: 500
   pitchRange: 0.1
   Center: {fileID: 6134213827869640706}
   CanBeKilled: 0
-  boxCollider: {fileID: 0}
   minIdle: 2
-  maxIdle: 5
+  maxIdle: 6
   idleUntilTime: 0
-  hopForce: 2
+  hopForce: 9
 --- !u!82 &7455479133537945478
 AudioSource:
   m_ObjectHideFlags: 0
