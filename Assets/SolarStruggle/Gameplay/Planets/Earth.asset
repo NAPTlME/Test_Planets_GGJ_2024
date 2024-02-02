@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b0fe3de799d2df47b451ee118b55adc, type: 3}
   m_Name: Earth
   m_EditorClassIdentifier: 
-  type: 0
-  MinMass: 300
-  MaxMass: 300
-  MinScale: 4
-  MaxScale: 6
+  minMass: 300
+  maxMass: 300
+  minScale: 4
+  maxScale: 6
+  pointValue: 50
+  population: 50000
   collisionSound: {fileID: 8300000, guid: d1ba7d817f31ee243948331f35d121e6, type: 3}
-  optional_prefab: {fileID: 0}
-  TilesAvailable:
+  tilesAvailable:
   - {fileID: 11400000, guid: bf4cf76f1fb34f446b3eebf4fc4195ba, type: 2}
+  - {fileID: 11400000, guid: 69706a6b4f21c1b48a83b9b7e40efb3f, type: 2}
   - {fileID: 11400000, guid: bd9e29f76708b034380727f1265b40e9, type: 2}
   - {fileID: 11400000, guid: 53945cd7b6167fb40ae4eb909ebfdecd, type: 2}
   - {fileID: 11400000, guid: 65399f3fe825bbe46981c2b3bbad0f6b, type: 2}
-  - {fileID: 11400000, guid: 69706a6b4f21c1b48a83b9b7e40efb3f, type: 2}
+  modelOverride: {fileID: 0}

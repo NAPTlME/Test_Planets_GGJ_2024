@@ -4,13 +4,6 @@ using UnityEngine;
 using System;
 using TMPro;
 
-public enum StatsPlanetType
-{
-    SMALL,
-    MEDIUM,
-    LARGE
-}
-
 public class JokeSpec
 {
     public string text = "";
@@ -57,42 +50,30 @@ public class StatsManager : MonoBehaviour
 
     int remainingToKillBeforeGameOver = MAX_RESIDENTS_KILLED;
 
-    private Dictionary<Planet_Type, int> PlanetTypeToPoints = new Dictionary<Planet_Type, int>() {
-        {Planet_Type.moon, 35},
-        {Planet_Type.earth, 50},
-        {Planet_Type.gas, 100},
-    };
-
-    private Dictionary<Planet_Type, int> PlanetTypeToResidents = new Dictionary<Planet_Type, int>() { // to make this dependent on radius and only for earth-like?
-        {Planet_Type.moon, 35000},
-        {Planet_Type.earth, 50000},
-        {Planet_Type.gas, 100000},
-    };
-
     //public Dictionary<Planet_Type, StatsPlanetType> PlanetTypePrefabToEnum = new Dictionary<Planet_Type, StatsPlanetType>();
 
-    public void PlanetLaunched(Planet_Type type)
+    public void PlanetLaunched(PlanetType planetType)
     {
         //Debug.Log("Launched planet of stats type:");
         //Debug.Log(type);
-        score += PlanetTypeToPoints[type];
+        score += planetType.pointValue;
         planetsUsed += 1;
     }
 
-    public void LostPlanet(Planet_Type type)
+    public void LostPlanet(PlanetType type)
     {
         Debug.Log("Planet lost!");
         Debug.Log(type);
         KillResidents(type, true);
     }
 
-    public void KillResidents(Planet_Type type, bool overrideAsLost = false)
+    public void KillResidents(PlanetType type, bool overrideAsLost = false)
     {
         rippleGridAnim.increaseTemp();
-        var newKilledResidents = PlanetTypeToResidents[type];
+        var newKilledResidents = type.population;
         killedResidents += newKilledResidents;
         remainingToKillBeforeGameOver -= newKilledResidents;
-        score -= PlanetTypeToPoints[type];
+        score -= type.pointValue;
         if (!overrideAsLost)
         {
             audioSource.Play();

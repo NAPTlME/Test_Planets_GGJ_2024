@@ -24,7 +24,7 @@ public class Planet : MonoBehaviour
         "Makropulos",
         "Belisama"
     };
-    public Planet_Type planetType;
+    public PlanetType planetType;
     public GameObject planetCollection;
 
 
@@ -34,17 +34,13 @@ public class Planet : MonoBehaviour
     public Vector3 previousVelocity;
     public string planetName;
     public TrailRenderer trailRenderer;
-    // Start is called before the first frame update
 
-    private bool destroyed = false;
+    // Start is called before the first frame update
     void Start()
     {
         rbody = GetComponent<Rigidbody>();
-        for (var i = 0; i < System.Enum.GetNames(typeof(Planet_Type)).Length; i++)
-        {
-            //var type = planetTypes[i];
-            //StatsManager.getInstance().PlanetTypePrefabToEnum[type] = PlanetTypePrefabToEnumHackArray[i];
-        }
+        Debug.Log("Planet Started!");
+        
         var rand = new System.Random();
         planetName = PLANET_NAMES[rand.Next(PLANET_NAMES.Count)];
         if (tag == "Sun")

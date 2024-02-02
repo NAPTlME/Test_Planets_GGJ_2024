@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b0fe3de799d2df47b451ee118b55adc, type: 3}
   m_Name: Gas
   m_EditorClassIdentifier: 
-  type: 2
-  MinMass: 500
-  MaxMass: 500
-  MinScale: 5
-  MaxScale: 7
+  minMass: 500
+  maxMass: 500
+  minScale: 5
+  maxScale: 7
+  pointValue: 100
+  population: 100000
   collisionSound: {fileID: 8300000, guid: b0ebd0e8f4c6cdf489660d421aba3a45, type: 3}
-  optional_prefab: {fileID: 2291668453402050211, guid: 9236c78e3047a91499df8a596d72c9ae,
+  tilesAvailable: []
+  modelOverride: {fileID: 2291668453402050211, guid: 9236c78e3047a91499df8a596d72c9ae,
     type: 3}
-  TilesAvailable: []

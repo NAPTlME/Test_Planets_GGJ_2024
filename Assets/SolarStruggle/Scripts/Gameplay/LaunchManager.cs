@@ -15,7 +15,6 @@ public class LaunchManager : MonoBehaviour
     private Planet previewPlanet;
     private Vector3 launchLoc;
     public Launch_Arrow LaunchArrow;
-    private StatsPlanetType statsPlanetType = StatsPlanetType.SMALL;
     private CameraManager cameraManager;
     public GameObject boing;
 
@@ -53,7 +52,7 @@ public class LaunchManager : MonoBehaviour
         if (mode == Mode.NONE && Input.GetKeyDown(KeyCode.Space))
         {
             cameraManager.SwapCameras();
-            StartPickLocation();
+            StartPickLocation(destroyPreviousPlanet: true);
             return;
         }
         if (mode == Mode.PICK_LOCATION && Input.GetMouseButtonDown(0)) // left click
@@ -69,7 +68,7 @@ public class LaunchManager : MonoBehaviour
         if (mode != Mode.NONE && (Input.GetKeyDown(KeyCode.Tab) || Input.GetMouseButtonDown(1)))
         {
             planetTypeInteractionIndex += 1;
-            newPotentialPlanet();
+            newPotentialPlanet(destroyPrevious: true);
         }
         if (mode == Mode.PICK_LOCATION || mode == Mode.SLINGSHOT)
         {
@@ -82,7 +81,7 @@ public class LaunchManager : MonoBehaviour
                 Vector3 hitPoint = ray.GetPoint(enter);
                 if (previewPlanet == null)
                 {
-                    newPotentialPlanet();
+                    newPotentialPlanet(destroyPrevious: false);
                 }
 
                 // amt to move planet
@@ -106,22 +105,12 @@ public class LaunchManager : MonoBehaviour
         }
     }
 
-    private void StartPickLocation()
+    private void StartPickLocation(bool destroyPreviousPlanet)
     {
         Debug.Assert(mode == Mode.NONE || mode == Mode.SLINGSHOT);
         mode = Mode.PICK_LOCATION;
 
-        newPotentialPlanet();
-        // Note: if what we want is the colliders to be disabled in the initial state,
-        // what we should do is have them disabled in the prefab and then enabling them on
-        // Launch() like for the planetGravity component, so commenting out this code for
-        // now until we can clarify its goal
-        // Destroy(potentialPlanet.GetComponent<Rigidbody>());
-        // var colliders = potentialPlanet.GetComponents<Collider>();
-        // foreach (var collider in colliders)
-        // {
-        //     Destroy(collider);
-        // }
+        newPotentialPlanet(destroyPreviousPlanet);
     }
 
     private void Exit()
@@ -133,7 +122,7 @@ public class LaunchManager : MonoBehaviour
 
         if (previewPlanet != null)
         {
-            Destroy(previewPlanet);
+            Destroy(previewPlanet.gameObject);
         }
         LaunchArrow.enabled = false;
     }
@@ -150,52 +139,55 @@ public class LaunchManager : MonoBehaviour
 
     private void Launch()
     {
-        // TODO: We could avoid detroying the temp planet and creating a new one
-        // if we wanted... later
         Debug.Assert(mode == Mode.SLINGSHOT);
         var curLoc = previewPlanet.transform.position;
-        var newPlanet = previewPlanet;
-        previewPlanet = null;
-        newPlanet.name = "LaunchedPlanet";
-        Rigidbody rbody = newPlanet.GetComponent<Rigidbody>();
+        var launchedPlanet = previewPlanet;
+
+        launchedPlanet.name = "LaunchedPlanet";
+
+        Rigidbody rbody = launchedPlanet.GetComponent<Rigidbody>();
         var direction = (launchLoc - curLoc).normalized;
         var dist = (launchLoc - curLoc).magnitude;
         rbody.AddForce(direction * dist * SLINGSHOT_COEF * rbody.mass);
+
         LaunchArrow.FadeOut(0.4f);
+
         // Enable the gravity on the planet only once it's been launched / released:
-        newPlanet.GetComponent<PlanetGravity>().enabled = true;
-        var colliders = newPlanet.GetComponentsInChildren<Collider>();
+        launchedPlanet.GetComponent<PlanetGravity>().enabled = true;
+        var colliders = launchedPlanet.GetComponentsInChildren<Collider>();
         foreach (var collider in colliders)
         {
             collider.enabled = true;
         }
-        newPlanet.GetComponent<Planet>().SetTrailRendererEnabled(true);
-        newPlanet.tag = "Planet";
+        launchedPlanet.SetTrailRendererEnabled(true);
 
-        // find all entitys and set home (for some reason it is not setting)
-        var childEntities = newPlanet.GetComponentsInChildren<Objects_On_Planet>();
-        Debug.Log("num children entities: " + childEntities.Count());
+        launchedPlanet.tag = "Planet";
+
+        //// find all entitys and set home (for some reason it is not setting)
+        //var childEntities = launchedPlanet.GetComponentsInChildren<Objects_On_Planet>();
+        //Debug.Log("num children entities: " + childEntities.Count());
+
         //var planetObj = newPlanet.GetComponent<Planet>();
         //childEntities.ToList().ForEach(x => x.homePlanet = planetObj);
         //newPlanet.transform.GetComponentInChildren<TrailRenderer>().gameObject.SetActive(true); // todo this doesn't seem to be working.
 
-        // TODO: Figure out what happened here
-        //StatsManager.Instance.PlanetLaunched(previewPlanet.planetType);
-        cameraManager.SetFocusTarget(newPlanet.transform);
+        StatsManager.Instance.PlanetLaunched(previewPlanet.planetType);
+        cameraManager.SetFocusTarget(launchedPlanet.transform);
 
         boing.GetComponent<AudioSource>().Play();
         // Go back to launch mode for another launch:
-        StartPickLocation();
+        StartPickLocation(destroyPreviousPlanet: false);
     }
 
-    private void newPotentialPlanet()
+    private void newPotentialPlanet(bool destroyPrevious)
     {
-        if (previewPlanet != null)
+        // Destroy the prior preview planet. Good for planet and camera swapping
+        if(destroyPrevious && previewPlanet)
         {
-            Destroy(previewPlanet);
-            previewPlanet = null;
+            Destroy(previewPlanet.gameObject);
         }
-
+        previewPlanet = null;
+        
         var newPlanetType = planetBuilder.scriptable_planets[planetTypeInteractionIndex % planetBuilder.scriptable_planets.Count];
         var newPlanet = planetBuilder.Build(newPlanetType);
 
