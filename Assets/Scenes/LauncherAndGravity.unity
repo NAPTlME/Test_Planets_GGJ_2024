@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0005401374, g: 0.014383134, b: 0.042884134, a: 1}
+  m_IndirectSpecularColor: {r: 0.000536352, g: 0.014379277, b: 0.04289218, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -954,6 +954,11 @@ PrefabInstance:
       objectReference: {fileID: 2055926826}
     - target: {fileID: 3533816880467357473, guid: 669bd3246d252a94bb337912fcbc9d74,
         type: 3}
+      propertyPath: JokesTextee
+      value: 
+      objectReference: {fileID: 1928547358}
+    - target: {fileID: 3533816880467357473, guid: 669bd3246d252a94bb337912fcbc9d74,
+        type: 3}
       propertyPath: rippleGridAnim
       value: 
       objectReference: {fileID: 1476452366}
@@ -1010,12 +1015,12 @@ PrefabInstance:
     - target: {fileID: 4668221157438949908, guid: 669bd3246d252a94bb337912fcbc9d74,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000000010752377
+      value: 0.0000000010752377
       objectReference: {fileID: 0}
     - target: {fileID: 4668221157438949908, guid: 669bd3246d252a94bb337912fcbc9d74,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1.8621016e-11
+      value: -1.8621016e-11
       objectReference: {fileID: 0}
     - target: {fileID: 5123826943482501050, guid: 669bd3246d252a94bb337912fcbc9d74,
         type: 3}
@@ -1282,39 +1287,6 @@ PrefabInstance:
     - target: {fileID: 3353614264272202756, guid: 439fec6de7f8b4a05bacdc3bce1faf83,
         type: 3}
       propertyPath: m_TargetTexture
-    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
-        type: 3}
-      propertyPath: YearText
-      value: 
-      objectReference: {fileID: 747107237}
-    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
-        type: 3}
-      propertyPath: ScoreText
-      value: 
-      objectReference: {fileID: 2055926826}
-    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
-        type: 3}
-      propertyPath: JokesTextee
-      value: 
-      objectReference: {fileID: 1928547358}
-    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
-        type: 3}
-      propertyPath: rippleGridAnim
-      value: 
-      objectReference: {fileID: 1104687784}
-    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
-        type: 3}
-      propertyPath: PlanentsKilledText
-      value: 
-      objectReference: {fileID: 1928547356}
-    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
-        type: 3}
-      propertyPath: ResidentsKilledText
-      value: 
-      objectReference: {fileID: 1928547357}
-    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
-        type: 3}
-      propertyPath: KilledResidentsTemporary
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3353614264272202756, guid: 439fec6de7f8b4a05bacdc3bce1faf83,
@@ -1361,6 +1333,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AllowXRRendering
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: YearText
+      value: 
+      objectReference: {fileID: 747107237}
+    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: ScoreText
+      value: 
+      objectReference: {fileID: 2055926826}
+    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: JokesTextee
+      value: 
+      objectReference: {fileID: 1928547358}
+    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: rippleGridAnim
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: PlanentsKilledText
+      value: 
+      objectReference: {fileID: 1928547356}
+    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: ResidentsKilledText
+      value: 
+      objectReference: {fileID: 1928547357}
+    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: KilledResidentsTemporary
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1655,18 +1662,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2050858010 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 224542151975858203, guid: 8c351bfe862324a8bb9c73bb916977e7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1837855610}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e9b7a689ae50471f9aaa6a4f2d639eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2055926826 stripped
