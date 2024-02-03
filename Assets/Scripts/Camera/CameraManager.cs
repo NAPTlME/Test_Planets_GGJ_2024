@@ -21,7 +21,7 @@ public class CameraManager : MonoBehaviour
 
     public event Action<CameraType> OnMainCameraChanged;
 
-    public float minOrbitalFov = 40;
+    public float minOrbitalFov = 20;
     public float maxOrbitalFov = 80;
     public float minOverheadFov = 3;
     public float maxOverheadFov = 10;
