@@ -35,7 +35,6 @@ public class PlanetGravity : MonoBehaviour
             var fromSun = this.gameObject.transform.position - sunPosition;
             var distanceFromSun = fromSun.magnitude;
             distanceToSun = distanceFromSun;
-            Debug.Log("DistancefromSun: " + distanceFromSun);
             if (distanceFromSun > GravityManager.MaxDistanceBeforeLost)
             {
                 destroyed = true;

@@ -26,6 +26,7 @@ public class currentPlanetIndicator : MonoBehaviour
         if (targetPlanet == null && mainCameraType.Equals(CameraType.Orbital))
         {
             targetPlanet = GlobalManager.getInstance().cameraManager.GetOrbitalTarget();
+            Debug.Log(targetPlanet.tag);
             CheckTargetAndState();
         }
     }
@@ -44,14 +45,7 @@ public class currentPlanetIndicator : MonoBehaviour
 
     private void GravityManager_OnActivePlanetChanged(PlanetGravity planet)
     {
-        if (!planet.CompareTag("Sun"))
-        {
-            targetPlanet = planet;
-        }
-        else
-        {
-            targetPlanet = null;
-        }
+        targetPlanet = planet;
         CheckTargetAndState();
     }
 

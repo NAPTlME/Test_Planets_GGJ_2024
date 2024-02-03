@@ -93,6 +93,10 @@ public class CameraManager : MonoBehaviour
     public PlanetGravity GetOrbitalTarget()
     {
         var brain = MainCameraType.Equals(CameraType.Orbital) ? mainCamBrain : miniCamBrain;
+        if (brain.IsBlending)
+        {
+            return ((CinemachineFreeLook)brain.ActiveBlend.CamB).transform.parent.GetComponentInChildren<PlanetGravity>();
+        }
         return ((CinemachineFreeLook)brain.ActiveVirtualCamera).transform.parent.GetComponentInChildren<PlanetGravity>();
     }
 }
