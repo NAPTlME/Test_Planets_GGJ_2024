@@ -20,7 +20,13 @@ public class GlobalManager : MonoBehaviour
     public CameraManager cameraManager;
     public Transform SizzleParticleTransform;
     private ParticleSystem _sizzleParticleSystem;
+    public ParticleSystem planetCollisionParticleSystem;
     public float SizzleOffset = 0.5f;
+
+    public float MinBurstCount = 150;
+    public float MaxBurstCount = 500;
+    public float MinImpulseRange = 5000;
+    public float MaxImpulseRange = 20000;
     // Start is called before the first frame update
     void Start()
     {
@@ -85,7 +91,7 @@ public class GlobalManager : MonoBehaviour
             if (planetHits.Count > 0)
             {
                 var hit = planetHits.OrderBy(hit => (Camera.main.WorldToScreenPoint(hit.transform.position) - Input.mousePosition).magnitude).First();
-                string planetName = hit.transform.gameObject.GetComponent<Planet>().planetName;
+                string planetName = hit.transform.gameObject.GetComponentInParent<Planet>().planetName;
                 Vector2 screenPoint = Camera.main.WorldToScreenPoint(hit.transform.position);
                 var textPoint = new Vector2(screenPoint.x, screenPoint.y + 50);
                 Vector2 canvasPos;
@@ -153,5 +159,15 @@ public class GlobalManager : MonoBehaviour
         Debug.DrawRay(contact.point, cameraDirOnNormalPlane, Color.green, 3f);
         Debug.DrawRay(contact.point, normalDir, Color.blue, 3f);
         _sizzleParticleSystem.Emit(particleParam, 1);
+    }
+    public void BurstAt(ContactPoint contact, float impulse)
+    {
+        Debug.Log("Attempt to burst");
+        var normalDir = contact.point - GravityManager.getInstance().gravityPlanets.First().transform.position;
+        // set position for emit
+        planetCollisionParticleSystem.transform.position = contact.point;
+        planetCollisionParticleSystem.transform.rotation = planetCollisionParticleSystem.transform.rotation *= Quaternion.FromToRotation(planetCollisionParticleSystem.transform.up, normalDir);
+        int burstCount = Mathf.CeilToInt((Mathf.Clamp(impulse, MinImpulseRange, MaxImpulseRange) - MinImpulseRange) / (MaxImpulseRange - MinImpulseRange) * (MaxBurstCount - MinBurstCount) + MinBurstCount);
+        planetCollisionParticleSystem.Emit(burstCount);
     }
 }

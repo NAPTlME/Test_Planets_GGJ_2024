@@ -86,5 +86,15 @@ public class PlanetGravity : MonoBehaviour
             Debug.Log("Hit at: " + collision.GetContact(0).point);
             GlobalManager.getInstance().SizzleAt(collision.GetContact(0));
         }
+        if (gameObject.CompareTag("Sun"))
+        {
+            Debug.Log("other tag: " + collision.gameObject.tag);
+        }
+        if (gameObject.CompareTag("Sun") && collision.gameObject.CompareTag("Planet"))
+        {
+            // todo get impulse and determine a good range to determine the number of particles to emit
+            Debug.Log("Impulse: " + collision.impulse.magnitude);
+            GlobalManager.getInstance().BurstAt(collision.GetContact(0), collision.impulse.magnitude);
+        }
     }
 }

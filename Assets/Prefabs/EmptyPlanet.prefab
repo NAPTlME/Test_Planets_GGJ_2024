@@ -484,6 +484,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OrbitalPlanet
       objectReference: {fileID: 0}
+    - target: {fileID: 7348139280587474309, guid: b77cd184adc87184eb4a498a8448e677,
+        type: 3}
+      propertyPath: m_TagString
+      value: Planet
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 853528039951440146, guid: b77cd184adc87184eb4a498a8448e677, type: 3}
     m_RemovedGameObjects: []
