@@ -58,7 +58,7 @@ public class PlanetGravity : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("This: " + this.gameObject.name + " hit: " + collision.gameObject.name);
+        Debug.Log("This: " + this.gameObject.name + " hit by: " + collision.gameObject.name);
         if (!destroyed && collision.gameObject.CompareTag("Sun"))
         {
             Debug.Log("Crashing into the sun, BURN!");
@@ -79,6 +79,12 @@ public class PlanetGravity : MonoBehaviour
             destroyed = true;
             GravityManager.getInstance().ForgetPlanet(this);
             Destroy(planet.gameObject, planetAudio.audioSource.clip.length);
+        }
+        if (gameObject.CompareTag("Sun") && collision.gameObject.CompareTag("Entities"))
+        {
+            Debug.Log("Start Sizzle");
+            Debug.Log("Hit at: " + collision.GetContact(0).point);
+            GlobalManager.getInstance().SizzleAt(collision.GetContact(0));
         }
     }
 }

@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2653287513520222868}
   m_Layer: 0
   m_Name: pCube17
-  m_TagString: Untagged
+  m_TagString: Entities
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,7 +154,6 @@ MonoBehaviour:
   homePlanet: {fileID: 0}
   planets: []
   DIST_ACCEL_COEF: 175
-  SUN_GRAVITY_COEF: 36
   MaxDistFromHomePlanetSurface: 500
   pitchRange: 0.1
   Center: {fileID: 1223719460683956039}

@@ -163,8 +163,6 @@ public class Objects_On_Planet : MonoBehaviour
             var newHomeRbody = newHomePlanet.orbitalPlanetObj.GetComponent<Rigidbody>();
             if (newHomeRbody != null)
             {
-                Debug.Log("newHomeRbody: " + newHomeRbody);
-                Debug.Log(newHomeRbody.velocity);
                 if (rbody != null)// not sure why, but this happens on awake
                 {
                     //rbody.velocity -= newHomeRbody.velocity;
@@ -208,19 +206,14 @@ public class Objects_On_Planet : MonoBehaviour
         var fromPlanet = Center.position - homePlanet.localPlanetObj.transform.position;
         var distFromPlanet = fromPlanet.magnitude;
         var angleFromPlanetNormal = Vector3.Angle(fromPlanet, transform.TransformDirection(Vector3.up));
-        Debug.Log("Distance from planet: " + distFromPlanet + ", angleFromPlanetNormal: " + angleFromPlanetNormal);
 
         //if (Physics.Raycast(r, rayDist, LayerMask.NameToLayer("LocalPlanet"))){
         if (distFromPlanet <= homePlanet.radius && angleFromPlanetNormal <= 30) { 
-            Debug.Log("hit found");
             canJumpAgain = false;
             // rotate 30 degrees +-
             var rotateSpeed = 30f;
             var rotateDegrees = 30f * UnityEngine.Random.Range(-1f, 1f);
-            Debug.Log("rotateDegrees: " + rotateDegrees);
-            Debug.Log("rotateDegrees: " + rotateDegrees);
             var rotateTime = Mathf.Abs(rotateDegrees) / rotateSpeed;
-            Debug.Log("rotateTime: " + rotateTime);
             var endTime = Time.time + rotateTime;
             bool neg = rotateDegrees < 0;
             rotateSpeed *= neg ? -1 : 1;
@@ -263,6 +256,7 @@ public class Objects_On_Planet : MonoBehaviour
         if (CanBeKilled && collision.gameObject.CompareTag("Sun"))
         {
             Debug.Log("entity touched the sun");
+            Debug.DrawRay(Vector3.zero, collision.GetContact(0).point, Color.red, 3f);
             audioSource.pitch = 1 + (UnityEngine.Random.value - 0.5f) * pitchRange;
             audioSource.Play();
             var mesh = GetComponent<MeshRenderer>();

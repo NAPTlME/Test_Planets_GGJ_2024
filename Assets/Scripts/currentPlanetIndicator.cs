@@ -25,7 +25,6 @@ public class currentPlanetIndicator : MonoBehaviour
         }
         if (targetPlanet == null && mainCameraType.Equals(CameraType.Orbital))
         {
-            Debug.Log("Try get new target planet");
             targetPlanet = GlobalManager.getInstance().cameraManager.GetOrbitalTarget();
             CheckTargetAndState();
         }
