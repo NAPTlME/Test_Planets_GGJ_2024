@@ -49,7 +49,6 @@ public class DodecPlanetBuild : MonoBehaviour
         if (planet_so.TilesAvailable.Count == 0)
         {
             var mesh = Instantiate(planet_so.optional_prefab, planetCollectionObject.transform);
-            return (planet, planet_so.type);
         }
         else
         {
@@ -76,8 +75,6 @@ public class DodecPlanetBuild : MonoBehaviour
                 int index = tilesChance.Select((t, i) => (t, i)).Where(x => x.t >= chance).Select(x => x.i).First();
                 return InstantiatePlanetTile(planet_so.TilesAvailable.ElementAt(index), planetBehavior, planetCollectionObject.transform);
             }).ToList();
-            // scale after instantiation
-            planet.transform.localScale = Vector3.one * scale;
 
             // negative x is the bottom/flip face
             // the interior angles add up to 540 and are 108 each
@@ -123,8 +120,10 @@ public class DodecPlanetBuild : MonoBehaviour
             {
                 tiles.ElementAt(11).Item2.transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
             }
-            return (planet, planet_so.type);
         }
+        // scale after instantiation
+        planet.transform.localScale = Vector3.one * scale;
+        return (planet, planet_so.type);
     }
     private (GameObject, GameObject) InstantiatePlanetTile(PlanetTile tileInfo, Planet homePlanet, Transform planetCollection)
     {
