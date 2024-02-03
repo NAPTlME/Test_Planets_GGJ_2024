@@ -10,11 +10,11 @@ public class GravityManager : MonoBehaviour
 
     private static GravityManager instance = null;
     public const double MaxDistanceBeforeBending = 90f; // checked when it seemed "too far"
-    public const float BendingForce = 0.0018f;
+    public const float MaxBendingForce = 70f;
 
     public const float MaxDistanceBeforeLost = 190f;
 
-    public const float PullBackToPerpendicularRatio = 0.0001f;
+    public const float PullBackToPerpendicularRatio = 0.25f;
     // Not a real constant so we can use Double.Parse()
     static private double GRAVITY = 1;
 

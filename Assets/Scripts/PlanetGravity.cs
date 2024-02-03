@@ -32,9 +32,10 @@ public class PlanetGravity : MonoBehaviour
         if (!destroyed && !gameObject.CompareTag("Sun"))
         {
             var sunPosition = sun.transform.position;
-            var vector = this.gameObject.transform.position - sunPosition;
-            var distanceFromSun = vector.magnitude;
+            var fromSun = this.gameObject.transform.position - sunPosition;
+            var distanceFromSun = fromSun.magnitude;
             distanceToSun = distanceFromSun;
+            Debug.Log("DistancefromSun: " + distanceFromSun);
             if (distanceFromSun > GravityManager.MaxDistanceBeforeLost)
             {
                 destroyed = true;
@@ -47,15 +48,30 @@ public class PlanetGravity : MonoBehaviour
 
             if (distanceFromSun > GravityManager.MaxDistanceBeforeBending)
             {
-                // var vectorPerpendicularToTrajectory = Vector3.Cross(vector, Vector3.back);
-                var vectorPerpendicularToTrajectory = new Vector3(vector.z, 0, vector.x * -1);
-                var force = GravityManager.BendingForce
-                * (vector / distanceFromSun * -1
-                    / GravityManager.PullBackToPerpendicularRatio +
-                    vectorPerpendicularToTrajectory)
-                    * rigidBody.mass;
-                Debug.Log(force);
-                rigidBody.AddForce(force);
+
+                var vectorPerpendicularToTrajectory = Vector3.ProjectOnPlane(-fromSun, rigidBody.velocity);
+                // get the direction that gets closer to the sun
+                //vectorPerpendicularToTrajectory = Vector3.Dot(-fromSun, vectorPerpendicularToTrajectory) >= 0 ? vectorPerpendicularToTrajectory : -vectorPerpendicularToTrajectory;
+                Debug.DrawRay(transform.position, vectorPerpendicularToTrajectory, Color.magenta, 6f);
+                // only apply force if heading further from the sun
+                if (Vector3.Dot(rigidBody.velocity, fromSun) > 0)
+                {
+                    // var vectorPerpendicularToTrajectory = Vector3.Cross(vector, Vector3.back);
+                    
+                    /*var force = GravityManager.MaxBendingForce
+                    * (fromSun / distanceFromSun * -1
+                        / GravityManager.PullBackToPerpendicularRatio +
+                        vectorPerpendicularToTrajectory)
+                        * rigidBody.mass;*/
+                    var force = (-fromSun * GravityManager.PullBackToPerpendicularRatio + vectorPerpendicularToTrajectory).normalized * GravityManager.MaxBendingForce * rigidBody.mass;
+                    var force_alt = (-fromSun * GravityManager.PullBackToPerpendicularRatio + vectorPerpendicularToTrajectory).normalized * 
+                        (float)((distanceFromSun - GravityManager.MaxDistanceBeforeBending) / 
+                        (GravityManager.MaxDistanceBeforeLost - GravityManager.MaxDistanceBeforeBending)) * 
+                        GravityManager.MaxBendingForce * rigidBody.mass;
+                    force = force_alt;
+                    Debug.DrawRay(transform.position, force, Color.cyan, 6f);
+                    rigidBody.AddForce(force);
+                }
             }
         }
     }
