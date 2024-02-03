@@ -15,6 +15,7 @@ public class CameraManager : MonoBehaviour
     public Camera mainCamera;
     private CinemachineBrain mainCamBrain;
     public Camera miniCamera;
+    private CinemachineBrain miniCamBrain;
 
     public CameraType MainCameraType;
 
@@ -32,6 +33,7 @@ public class CameraManager : MonoBehaviour
     {
         MainCameraType = CameraType.Overhead;
         mainCamBrain = mainCamera.GetComponent<CinemachineBrain>();
+        miniCamBrain = miniCamera.GetComponent<CinemachineBrain>();
         /*currentMainCamera = mainLaunchCamera;
         currentMiniCamera = miniPlanetCamera;
         currentMainCamera.Priority = 1;
@@ -87,5 +89,10 @@ public class CameraManager : MonoBehaviour
         currFov = Mathf.Clamp(currFov, minFov, maxFov);
 
         SetFov(currFov);
+    }
+    public PlanetGravity GetOrbitalTarget()
+    {
+        var brain = MainCameraType.Equals(CameraType.Orbital) ? mainCamBrain : miniCamBrain;
+        return ((CinemachineFreeLook)brain.ActiveVirtualCamera).transform.parent.GetComponentInChildren<PlanetGravity>();
     }
 }

@@ -9,7 +9,7 @@ public class PlanetGravity : MonoBehaviour
 {
     public Rigidbody rigidBody;
     public CinemachineFreeLook vCamera;
-    private bool destroyed = false;
+    public bool destroyed = false;
 
     public float distanceToSun { get; private set; }
 

@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class currentPlanetIndicator : MonoBehaviour
 {
     MeshRenderer meshRenderer;
-    private PlanetGravity targetPlanet;
-    private CameraType mainCameraType = CameraType.Overhead;
+    public PlanetGravity targetPlanet;
+    public CameraType mainCameraType = CameraType.Overhead;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +15,20 @@ public class currentPlanetIndicator : MonoBehaviour
         GlobalManager.getInstance().cameraManager.OnMainCameraChanged += CameraManager_OnMainCameraChanged;
         GravityManager.getInstance().OnActivePlanetChanged += GravityManager_OnActivePlanetChanged;
         meshRenderer.enabled = false;
+    }
+    private void Update()
+    {
+        if (targetPlanet != null && targetPlanet.destroyed)
+        {
+            targetPlanet = null;
+            CheckTargetAndState();
+        }
+        if (targetPlanet == null && mainCameraType.Equals(CameraType.Orbital))
+        {
+            Debug.Log("Try get new target planet");
+            targetPlanet = GlobalManager.getInstance().cameraManager.GetOrbitalTarget();
+            CheckTargetAndState();
+        }
     }
 
     private void OnDestroy()
