@@ -44,32 +44,16 @@ public class PlanetGravity : MonoBehaviour
                     planet.planetType);
                 Destroy(planet.gameObject, 3); // Disappear in 3 secs
             }
-            else
-
-            if (distanceFromSun > GravityManager.MaxDistanceBeforeBending)
+            else if (distanceFromSun > GravityManager.MaxDistanceBeforeBending)
             {
-
-                var vectorPerpendicularToTrajectory = Vector3.ProjectOnPlane(-fromSun, rigidBody.velocity);
-                // get the direction that gets closer to the sun
-                //vectorPerpendicularToTrajectory = Vector3.Dot(-fromSun, vectorPerpendicularToTrajectory) >= 0 ? vectorPerpendicularToTrajectory : -vectorPerpendicularToTrajectory;
-                Debug.DrawRay(transform.position, vectorPerpendicularToTrajectory, Color.magenta, 6f);
                 // only apply force if heading further from the sun
                 if (Vector3.Dot(rigidBody.velocity, fromSun) > 0)
                 {
-                    // var vectorPerpendicularToTrajectory = Vector3.Cross(vector, Vector3.back);
-                    
-                    /*var force = GravityManager.MaxBendingForce
-                    * (fromSun / distanceFromSun * -1
-                        / GravityManager.PullBackToPerpendicularRatio +
-                        vectorPerpendicularToTrajectory)
-                        * rigidBody.mass;*/
-                    var force = (-fromSun * GravityManager.PullBackToPerpendicularRatio + vectorPerpendicularToTrajectory).normalized * GravityManager.MaxBendingForce * rigidBody.mass;
-                    var force_alt = (-fromSun * GravityManager.PullBackToPerpendicularRatio + vectorPerpendicularToTrajectory).normalized * 
-                        (float)((distanceFromSun - GravityManager.MaxDistanceBeforeBending) / 
+                    var vectorPerpendicularToTrajectory = Vector3.ProjectOnPlane(-fromSun, rigidBody.velocity);
+                    var force = (float)((distanceFromSun - GravityManager.MaxDistanceBeforeBending) /  // blending based on distance. Could also square this for a tighter curve
                         (GravityManager.MaxDistanceBeforeLost - GravityManager.MaxDistanceBeforeBending)) * 
-                        GravityManager.MaxBendingForce * rigidBody.mass;
-                    force = force_alt;
-                    Debug.DrawRay(transform.position, force, Color.cyan, 6f);
+                        GravityManager.MaxBendingForce * rigidBody.mass * 
+                        (-fromSun * GravityManager.PullBackToPerpendicularRatio + vectorPerpendicularToTrajectory).normalized;
                     rigidBody.AddForce(force);
                 }
             }
