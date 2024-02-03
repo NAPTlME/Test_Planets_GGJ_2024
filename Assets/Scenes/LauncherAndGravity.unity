@@ -610,10 +610,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c3b48545bd59243bd4bc2e38c2cf80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxDistanceBeforeBending: 100
-  MaxDistanceBeforeLost: 100
-  BendingForce: 1000000
-  PullBackToPerpendicularRatio: 5
   gravityPlanets: []
 --- !u!1001 &941286703
 PrefabInstance:
@@ -1286,6 +1282,39 @@ PrefabInstance:
     - target: {fileID: 3353614264272202756, guid: 439fec6de7f8b4a05bacdc3bce1faf83,
         type: 3}
       propertyPath: m_TargetTexture
+    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: YearText
+      value: 
+      objectReference: {fileID: 747107237}
+    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: ScoreText
+      value: 
+      objectReference: {fileID: 2055926826}
+    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: JokesTextee
+      value: 
+      objectReference: {fileID: 1928547358}
+    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: rippleGridAnim
+      value: 
+      objectReference: {fileID: 1104687784}
+    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: PlanentsKilledText
+      value: 
+      objectReference: {fileID: 1928547356}
+    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: ResidentsKilledText
+      value: 
+      objectReference: {fileID: 1928547357}
+    - target: {fileID: 7141560427436503104, guid: 494c5d8a49464f34b9f5339cc84db286,
+        type: 3}
+      propertyPath: KilledResidentsTemporary
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3353614264272202756, guid: 439fec6de7f8b4a05bacdc3bce1faf83,
@@ -1560,11 +1589,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1279199809398020581, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -3.600006
-      objectReference: {fileID: 0}
     - target: {fileID: 4533257608696886466, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
         type: 3}
       propertyPath: m_Name
@@ -1607,6 +1631,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1928547357 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7458761902121316419, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
+    type: 3}
+  m_PrefabInstance: {fileID: 1928547354}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1928547358 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6418843672030419909, guid: 5d3ee96bf38268f488d90b2e8abc6f53,
+    type: 3}
+  m_PrefabInstance: {fileID: 1928547354}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2050858010 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 224542151975858203, guid: 8c351bfe862324a8bb9c73bb916977e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1837855610}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9b7a689ae50471f9aaa6a4f2d639eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2055926826 stripped

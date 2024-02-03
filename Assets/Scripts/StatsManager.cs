@@ -9,6 +9,20 @@ public enum StatsPlanetType
     MEDIUM,
     LARGE
 }
+
+public class JokeSpec
+{
+    public string text = "";
+    public bool used = false;
+
+    public int threshold;
+
+    public JokeSpec(int threshold, string text)
+    {
+        this.text = text;
+        this.threshold = threshold;
+    }
+}
 public class StatsManager : MonoBehaviour
 {
     public RippleGridAnim rippleGridAnim;
@@ -21,12 +35,22 @@ public class StatsManager : MonoBehaviour
     private int years = 0;
 
     public TMP_Text PlanentsKilledText;
+    public TMP_Text JokesTextee;
     public TMP_Text ResidentsKilledText;
     public TMP_Text ScoreText;
     public TMP_Text YearText;
     public TMP_Text KilledResidentsTemporary;
+    private AudioSource audioSource;
+
+    private JokeSpec[] jokes = new JokeSpec[] {
+        new JokeSpec((int)(0.3 * MAX_RESIDENTS_KILLED), "You have a long way to go, apprentice."),
+        new JokeSpec((int)(0.6 * MAX_RESIDENTS_KILLED), "More tactful, you must be."),
+        new JokeSpec((int)(0.7 * MAX_RESIDENTS_KILLED), "Chuck Norris' grandson lived on this planet!"),
+        new JokeSpec((int)(0.9 * MAX_RESIDENTS_KILLED), "Hey! Those are real people!"),
+    };
 
     double tempResidentsKilledPromptHideFrameNumber = 0f;
+    double tempJokesKilledPromptHideFrameNumber = 0f;
 
     int remainingToKillBeforeGameOver = MAX_RESIDENTS_KILLED;
 
@@ -69,6 +93,23 @@ public class StatsManager : MonoBehaviour
         killedResidents += newKilledResidents;
         remainingToKillBeforeGameOver -= newKilledResidents;
         score -= PlanetTypeToPoints[type];
+        if (!overrideAsLost)
+        {
+            audioSource.Play();
+        }
+
+        foreach (var joke in jokes)
+        {
+            if (remainingToKillBeforeGameOver <= joke.threshold && !joke.used)
+            {
+                JokesTextee.text = joke.text;
+                joke.used = true;
+                tempJokesKilledPromptHideFrameNumber = Time.frameCount + 400;
+                break;
+            }
+        }
+
+
         if (remainingToKillBeforeGameOver <= 0)
         {
             GlobalManager.getInstance().GameOver(score);
@@ -86,7 +127,7 @@ public class StatsManager : MonoBehaviour
                 KilledResidentsTemporary.text = newKilledResidents + " RESIDENTS DIED !!\n" + remainingToKillBeforeGameOver + " RESIDENTS REMAINING BEFORE THE GODS NOTICE.";
 
             }
-            tempResidentsKilledPromptHideFrameNumber = Time.frameCount + 120; // ~1s
+            tempResidentsKilledPromptHideFrameNumber = Time.frameCount + 350; // ~1s
         }
     }
 
@@ -101,13 +142,14 @@ public class StatsManager : MonoBehaviour
     private void Start()
     {
         secondsSinceLastYear = 0;
+        audioSource = GetComponent<AudioSource>();
         years = 0;
     }
 
     private void Update()
     {
         secondsSinceLastYear += Time.deltaTime;
-        if(secondsSinceLastYear > 5)
+        if (secondsSinceLastYear > 5)
         {
             secondsSinceLastYear -= 5;
             years++;
@@ -130,9 +172,14 @@ public class StatsManager : MonoBehaviour
             YearText.text = years.ToString("D6");
         }
 
+
         if (tempResidentsKilledPromptHideFrameNumber < Time.frameCount)
         {
             KilledResidentsTemporary.text = "";
+        }
+        if (tempJokesKilledPromptHideFrameNumber < Time.frameCount)
+        {
+            JokesTextee.text = "";
         }
     }
 }

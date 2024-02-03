@@ -35,7 +35,7 @@ public class PlanetGravity : MonoBehaviour
             var vector = this.gameObject.transform.position - sunPosition;
             var distanceFromSun = vector.magnitude;
             distanceToSun = distanceFromSun;
-            if (distanceFromSun > GravityManager.getInstance().MaxDistanceBeforeLost)
+            if (distanceFromSun > GravityManager.MaxDistanceBeforeLost)
             {
                 destroyed = true;
                 var planet = this.GetComponentInParent<Planet>();
@@ -43,15 +43,19 @@ public class PlanetGravity : MonoBehaviour
                     planet.planetType);
                 Destroy(planet.gameObject, 3); // Disappear in 3 secs
             }
-            else if (distanceFromSun > GravityManager.getInstance().MaxDistanceBeforeBending)
+            else
+
+            if (distanceFromSun > GravityManager.MaxDistanceBeforeBending)
             {
                 // var vectorPerpendicularToTrajectory = Vector3.Cross(vector, Vector3.back);
                 var vectorPerpendicularToTrajectory = new Vector3(vector.z, 0, vector.x * -1);
-                rigidBody.AddForce(
-                    GravityManager.getInstance().BendingForce * (vector / distanceFromSun * -1
-                    / GravityManager.getInstance().PullBackToPerpendicularRatio +
-                    vectorPerpendicularToTrajectory) * rigidBody.mass
-                );
+                var force = GravityManager.BendingForce
+                * (vector / distanceFromSun * -1
+                    / GravityManager.PullBackToPerpendicularRatio +
+                    vectorPerpendicularToTrajectory)
+                    * rigidBody.mass;
+                Debug.Log(force);
+                rigidBody.AddForce(force);
             }
         }
     }
