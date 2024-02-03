@@ -72,10 +72,12 @@ public class PlanetGravity : MonoBehaviour
             StatsManager.getInstance().KillResidents(planet.planetType);
             // release entities
             planet.localPlanetObj.GetComponentsInChildren<Objects_On_Planet>().ToList().ForEach(x => x.transform.SetParent(null, true));
+            planet.localPlanetObj.SetActive(false);
             // Note: we could use `this.enabled = false` instead but I don't
             // trust it to happen soon enough before the next run/couple of runs of
             // the physics, the boolean should be trusthworthy
             destroyed = true;
+            GravityManager.getInstance().ForgetPlanet(this);
             Destroy(planet.gameObject, planetAudio.audioSource.clip.length);
         }
     }

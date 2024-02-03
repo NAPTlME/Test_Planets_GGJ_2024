@@ -27,10 +27,10 @@ public class Objects_On_Planet : MonoBehaviour
     public float pitchRange = 0.1f;
     public Transform Center;
     public bool CanBeKilled = false;
-    public BoxCollider boxCollider;
+    private BoxCollider boxCollider;
 
-    public float minIdle = 2f;
-    public float maxIdle = 5f;
+    public float minIdle = 4f;
+    public float maxIdle = 8f;
     public float idleUntilTime = 0f;
     private bool canJumpAgain = true;
 
@@ -70,7 +70,7 @@ public class Objects_On_Planet : MonoBehaviour
     // FixedUpdate runs on a predetermined tick rate (50hz by default)
     void FixedUpdate()
     {
-        if (CanBeKilled)
+        if (homePlanet != null && CanBeKilled)
         {
             if (Time.time > idleUntilTime)
             {
@@ -105,7 +105,6 @@ public class Objects_On_Planet : MonoBehaviour
             // case for no planets nearby
             SetHomePlanet(null);
             this.planetDistances = newPlanetDistances;
-            return;
         }
 
         // force from home planet
@@ -115,6 +114,14 @@ public class Objects_On_Planet : MonoBehaviour
             var directionToPlanet = (homePlanet.localPlanetObj.transform.position - Center.position).normalized;
             var gravityForceFromPlanet = directionToPlanet * BASE_GRAVITY_COEF * homePlanet.radius;
             totalGravityForce += gravityForceFromPlanet;
+        } else
+        {
+            var sun = GravityManager.getInstance().gravityPlanets.First();
+            // send to sun
+            var toSun = (sun.transform.position - Center.position);
+            var directionToSun = toSun.normalized;
+            var gravityForceFromSun = sun.rigidBody.mass * rbody.mass / (toSun.magnitude * toSun.magnitude);
+            totalGravityForce += gravityForceFromSun * directionToSun;
         }
         //Debug.Log("Force from home planet: " + gravityForceFromPlanet.magnitude);
         // sum up forces from non home planets
@@ -195,11 +202,17 @@ public class Objects_On_Planet : MonoBehaviour
 
     IEnumerator StartMove()
     {
-        Ray r = new Ray(Center.position, transform.TransformDirection(Vector3.down));
-        var bottomOfBox = boxCollider.bounds.center - transform.TransformDirection(new Vector3(0, boxCollider.bounds.extents.y * 1.5f));
-        var rayDist = (Center.position - bottomOfBox).magnitude;
-        Debug.Log("Checking for hit");
-        if (Physics.Raycast(r, rayDist, LayerMask.NameToLayer("LocalPlanet"))){
+        //Ray r = new Ray(Center.position, transform.TransformDirection(Vector3.down));
+        //var bottomOfBox = boxCollider.bounds.center - transform.TransformDirection(new Vector3(0, boxCollider.bounds.extents.y * 1.5f));
+        //var rayDist = (Center.position - bottomOfBox).magnitude;
+        var fromPlanet = Center.position - homePlanet.localPlanetObj.transform.position;
+        var distFromPlanet = fromPlanet.magnitude;
+        var angleFromPlanetNormal = Vector3.Angle(fromPlanet, transform.TransformDirection(Vector3.up));
+        Debug.Log("Distance from planet: " + distFromPlanet + ", angleFromPlanetNormal: " + angleFromPlanetNormal);
+
+        //if (Physics.Raycast(r, rayDist, LayerMask.NameToLayer("LocalPlanet"))){
+        if (distFromPlanet <= homePlanet.radius && angleFromPlanetNormal <= 30) { 
+            Debug.Log("hit found");
             canJumpAgain = false;
             // rotate 30 degrees +-
             var rotateSpeed = 30f;
@@ -257,11 +270,13 @@ public class Objects_On_Planet : MonoBehaviour
             {
                 mesh.enabled = false;
             }
+            GetComponents<Collider>().ToList().ForEach(x => x.enabled = false);
             Destroy(gameObject, audioSource.clip.length);
         }
     }
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.white;
         if (rbody != null)
         {
             var CoM = rbody.worldCenterOfMass;
@@ -272,6 +287,13 @@ public class Objects_On_Planet : MonoBehaviour
         if (homePlanet != null && homePlanet.localPlanetObj != null)
         {
             Gizmos.DrawSphere(homePlanet.localPlanetObj.transform.position, 0.5f);
+        }
+        if (boxCollider != null)
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawSphere(Center.position, CENTER_OF_MASS_GIZMO_RAD);
+            var bottomOfBox = boxCollider.bounds.center - transform.TransformDirection(new Vector3(0, boxCollider.bounds.extents.y * 1.3f));
+            Gizmos.DrawLine(Center.position, bottomOfBox);
         }
     }
 }

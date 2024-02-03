@@ -321,6 +321,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &413131689 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 3371140541550828438, guid: 1a088b38102b35c42babc44c0bfc2228,
+    type: 3}
+  m_PrefabInstance: {fileID: 1713219480}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1713219480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -329,6 +335,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 452400108182387893, guid: 1a088b38102b35c42babc44c0bfc2228,
+        type: 3}
+      propertyPath: CanBeKilled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 452400108182387893, guid: 1a088b38102b35c42babc44c0bfc2228,
+        type: 3}
+      propertyPath: boxCollider
+      value: 
+      objectReference: {fileID: 413131689}
     - target: {fileID: 887302834907570626, guid: 1a088b38102b35c42babc44c0bfc2228,
         type: 3}
       propertyPath: m_Enabled
@@ -352,12 +368,12 @@ PrefabInstance:
     - target: {fileID: 923341296862143908, guid: 1a088b38102b35c42babc44c0bfc2228,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.8956397
       objectReference: {fileID: 0}
     - target: {fileID: 923341296862143908, guid: 1a088b38102b35c42babc44c0bfc2228,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.44478023
       objectReference: {fileID: 0}
     - target: {fileID: 923341296862143908, guid: 1a088b38102b35c42babc44c0bfc2228,
         type: 3}
@@ -372,7 +388,7 @@ PrefabInstance:
     - target: {fileID: 923341296862143908, guid: 1a088b38102b35c42babc44c0bfc2228,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -52.819
       objectReference: {fileID: 0}
     - target: {fileID: 923341296862143908, guid: 1a088b38102b35c42babc44c0bfc2228,
         type: 3}
@@ -384,10 +400,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 940467534556742640, guid: 1a088b38102b35c42babc44c0bfc2228,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1995257142204254340, guid: 1a088b38102b35c42babc44c0bfc2228,
         type: 3}
       propertyPath: m_Name
       value: pCube6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371140541550828438, guid: 1a088b38102b35c42babc44c0bfc2228,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
