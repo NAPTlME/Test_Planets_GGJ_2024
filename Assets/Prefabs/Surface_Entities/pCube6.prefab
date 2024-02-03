@@ -162,7 +162,7 @@ MonoBehaviour:
   homePlanet: {fileID: 0}
   planets: []
   DIST_ACCEL_COEF: 175
-  MaxDistFromHomePlanetSurface: 500
+  MaxDistFromHomePlanetSurface: 50
   pitchRange: 0.1
   Center: {fileID: 6486679299244737781}
   CanBeKilled: 0
