@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Linq;
+using System.Drawing;
 
 public class LaunchManager : MonoBehaviour
 {
@@ -203,7 +204,12 @@ public class LaunchManager : MonoBehaviour
         Rigidbody rbody = newPlanet.orbitalPlanetObj.GetComponent<Rigidbody>();
         var direction = (launchLoc - curLoc).normalized;
         var dist = (launchLoc - curLoc).magnitude;
-        rbody.AddForce(direction * dist * SLINGSHOT_COEF * rbody.mass);
+        //force holds the value of the force to be added.
+        var force = (direction * dist * SLINGSHOT_COEF * rbody.mass);
+        //df holds just direction times exponential distance for the trail
+        var df = (direction * dist);
+        rbody.AddForce(force/*direction * (float)Math.Pow(dist, 1.5f) * SLINGSHOT_COEF * rbody.mass*/);
+        Debug.Log("Force Added: " + force);
         LaunchArrow.FadeOut(0.4f);
         // Enable the gravity on the planet only once it's been launched / released:
         var planetGrav = newPlanet.orbitalPlanetObj.GetComponent<PlanetGravity>();
@@ -220,6 +226,9 @@ public class LaunchManager : MonoBehaviour
             x.SetHomePlanet(newPlanet);
         });
         newPlanet.SetTrailRendererEnabled(true);
+        //Set initial trail size, color & duration until it turns to default
+        newPlanet.InitialTrailRenderer(df.sqrMagnitude /10000, new UnityEngine.Color(force.x, force.z, 0, 1f), df.sqrMagnitude/10000);
+
         newPlanet.tag = "Planet";
 
         StatsManager.getInstance().PlanetLaunched(currentPlanet.planetType);
