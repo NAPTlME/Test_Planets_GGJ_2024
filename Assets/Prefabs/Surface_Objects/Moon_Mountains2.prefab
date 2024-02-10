@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4954773800089956681}
   - component: {fileID: 8248771437149169686}
   - component: {fileID: 5038912459596449508}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Moon_Mountains2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 768
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -119,7 +119,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 768
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0

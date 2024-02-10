@@ -18,8 +18,6 @@ public class LaunchManager : MonoBehaviour
     private GameObject potentialPlanet;
     private Vector3 launchLoc;
     public Launch_Arrow LaunchArrow;
-    private StatsPlanetType statsPlanetType = StatsPlanetType.SMALL;
-    private CameraManager cameraManager;
     public GameObject boing;
 
     int planetTypeInteractionIndex = 0;
@@ -42,70 +40,113 @@ public class LaunchManager : MonoBehaviour
         mode = Mode.PICK_LOCATION;
         var emptyObj = new GameObject("empty");
         currentPlanet = planetPrefab.GetComponent<Planet>();
-
-        cameraManager = Camera.main.gameObject.GetComponent<CameraManager>();
     }
 
     void Update()
     {
-        if (mode != Mode.NONE && Input.GetKeyDown(KeyCode.Space))
+        switch(mode)
         {
-            cameraManager.SwapCameras();
-            Exit();
-            return;
+            case Mode.NONE:
+                HandleModeNone();
+                break;
+            case Mode.PICK_LOCATION:
+                HandleModePickLocation();
+                break;
+            case Mode.SLINGSHOT:
+                HandleModeSlingshot();
+                break;
         }
-        if (mode == Mode.NONE && Input.GetKeyDown(KeyCode.Space))
+        HandlePlanetCameraCycle();
+        HandleCameraZoom();
+    }
+
+    private void HandleModeNone()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
         {
-            cameraManager.SwapCameras();
+            GlobalManager.getInstance().cameraManager.SwapCameras();
             StartPickLocation();
-            return;
         }
-        if (mode == Mode.PICK_LOCATION && Input.GetMouseButtonDown(0)) // left click
+    }
+    private void HandleModePickLocation()
+    {
+        if (HandleLauncherActiveLogic_Before_ShouldContinue())
         {
-            StartSlingshot();
-            return;
+            if (Input.GetMouseButtonDown(0)) // left click
+            {
+                StartSlingshot();
+            }
+            HandleLauncherActiveLogic_After();
         }
-        if (mode == Mode.SLINGSHOT && Input.GetMouseButtonUp(0))
+    }
+    private void HandleModeSlingshot()
+    {
+        if (HandleLauncherActiveLogic_Before_ShouldContinue())
         {
-            Launch();
-            return;
+            if (Input.GetMouseButtonUp(0))
+            {
+                Launch();
+            }
+            HandleLauncherActiveLogic_After();
+            Vector2 launchLoc_2d = new Vector2(launchLoc.x, launchLoc.z);
+            Vector2 potentialPlanetPos_2d = new Vector2(potentialPlanet.transform.position.x, potentialPlanet.transform.position.z);
+            LaunchArrow.UpdatePosition(launchLoc_2d, potentialPlanetPos_2d);
         }
-        if (mode != Mode.NONE && (Input.GetKeyDown(KeyCode.Tab) || Input.GetMouseButtonDown(1)))
+    }
+    private void HandlePlanetCameraCycle()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            GravityManager.getInstance().CyclePlanetCam(-1);
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            GravityManager.getInstance().CyclePlanetCam(1);
+        }
+    }
+    private void HandleCameraZoom()
+    {
+        // putting this here because we don't have a standard place for inputs..
+        var mouseScrollYDelta = Input.mouseScrollDelta.y;
+        if (mouseScrollYDelta != 0)
+        {
+            GlobalManager.getInstance().cameraManager.ZoomMainCam(mouseScrollYDelta);
+        }
+    }
+    private bool HandleLauncherActiveLogic_Before_ShouldContinue()
+    {
+        // allows for an exit from a launcher state
+        var continueUpdate = true;
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            GlobalManager.getInstance().cameraManager.SwapCameras();
+            Exit();
+            continueUpdate = false;
+        }
+        return continueUpdate;
+    }
+    private void HandleLauncherActiveLogic_After()
+    {
+        // changing potential planet
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             planetTypeInteractionIndex += 1;
             newPotentialPlanet();
         }
-        if (mode == Mode.PICK_LOCATION || mode == Mode.SLINGSHOT)
+        // setting position for cursor (potential) planet
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Plane zeroPlane = new Plane(Camera.main.transform.forward, new Vector3(0, 0, 0));
+        float enter;
+        if (zeroPlane.Raycast(ray, out enter))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Plane zeroPlane = new Plane(Camera.main.transform.forward, new Vector3(0, 0, 0));
-            float enter;
-            if (zeroPlane.Raycast(ray, out enter))
+            Vector3 hitPoint = ray.GetPoint(enter);
+            if (potentialPlanet == null)
             {
-                Vector3 hitPoint = ray.GetPoint(enter);
-                if (potentialPlanet == null)
-                {
-                    newPotentialPlanet();
-                }
-                // amt to move planet
-                var planetMoveDelta = hitPoint - potentialPlanet.transform.position;
-                potentialPlanet.transform.position = hitPoint;
-                // also move any child rigidbodies
-                var childRigidBodies = potentialPlanet.GetComponentsInChildren<Rigidbody>().Skip(1).ToList();
-                //childRigidBodies.ForEach(x => x.transform.position += planetMoveDelta);
-                //Debug.Log("number of child rigidbodies: " + childRigidBodies.Count);
+                newPotentialPlanet();
             }
-        }
-        if (mode == Mode.SLINGSHOT)
-        {
-            var trajectory = new List<Vector3>()
-            {
-                potentialPlanet.transform.position,
-                launchLoc
-            };
-            Vector2 launchLoc_2d = new Vector2(launchLoc.x, launchLoc.z);
-            Vector2 potentialPlanetPos_2d = new Vector2(potentialPlanet.transform.position.x, potentialPlanet.transform.position.z);
-            LaunchArrow.UpdatePosition(launchLoc_2d, potentialPlanetPos_2d);
+            // amt to move planet
+            potentialPlanet.transform.position = hitPoint;
+
         }
     }
 
@@ -153,37 +194,36 @@ public class LaunchManager : MonoBehaviour
 
     private void Launch()
     {
-        // TODO: We could avoid detroying the temp planet and creating a new one
-        // if we wanted... later
         Debug.Assert(mode == Mode.SLINGSHOT);
         var curLoc = potentialPlanet.transform.position;
-        var newPlanet = potentialPlanet;
+        var planetObj = potentialPlanet;
+        var newPlanet = planetObj.GetComponent<Planet>();
         potentialPlanet = null;
-        newPlanet.name = "LaunchedPlanet";
-        Rigidbody rbody = newPlanet.GetComponent<Rigidbody>();
+        newPlanet.name = "LaunchedPlanet_" + newPlanet.planetName;
+        Rigidbody rbody = newPlanet.orbitalPlanetObj.GetComponent<Rigidbody>();
         var direction = (launchLoc - curLoc).normalized;
         var dist = (launchLoc - curLoc).magnitude;
         rbody.AddForce(direction * dist * SLINGSHOT_COEF * rbody.mass);
         LaunchArrow.FadeOut(0.4f);
         // Enable the gravity on the planet only once it's been launched / released:
-        newPlanet.GetComponent<PlanetGravity>().enabled = true;
+        var planetGrav = newPlanet.orbitalPlanetObj.GetComponent<PlanetGravity>();
+        planetGrav.enabled = true;
         var colliders = newPlanet.GetComponentsInChildren<Collider>();
         foreach (var collider in colliders)
         {
             collider.enabled = true;
         }
-        newPlanet.GetComponent<Planet>().SetTrailRendererEnabled(true);
+        var rbodyEntities = newPlanet.localPlanetObj.GetComponentsInChildren<Objects_On_Planet>();
+        rbodyEntities.ToList().ForEach(x =>
+        {
+            x.SetCanBeKilled(0.01f);
+            x.SetHomePlanet(newPlanet);
+        });
+        newPlanet.SetTrailRendererEnabled(true);
         newPlanet.tag = "Planet";
 
-        // find all entitys and set home (for some reason it is not setting)
-        var childEntities = newPlanet.GetComponentsInChildren<Objects_On_Planet>();
-        Debug.Log("num children entities: " + childEntities.Count());
-        //var planetObj = newPlanet.GetComponent<Planet>();
-        //childEntities.ToList().ForEach(x => x.homePlanet = planetObj);
-        //newPlanet.transform.GetComponentInChildren<TrailRenderer>().gameObject.SetActive(true); // todo this doesn't seem to be working.
-
         StatsManager.getInstance().PlanetLaunched(currentPlanet.planetType);
-        cameraManager.SetFocusTarget(newPlanet.transform);
+        GravityManager.getInstance().SetActivePlanetCam(planetGrav);
 
         boing.GetComponent<AudioSource>().Play();
         // Go back to launch mode for another launch:

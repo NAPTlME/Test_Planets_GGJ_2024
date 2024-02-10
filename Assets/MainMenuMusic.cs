@@ -15,7 +15,6 @@ public class MainMenuMusic : MonoBehaviour
         }
 
         singleton = this;
-        Debug.Log("Awake");
         DontDestroyOnLoad(transform.gameObject);
         audioSource = GetComponent<AudioSource>();
     }
@@ -28,7 +27,6 @@ public class MainMenuMusic : MonoBehaviour
 
     public void StopMusic()
     {
-        Debug.Log("Stop");
         audioSource.Stop();
     }
 }

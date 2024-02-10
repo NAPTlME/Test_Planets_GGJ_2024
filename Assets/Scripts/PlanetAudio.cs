@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlanetAudio : MonoBehaviour
 {
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     private bool destroyed = false;
 
     void Start()
@@ -21,7 +21,7 @@ public class PlanetAudio : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!destroyed && collision.gameObject.tag == "Sun")
+        /*if (!destroyed && collision.gameObject.tag == "Sun")
         {
             // Debug.Log("Crashing into the sun, playing SFX");
             audioSource.Play();
@@ -30,6 +30,6 @@ public class PlanetAudio : MonoBehaviour
             // the physics, the boolean should be trusthworthy
             destroyed = true;
             Destroy(this.gameObject, audioSource.clip.length);
-        }
+        }*/
     }
 }
