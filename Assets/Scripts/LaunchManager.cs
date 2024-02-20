@@ -227,7 +227,7 @@ public class LaunchManager : MonoBehaviour
         });
         newPlanet.SetTrailRendererEnabled(true);
         //Set initial trail size, color & duration until it turns to default
-        newPlanet.InitialTrailRenderer(df.sqrMagnitude /10000, new UnityEngine.Color(force.x, force.z, 0, 1f), df.sqrMagnitude/10000);
+        newPlanet.InitialTrailRenderer(df.sqrMagnitude /1000, new UnityEngine.Color(force.x, force.z, 0, 1f), Mathf.Log10(df.sqrMagnitude));
 
         newPlanet.tag = "Planet";
 
