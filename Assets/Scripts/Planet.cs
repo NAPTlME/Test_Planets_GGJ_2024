@@ -28,7 +28,8 @@ public class Planet : MonoBehaviour
 
     public float radius;
     public string planetName;
-    public TrailRenderer trailRenderer, defaultTrailRenderer;
+    public TrailRenderer trailRenderer;
+    private TrailRendererAnimData defaultTrailRendererFields;
     public GameObject orbitalPlanetObj;
     public GameObject localPlanetObj;
     // Start is called before the first frame update
@@ -44,7 +45,7 @@ public class Planet : MonoBehaviour
         }
         planetName += " " + rand.Next(1000);
 
-        defaultTrailRenderer = trailRenderer;
+        defaultTrailRendererFields = new TrailRendererAnimData(trailRenderer);
     }
 
     void LateUpdate()
@@ -61,7 +62,7 @@ public class Planet : MonoBehaviour
         trailRenderer.startWidth = _startWidth;
         trailRenderer.endWidth = _startWidth;
         trailRenderer.startColor = _startColor;
-        StartCoroutine(LerpInitialTrailToDefault(defaultTrailRenderer.startWidth, _duration, _duration));
+        StartCoroutine(LerpInitialTrailToDefault(defaultTrailRendererFields.startWidth, _duration));
     }
 
     IEnumerator LerpInitialTrailToDefault(float _targetWidth, float _duration, float _lerpDuration)
@@ -88,5 +89,26 @@ public class Planet : MonoBehaviour
     public void SetTrailRendererEnabled(bool x)
     {
         trailRenderer.gameObject.SetActive(x);
+    }
+}
+
+public class TrailRendererAnimData
+{
+    public float startWidth;
+    public float endWidth;
+    public Color startColor;
+
+    public TrailRendererAnimData(float _startWidth, float _endWidth, Color _startColor)
+    {
+        startWidth = _startWidth;
+        endWidth = _endWidth;
+        startColor = _startColor;
+    }
+
+    public TrailRendererAnimData(TrailRenderer refTr)
+    {
+        startWidth = refTr.startWidth;
+        endWidth = refTr.endWidth;
+        startColor = refTr.startColor;
     }
 }
