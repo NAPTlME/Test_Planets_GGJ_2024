@@ -65,24 +65,20 @@ public class Planet : MonoBehaviour
         StartCoroutine(LerpInitialTrailToDefault(defaultTrailRendererFields.startWidth, _duration));
     }
 
-    IEnumerator LerpInitialTrailToDefault(float _targetWidth, float _duration, float _lerpDuration)
-    { 
-        yield return new WaitForSeconds(_duration);
-    //     float startFill = _experienceBarFill.fillAmount;
-
-    //     // We'll scale our lerp speed so the total duration of the animation is
-    //     // proportionate to how much the value has changed.
-            float speed = 1.0f / (_lerpDuration * Mathf.Abs(_targetWidth - trailRenderer.startWidth));
-     
-         for(float t = 0; t < 1f; t += speed * Time.deltaTime) {
-            // I've replaced your exponential ease-out Lerp with a quadratic version that
-            // completes in a finite number of steps, and is easier to correct for deltaTime.
-            // (The exponential one never quite reaches its target)
-            float progress = 1f - t;
-            progress = 1f - progress * progress;
-            trailRenderer.startWidth = Mathf.Lerp(trailRenderer.startWidth, _targetWidth, progress);
+    IEnumerator LerpInitialTrailToDefault(float _targetWidth, float _duration)
+    {
+        var startTime = Time.time;
+        var endTime = startTime + _duration;
+        var currWidth = trailRenderer.startWidth;
+        var startWidth = trailRenderer.startWidth;
+        var width_step = (_targetWidth - startWidth) / _duration;
+        while (Time.time < endTime)
+        {
+            currWidth += width_step * Time.deltaTime;
+            trailRenderer.startWidth = currWidth;
+            yield return null;
         }
-        yield return null;
+        trailRenderer.startWidth = _targetWidth;
     }
 
     
