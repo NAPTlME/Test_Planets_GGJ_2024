@@ -59,7 +59,11 @@ public class Planet : MonoBehaviour
 
     public void InitialTrailRenderer(float _startWidth, Color _startColor, float _duration)
     {
-        trailRenderer.startWidth = _startWidth;
+        if(_startWidth <= 0)
+            trailRenderer.startWidth = 0.1f;
+        else
+            trailRenderer.startWidth = _startWidth;
+
         trailRenderer.endWidth = _startWidth;
         trailRenderer.startColor = _startColor;
         StartCoroutine(LerpInitialTrailToDefault(defaultTrailRendererFields.startWidth, _duration));

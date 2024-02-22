@@ -199,32 +199,41 @@ public class LaunchManager : MonoBehaviour
         var curLoc = potentialPlanet.transform.position;
         var planetObj = potentialPlanet;
         var newPlanet = planetObj.GetComponent<Planet>();
+
         potentialPlanet = null;
         newPlanet.name = "LaunchedPlanet_" + newPlanet.planetName;
         Rigidbody rbody = newPlanet.orbitalPlanetObj.GetComponent<Rigidbody>();
+
         var direction = (launchLoc - curLoc).normalized;
         var dist = (launchLoc - curLoc).magnitude;
+
         //force holds the value of the force to be added.
         var force = (direction * dist * SLINGSHOT_COEF * rbody.mass);
+
         //df holds just direction times exponential distance for the trail
         var df = (direction * dist);
+
         rbody.AddForce(force/*direction * (float)Math.Pow(dist, 1.5f) * SLINGSHOT_COEF * rbody.mass*/);
         Debug.Log("Force Added: " + force);
         LaunchArrow.FadeOut(0.4f);
+
         // Enable the gravity on the planet only once it's been launched / released:
         var planetGrav = newPlanet.orbitalPlanetObj.GetComponent<PlanetGravity>();
         planetGrav.enabled = true;
+
         var colliders = newPlanet.GetComponentsInChildren<Collider>();
         foreach (var collider in colliders)
         {
             collider.enabled = true;
         }
+
         var rbodyEntities = newPlanet.localPlanetObj.GetComponentsInChildren<Objects_On_Planet>();
         rbodyEntities.ToList().ForEach(x =>
         {
             x.SetCanBeKilled(0.01f);
             x.SetHomePlanet(newPlanet);
         });
+
         newPlanet.SetTrailRendererEnabled(true);
         //Set initial trail size, color & duration until it turns to default
         newPlanet.InitialTrailRenderer(df.sqrMagnitude /1000, new UnityEngine.Color(force.x, force.z, 0, 1f), Mathf.Log10(df.sqrMagnitude));
@@ -235,6 +244,7 @@ public class LaunchManager : MonoBehaviour
         GravityManager.getInstance().SetActivePlanetCam(planetGrav);
 
         boing.GetComponent<AudioSource>().Play();
+        
         // Go back to launch mode for another launch:
         StartPickLocation();
     }
